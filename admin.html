@@ -38,6 +38,8 @@
                             <input class="form-control" type="text" id="section_course" name="section_course" required>
                             <label for="student_count_limit">Student Count Limit:</label>
                             <input class="form-control" type="number" id="student_count_limit" name="student_count_limit" required>
+                            <label for="assign_teacher">Enter Teacher ID to Assign:</label>
+                            <input class="form-control" type="text" id="assign_teacher" name="assign_teacher" required>
         
                             <button type="submit" id="Add_Course_btn">ADD COURSE</button>
                         </form>
@@ -53,13 +55,6 @@
                             <input class="form-control" type="text" id="password_teahcer" name="password_teacher" required>
                             <label for="mail_teacher">E-mail Address :</label>
                             <input class="form-control" type="email" id="mail_teacher" name="mail_teacher" required>
-                            <label for="dept_course">Assign Courses:</label>
-                            <select id="courses_teacher" name="courses_teacher[]">
-                                <option value="math4523">Math4523</option>
-                                <option value="cse4501">CSE4501</option>
-                                <option value="eee4533">EEE4533</option>
-                                <!-- Add more courses as needed -->
-                            </select>
                             <button type="submit" id="Add_Teacher_btn">ADD TEACHER</button>
                         </form>
                     </div>

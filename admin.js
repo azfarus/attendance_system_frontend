@@ -15,73 +15,44 @@ sidebarItems.forEach((item) => {
   });
 });
 
-// get the courses from the backend
-$(document).ready(function () {
-  // Fetch data from the backend API (replace with your actual API URL)
-  $.ajax({
-    url: "/api/courses",
-    method: "GET",
-    success: function (data) {
-      // Assuming data is an array of objects with 'value' and 'label' properties
-      data.forEach(function (option) {
-        // Create a new option element
-        var newOption = new Option(option.label, option.value);
-
-        // Append the new option to the multi-select dropdown
-        $("#courses_teacher").append(newOption);
-      });
-    },
-    error: function (error) {
-      console.error("Error fetching data from API:", error);
-    },
-  });
-});
 
 // JavaScript (admin.js)
-$(document).ready(function() {
-    // Function to submit the Insert Course form
-    $('#addCourseButton').click(function() {
-        var formData = $('#insertCourseForm').serialize();
-        
-        axios.post('/api/insert-course', formData)
-            .then(function(response) {
-                // Handle success, e.g., show a success message
-                console.log('Course added successfully');
-            })
-            .catch(function(error) {
-                // Handle error, e.g., show an error message
-                console.error('Error adding course:', error);
-            });
+// Function to submit the form with data as parameters
+function submitForm(formId, endpoint) {
+  var formData = $(formId).serializeArray(); // Serialize form data as an array
+
+  // Convert serialized data to an object
+  var dataObject = {};
+  formData.forEach(function (item) {
+    dataObject[item.name] = item.value;
+  });
+
+  // Send a POST request with data as URL parameters
+  axios
+    .post(endpoint, null, {
+      params: dataObject,
+    })
+    .then(function (response) {
+      // Handle success, e.g., show a success message
+      console.log("Form submitted successfully");
+    })
+    .catch(function (error) {
+      // Handle error, e.g., show an error message
+      console.error("Error submitting form:", error);
     });
+}
 
-    // Function to submit the Insert Teacher form
-    $('#addTeacherButton').click(function() {
-        var formData = $('#insertTeacherForm').serialize();
+$(document).ready(function () {
+  // Event listeners for form submissions
+  $("#addCourseButton").click(function () {
+    submitForm("#insertCourseForm", "/api/insert-course"); // Replace with your API endpoint
+  });
 
-        axios.post('/api/insert-teacher', formData)
-            .then(function(response) {
-                // Handle success, e.g., show a success message
-                console.log('Teacher added successfully');
-            })
-            .catch(function(error) {
-                // Handle error, e.g., show an error message
-                console.error('Error adding teacher:', error);
-            });
-    });
+  $("#addTeacherButton").click(function () {
+    submitForm("#insertTeacherForm", "/api/insert-teacher"); // Replace with your API endpoint
+  });
 
-    // Function to submit the Insert Student form
-    $('#addStudentButton').click(function() {
-        var formData = $('#insertStudentForm').serialize();
-
-        axios.post('/api/insert-student', formData)
-            .then(function(response) {
-                // Handle success, e.g., show a success message
-                console.log('Student added successfully');
-            })
-            .catch(function(error) {
-                // Handle error, e.g., show an error message
-                console.error('Error adding student:', error);
-            });
-    });
+  $("#addStudentButton").click(function () {
+    submitForm("#insertStudentForm", "/api/insert-student"); // Replace with your API endpoint
+  });
 });
-
