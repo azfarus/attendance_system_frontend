@@ -83,6 +83,7 @@ label {
 }
 
 .form-control {
+  font-size: medium;
   padding: 1.5rem;
   margin-bottom: 2rem;
   border-radius: 2.5rem;
