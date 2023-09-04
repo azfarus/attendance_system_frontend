@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login - Attendance Management System</title>
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="admin.css">
+    </head>
+    <body>
+        <div class="nav">
+            <h2 class="text-center mt-2 display-4 text-dark"><b>ADMIN DASHBOARD</b></h2>
+        </div>
+        <div class="container_main">
+            <div class="p_container">
+                <div class="sidebar">
+                    <h2>~ FEATURES ~</h2>
+                    <ul>
+                        <li class="active" data-target="#insertCourseSection">Insert Course</li>
+                        <li data-target="#insertTeacherSection">Insert Teacher</li>
+                        <li data-target="#insertStudentSection">Insert Student</li>
+                    </ul>
+                </div>
+                <div class="main">
+                    <div class="section active" id="insertCourseSection">
+                        <h1>INSERT COURSES</h1>
+                        <form class="form_ctrl" id="insertCourseForm" method="post" action="">
+                            <label for="dept_course">Department:</label>
+                            <select id="dept_course" name="dept_course">
+                                <option value="cse">CSE</option>
+                                <option value="eee">EEE</option>
+                                <option value="math">Math</option>
+                            </select>
+                            <label for="code_course">Code:</label>
+                            <input class="form-control" type="text" id="code_course" name="code_course" required>
+                            <label for="section_course">Section:</label>
+                            <input class="form-control" type="text" id="section_course" name="section_course" required>
+                            <label for="student_count_limit">Student Count Limit:</label>
+                            <input class="form-control" type="number" id="student_count_limit" name="student_count_limit" required>
+        
+                            <button type="submit" id="Add_Course_btn">ADD COURSE</button>
+                        </form>
+                    </div>
+                    <div class="section" id="insertTeacherSection">
+                        <h1>INSERT TEACHER</h1>
+                        <form class="form_ctrl" id="insertTeacherForm" method="post" action="">
+                            <label for="name_teacher">Name :</label>
+                            <input class="form-control" type="text" id="name_teacher" name="name_teacher" required>
+                            <label for="id_teacher">Teacher ID :</label>
+                            <input class="form-control" type="text" id="id_teacher" name="id_teacher" required>
+                            <label for="password_teacher">Password :</label>
+                            <input class="form-control" type="text" id="password_teahcer" name="password_teacher" required>
+                            <label for="mail_teacher">E-mail Address :</label>
+                            <input class="form-control" type="email" id="mail_teacher" name="mail_teacher" required>
+                            <label for="dept_course">Assign Courses:</label>
+                            <select id="courses_teacher" name="courses_teacher[]">
+                                <option value="math4523">Math4523</option>
+                                <option value="cse4501">CSE4501</option>
+                                <option value="eee4533">EEE4533</option>
+                                <!-- Add more courses as needed -->
+                            </select>
+                            <button type="submit" id="Add_Teacher_btn">ADD TEACHER</button>
+                        </form>
+                    </div>
+                    <div class="section" id="insertStudentSection">
+                        <h1>INSERT STUDENT</h1>
+                        <form class="form_ctrl" id="insertStudentForm" method="post" action="">
+                            <label for="name_student">Name :</label>
+                            <input class="form-control" type="text" id="name_student" name="name_student" required>
+                            <label for="id_student">Student ID :</label>
+                            <input class="form-control" type="text" id="id_student" name="id_student" required>
+                            <label for="password_student">Password :</label>
+                            <input class="form-control" type="text" id="password_student" name="password_student" required>
+                            <label for="mail_student">Student E-mail :</label>
+                            <input class="form-control" type="email" id="mail_student" name="mail_student" required>
+                            <label for="mail_guardian">Guardian E-mail :</label>
+                            <input class="form-control" type="email" id="mail_guardian" name="mail_guardian" required>
+                            <button type="submit" id="Add_Student_btn">ADD STUDENT</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="admin.js"></script>
+    </body>
+</html>
