@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login - Attendance Management System</title>
+        <title>Admin - Student Attendance System</title>
         <link rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="admin.css">
@@ -25,7 +25,7 @@
                 <div class="main">
                     <div class="section active" id="insertCourseSection">
                         <h1>INSERT COURSES</h1>
-                        <form class="form_ctrl" id="insertCourseForm" method="post" action="">
+                        <form class="form_ctrl" id="insertCourseForm">
                             <label for="dept_course">Department:</label>
                             <select id="dept_course" name="dept_course">
                                 <option value="cse">CSE</option>
@@ -46,21 +46,21 @@
                     </div>
                     <div class="section" id="insertTeacherSection">
                         <h1>INSERT TEACHER</h1>
-                        <form class="form_ctrl" id="insertTeacherForm" method="post" action="">
+                        <form class="form_ctrl" id="insertTeacherForm">
                             <label for="name_teacher">Name :</label>
                             <input class="form-control" type="text" id="name_teacher" name="name_teacher" required>
                             <label for="id_teacher">Teacher ID :</label>
                             <input class="form-control" type="text" id="id_teacher" name="id_teacher" required>
                             <label for="password_teacher">Password :</label>
-                            <input class="form-control" type="text" id="password_teahcer" name="password_teacher" required>
+                            <input class="form-control" type="text" id="password_teacher" name="password_teacher" required>
                             <label for="mail_teacher">E-mail Address :</label>
-                            <input class="form-control" type="email" id="mail_teacher" name="mail_teacher" required>
-                            <button type="submit" id="Add_Teacher_btn">ADD TEACHER</button>
+                            <input class="form-control" type="text" id="mail_teacher" name="mail_teacher" required>
+                            <button type="submit" id="addTeacherButton">ADD TEACHER</button>
                         </form>
                     </div>
                     <div class="section" id="insertStudentSection">
                         <h1>INSERT STUDENT</h1>
-                        <form class="form_ctrl" id="insertStudentForm" method="post" action="">
+                        <form class="form_ctrl" id="insertStudentForm">
                             <label for="name_student">Name :</label>
                             <input class="form-control" type="text" id="name_student" name="name_student" required>
                             <label for="id_student">Student ID :</label>

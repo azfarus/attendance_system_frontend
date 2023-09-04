@@ -16,43 +16,134 @@ sidebarItems.forEach((item) => {
 });
 
 
-// JavaScript (admin.js)
-// Function to submit the form with data as parameters
-function submitForm(formId, endpoint) {
-  var formData = $(formId).serializeArray(); // Serialize form data as an array
+// // JavaScript (admin.js)
+// function captureFormData() {
+//     // Get values from form fields
+//     var name = document.getElementById("name_teacher").value;
+//     var teacherID = document.getElementById("id_teacher").value;
+//     var password = document.getElementById("password_teahcer").value;
+//     var email = document.getElementById("mail_teacher").value;
 
-  // Convert serialized data to an object
-  var dataObject = {};
-  formData.forEach(function (item) {
-    dataObject[item.name] = item.value;
-  });
+//     var params = {
+//         name: name,
+//         id: teacherID,
+//         password: password,
+//         email: email
+//     };
 
-  // Send a POST request with data as URL parameters
-  axios
-    .post(endpoint, null, {
-      params: dataObject,
-    })
-    .then(function (response) {
-      // Handle success, e.g., show a success message
-      console.log("Form submitted successfully");
-    })
-    .catch(function (error) {
-      // Handle error, e.g., show an error message
-      console.error("Error submitting form:", error);
+
+//     axios.get('http://localhost:8081/admin/teacher',{param:params } )
+//         .then(function(response) {
+//             console.log('Teacher added successfully');
+//         })
+//         .catch(function(error) {
+//             console.error('Error adding teacher:', error);
+//         });
+
+//     // Create a string containing the form data
+//     var formDataString = "Name: " + name + "\nTeacher ID: " + teacherID + "\nPassword: " + password + "\nE-mail Address: " + email;
+
+//     // Output the form data as a string in the console
+//     console.log(params);
+// }
+
+// // Add an event listener to the "ADD TEACHER" button
+// document.getElementById("addTeacherButton").addEventListener("click", function(event) {
+//     // Prevent the form from submitting (to avoid page refresh)
+//     event.preventDefault();
+
+//     // Call the captureFormData function to process the form data
+//     captureFormData();
+// });
+
+
+// // JavaScript (admin.js)
+// // $(document).ready(function() {
+// //     // Function to submit the Insert Course form
+// //     $('#addCourseButton').click(function() {
+// //         var params = new URLSearchParams();
+// //         params.append('department', $('#dept_course').val());
+// //         params.append('code', $('#code_course').val());
+// //         params.append('section', $('#section_course').val());
+// //         params.append('student_count_limit', $('#student_count_limit').val());
+
+// //         axios.post('/api/insert-course', params)
+// //             .then(function(response) {
+// //                 console.log('Course added successfully');
+// //             })
+// //             .catch(function(error) {
+// //                 console.error('Error adding course:', error);
+// //             });
+// //     });
+
+//     // Function to submit the Insert Teacher form
+//     $('#addTeacherButton').click(function() {
+//         var params = new URLSearchParams();
+//         params.append('name_teacher', $('#name_teacher').val());
+//         params.append('id_teacher', $('#id_teacher').val());
+//         params.append('password_teacher', $('#password_teacher').val());
+//         params.append('mail_teacher', $('#mail_teacher').val());
+//         params.append('courses_teacher', $('#courses_teacher').val());
+
+//         axios.post('/api/insert-teacher', params)
+//             .then(function(response) {
+//                 console.log('Teacher added successfully');
+//             })
+//             .catch(function(error) {
+//                 console.error('Error adding teacher:', error);
+//             });
+//     });
+
+// //     // Function to submit the Insert Student form
+// //     $('#addStudentButton').click(function() {
+// //         var params = new URLSearchParams();
+// //         params.append('name_student', $('#name_student').val());
+// //         params.append('id_student', $('#id_student').val());
+// //         params.append('password_student', $('#password_student').val());
+// //         params.append('mail_student', $('#mail_student').val());
+// //         params.append('mail_guardian', $('#mail_guardian').val());
+
+// //         axios.post('/api/insert-student', params)
+// //             .then(function(response) {
+// //                 console.log('Student added successfully');
+// //             })
+// //             .catch(function(error) {
+// //                 console.error('Error adding student:', error);
+// //             });
+// //     });
+// // });
+
+
+    // When the form is submitted
+    $("#insertTeacherForm").submit(function (event) {
+        event.preventDefault(); // Prevent the default form submission
+        
+        // Get the form values
+        var name_t = $("#name_teacher").val();
+        var id_t = $("#id_teacher").val();
+        var password_t = $("#password_teacher").val();
+        var email_t = $("#mail_teacher").val();
+        
+        // Create a data object with the parameters
+        var data = {
+            name: name_t,
+            id: id_t,
+            password: password_t,
+            email: email_t
+        };
+        
+        // Make the AJAX request
+        $.ajax({
+            url: "http://localhost:8081/admin/teacher", // Replace with your backend API endpoint
+            method: "GET",
+            data: data,
+            success: function (response) {
+                // Handle the successful response here
+                console.log("Teacher added successfully:", response);
+            },
+            error: function (error) {
+                // Handle any errors here
+                console.error("Error adding teacher:", error.responseText);
+            }
+        });
     });
-}
-
-$(document).ready(function () {
-  // Event listeners for form submissions
-  $("#addCourseButton").click(function () {
-    submitForm("#insertCourseForm", "/api/insert-course"); // Replace with your API endpoint
-  });
-
-  $("#addTeacherButton").click(function () {
-    submitForm("#insertTeacherForm", "/api/insert-teacher"); // Replace with your API endpoint
-  });
-
-  $("#addStudentButton").click(function () {
-    submitForm("#insertStudentForm", "/api/insert-student"); // Replace with your API endpoint
-  });
-});
