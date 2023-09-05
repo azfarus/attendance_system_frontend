@@ -135,8 +135,9 @@ sidebarItems.forEach((item) => {
         // Make the AJAX request
         $.ajax({
             url: "http://localhost:8081/admin/teacher", // Replace with your backend API endpoint
-            method: "GET",
-            data: data,
+            method: "POST",
+            data: jQuery.param(data) ,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
             success: function (response) {
                 // Handle the successful response here
                 console.log("Teacher added successfully:", response);
