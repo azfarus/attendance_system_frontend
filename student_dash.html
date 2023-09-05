@@ -8,33 +8,46 @@
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="student_dash.css">
 </head>
-<body>
-    <div id="sidebar">
-        <img src="images/pp.jpg" alt="Profile Picture">
-        <div class="login-left">
-            <div class="brand">
-                <div class="stems">
-                    <center>Student Profile</center><br>
+    <body>
+        <div class="nav">
+            <h2 class="text-center mt-2 display-4 text-dark"><b>STUDENT DASHBOARD</b></h2>
+        </div>
+        <div class="container_main">
+            <div class="p_container">
+                <div class="sidebar">
+                    <img src = "images/pp.jpg" style="width:260px;height:300px;"><br>
+                    <ul><br>
+                        <li>Asif Abrar</li>
+                        <li>200041106</li>
+                    </ul>
+                </div>
+                <div class="main">
+                    <div class="section active" id="insertCourseSection">
+                        <h1>ATTENDANCE CHART</h1> <br>
+                        <div class="form_ctrl" id="attendanceChart">
+                            <!-- <label for="dept_course">Department:</label>
+                            <select id="dept_course" name="dept_course">
+                                <option value="cse">CSE</option>
+                                <option value="eee">EEE</option>
+                                <option value="math">Math</option>
+                            </select>
+                            <label for="code_course">Code:</label>
+                            <input class="form-control" type="text" id="code_course" name="code_course" required>
+                            <label for="section_course">Section:</label>
+                            <input class="form-control" type="text" id="section_course" name="section_course" required>
+                            <label for="student_count_limit">Student Count Limit:</label>
+                            <input class="form-control" type="number" id="student_count_limit" name="student_count_limit" required>
+                            <label for="assign_teacher">Enter Teacher ID to Assign:</label>
+                            <input class="form-control" type="text" id="assign_teacher" name="assign_teacher" required> -->
+                        </div>
+
+                        <button type="submit" id="courseRegBtn">Course Registration</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class = "name">
-            <center>Asif Abrar</center>
-            <center>200041106</center>
-        </div>
-        <!-- <a href="#">Dashboard</a>
-        <a href="#">Grades</a>
-        <a href="#">Courses</a>
-        <a href="#">Profile</a> -->
-    </div>
-    <div id="content">
-
-
-        <form>
-            <center><button type="button"class="btn btn-primary btn-lg btn-block" id="loginButton">Course Registration</button></center>
-        </form>
-        <!-- Your dashboard content goes here -->
-        
-    </div>
-</body>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="admin.js"></script>
+    </body>
 </html>
