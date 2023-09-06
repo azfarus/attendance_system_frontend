@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Student Dashboard</title>
     <link rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -25,6 +26,29 @@
                     <div class="section active" id="insertCourseSection">
                         <h1>ATTENDANCE CHART</h1> <br>
                         <div class="form_ctrl" id="attendanceChart">
+                            <canvas id="myChart"></canvas>
+                                <script>
+                                // Get the canvas element by its id
+                                var ctx = document.getElementById('myChart').getContext('2d');
+                                // Define your chart data
+                                var chartData = {
+                                    labels: ['CSE 4107', 'EEE 4181', 'CSE 4105', 'HUM 4147', 'HUM 4145'],
+                                    datasets: [{
+                                    label: 'Attendance Chart',
+                                    data: [10, 20, 15, 30, 25],
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Fill color
+                                    borderColor: 'rgba(75, 192, 192, 1)', // Border color
+                                    borderWidth: 2
+                                    }]
+                                };
+                        
+                                // Create the chart
+                                var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: chartData,
+                                });
+                                </script>
+                    
                             <!-- <label for="dept_course">Department:</label>
                             <select id="dept_course" name="dept_course">
                                 <option value="cse">CSE</option>

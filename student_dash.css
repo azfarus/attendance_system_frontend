@@ -218,6 +218,14 @@ a {
   font-size: 15px;
 }
 
+#myChart{
+  width: 80%; /* Set the width of the container */
+  height: 400px; /* Set the height of the container */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px; /* Add padding for spacing */
+  background-color: #f0f0f0; /* Set a background color */
+}
+
 .nav {
   padding-top: 1.2rem;
   width: 100%;
