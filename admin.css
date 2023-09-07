@@ -100,7 +100,8 @@ select {
   }
 
 button:hover {
-  color: #fff;
+  background-color: #fff718d8;
+  color: #030060;
 }
 
 button {
@@ -112,7 +113,7 @@ button {
   padding: 1rem;
   border-radius: 2.5rem;
   border: #ddd;
-  background-color: #ffb300;
+  background-color: #ffa600;
   color: #000;
   cursor: pointer;
   box-shadow: 0.5rem 0.6rem 0.8rem rgba(0, 0, 0, 0.268);
@@ -218,7 +219,7 @@ a {
   height: 7.2rem;
   position: fixed;
   line-height: 5rem;
-  background-color: rgba(0, 195, 255, 0.559);
+  background-color: #0c18c3e7;
   justify-content: center;
   z-index: 1;
 }

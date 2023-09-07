@@ -111,6 +111,33 @@ form .btn {
     transition: all 0.4s ease;
   }
 
+  #userType{
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    background-color: rgb(235, 246, 255);
+    width: 10rem;
+    height: 2.7rem;
+    border-radius: 2rem;
+    border-color: #0009b4;
+    border-width: 0.2rem;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-control{
+    width: 20rem;
+    height: 2.7rem;
+    border-radius: 2.5rem;
+    border-color: #0009b4;
+    border-width: 0.1rem;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+  }
+
+
 @media (min-width: 768px) {
   .login-left {
     height: 100vh;

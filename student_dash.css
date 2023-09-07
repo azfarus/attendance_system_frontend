@@ -18,7 +18,7 @@
   margin-top: 7.2rem;
   background-color: #000000;
   color: #fff;
-  width: 35rem;
+  width: 36rem;
   padding: 2rem;
 }
 
@@ -41,7 +41,7 @@
     padding: 1rem 0;
     cursor: pointer;
     margin-bottom: 2rem;
-    font-size: 2.8rem;
+    font-size: 2.4rem;
 }
 
 /* Set styling for the active item in sidebar unordered list */
@@ -232,7 +232,7 @@ a {
   height: 7.2rem;
   position: fixed;
   line-height: 5rem;
-  background-color: rgba(0, 195, 255, 0.559);
+  background-color: #0c18c3e7;
   justify-content: center;
   z-index: 1;
 }
