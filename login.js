@@ -22,7 +22,12 @@ $('#loginButton').click(function() {
         success: function() {
             alert('Login Successful');
             // Redirect to the appropriate dashboard based on the user type
-            //window.location.href = /${userType}-dashboard.html;
+            if(userType=='admin')
+                window.location.href = "admin.html";
+            else if(userType=='teacher')
+                window.location.href = "teacher_dash.html";
+            else if(userType=='student')
+                window.location.href = "student_dash.html";
         },
         error: function() {
             // Handle login error
