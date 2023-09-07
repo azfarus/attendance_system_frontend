@@ -126,3 +126,28 @@ $("#insertStudentForm").submit(function (event) {
     },
   });
 });
+
+//Fetch department data from the backend
+$.ajax({
+  url: "http://localhost:8081/admin/departments", // Replace with your backend endpoint
+  method: "GET",
+  success: function (data) {
+      // Populate the <select> with dynamic options
+      var selectElement = $("#dept_course");
+
+      // Iterate through the fetched data and create <option> elements
+      for (var i = 0; i < data.length; i++) {
+          var department = data[i];
+          selectElement.append($('<option>', {
+              value: department,
+              text: department
+          }));
+      }
+  },
+  error: function (error) {
+      // Handle errors
+      console.error("Error fetching departments:", error);
+  }
+});
+
+
