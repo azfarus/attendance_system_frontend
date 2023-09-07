@@ -15,136 +15,114 @@ sidebarItems.forEach((item) => {
   });
 });
 
+// When the form is submitted
+$("#insertTeacherForm").submit(function (event) {
+  event.preventDefault(); // Prevent the default form submission
 
-// // JavaScript (admin.js)
-// function captureFormData() {
-//     // Get values from form fields
-//     var name = document.getElementById("name_teacher").value;
-//     var teacherID = document.getElementById("id_teacher").value;
-//     var password = document.getElementById("password_teahcer").value;
-//     var email = document.getElementById("mail_teacher").value;
+  // Get the form values
+  var name_t = $("#name_teacher").val();
+  var id_t = $("#id_teacher").val();
+  var password_t = $("#password_teacher").val();
+  var email_t = $("#mail_teacher").val();
 
-//     var params = {
-//         name: name,
-//         id: teacherID,
-//         password: password,
-//         email: email
-//     };
+  // Create a data object with the parameters
+  var data = {
+    name: name_t,
+    id: id_t,
+    password: password_t,
+    email: email_t,
+  };
 
+  // Make the AJAX request
+  $.ajax({
+    url: "http://localhost:8081/admin/teacher", // Replace with your backend API endpoint
+    method: "POST",
+    data: jQuery.param(data),
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    success: function (response) {
+      // Handle the successful response here
+      alert("Teacher added successfully");
+      console.log("Teacher added successfully:", response);
+    },
+    error: function (error) {
+      // Handle any errors here
+      console.error("Error adding teacher:", error.responseText);
+    },
+  });
+});
 
-//     axios.get('http://localhost:8081/admin/teacher',{param:params } )
-//         .then(function(response) {
-//             console.log('Teacher added successfully');
-//         })
-//         .catch(function(error) {
-//             console.error('Error adding teacher:', error);
-//         });
+// When the form is submitted
+$("#insertCourseForm").submit(function (event) {
+  event.preventDefault(); // Prevent the default form submission
 
-//     // Create a string containing the form data
-//     var formDataString = "Name: " + name + "\nTeacher ID: " + teacherID + "\nPassword: " + password + "\nE-mail Address: " + email;
+  // Get the form values
+  var department = $("#dept_course").val();
+  var code = $("#code_course").val();
+  var studentCountLimit = $("#student_count_limit").val();
+  var section = $("#section_course").val();
+  var assignTeacher = $("#assign_teacher").val();
 
-//     // Output the form data as a string in the console
-//     console.log(params);
-// }
+  // Create a data object with the parameters
+  var data = {
+    department: department,
+    courseId: code,
+    count: studentCountLimit,
+    section: section,
+    teacherId: assignTeacher,
+  };
 
-// // Add an event listener to the "ADD TEACHER" button
-// document.getElementById("addTeacherButton").addEventListener("click", function(event) {
-//     // Prevent the form from submitting (to avoid page refresh)
-//     event.preventDefault();
+  // Make the AJAX request
+  $.ajax({
+    url: "http://localhost:8081/admin/course", // Replace with your backend API endpoint
+    method: "POST",
+    data: jQuery.param(data),
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    success: function (response) {
+      // Handle the successful response here
+      alert("Course added successfully");
+      console.log("Course added successfully:", response);
+    },
+    error: function (error) {
+      // Handle any errors here
+      console.error("Error adding course:", error.responseText);
+    },
+  });
+});
 
-//     // Call the captureFormData function to process the form data
-//     captureFormData();
-// });
+// When the form is submitted
+$("#insertStudentForm").submit(function (event) {
+  event.preventDefault(); // Prevent the default form submission
 
+  // Get the form values
+  var name = $("#name_student").val();
+  var id = $("#id_student").val();
+  var password = $("#password_student").val();
+  var email = $("#mail_student").val();
+  var guardianEmail = $("#mail_guardian").val();
 
-// // JavaScript (admin.js)
-// // $(document).ready(function() {
-// //     // Function to submit the Insert Course form
-// //     $('#addCourseButton').click(function() {
-// //         var params = new URLSearchParams();
-// //         params.append('department', $('#dept_course').val());
-// //         params.append('code', $('#code_course').val());
-// //         params.append('section', $('#section_course').val());
-// //         params.append('student_count_limit', $('#student_count_limit').val());
+  // Create a data object with the parameters
+  var data = {
+    name: name,
+    id: id,
+    password: password,
+    email: email,
+    guardianEmail: guardianEmail,
+  };
 
-// //         axios.post('/api/insert-course', params)
-// //             .then(function(response) {
-// //                 console.log('Course added successfully');
-// //             })
-// //             .catch(function(error) {
-// //                 console.error('Error adding course:', error);
-// //             });
-// //     });
-
-//     // Function to submit the Insert Teacher form
-//     $('#addTeacherButton').click(function() {
-//         var params = new URLSearchParams();
-//         params.append('name_teacher', $('#name_teacher').val());
-//         params.append('id_teacher', $('#id_teacher').val());
-//         params.append('password_teacher', $('#password_teacher').val());
-//         params.append('mail_teacher', $('#mail_teacher').val());
-//         params.append('courses_teacher', $('#courses_teacher').val());
-
-//         axios.post('/api/insert-teacher', params)
-//             .then(function(response) {
-//                 console.log('Teacher added successfully');
-//             })
-//             .catch(function(error) {
-//                 console.error('Error adding teacher:', error);
-//             });
-//     });
-
-// //     // Function to submit the Insert Student form
-// //     $('#addStudentButton').click(function() {
-// //         var params = new URLSearchParams();
-// //         params.append('name_student', $('#name_student').val());
-// //         params.append('id_student', $('#id_student').val());
-// //         params.append('password_student', $('#password_student').val());
-// //         params.append('mail_student', $('#mail_student').val());
-// //         params.append('mail_guardian', $('#mail_guardian').val());
-
-// //         axios.post('/api/insert-student', params)
-// //             .then(function(response) {
-// //                 console.log('Student added successfully');
-// //             })
-// //             .catch(function(error) {
-// //                 console.error('Error adding student:', error);
-// //             });
-// //     });
-// // });
-
-
-    // When the form is submitted
-    $("#insertTeacherForm").submit(function (event) {
-        event.preventDefault(); // Prevent the default form submission
-        
-        // Get the form values
-        var name_t = $("#name_teacher").val();
-        var id_t = $("#id_teacher").val();
-        var password_t = $("#password_teacher").val();
-        var email_t = $("#mail_teacher").val();
-        
-        // Create a data object with the parameters
-        var data = {
-            name: name_t,
-            id: id_t,
-            password: password_t,
-            email: email_t
-        };
-        
-        // Make the AJAX request
-        $.ajax({
-            url: "http://localhost:8081/admin/teacher", // Replace with your backend API endpoint
-            method: "POST",
-            data: jQuery.param(data) ,
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            success: function (response) {
-                // Handle the successful response here
-                console.log("Teacher added successfully:", response);
-            },
-            error: function (error) {
-                // Handle any errors here
-                console.error("Error adding teacher:", error.responseText);
-            }
-        });
-    });
+  // Make the AJAX request
+  $.ajax({
+    url: "???", // Replace with your backend API endpoint
+    method: "POST",
+    data: jQuery.param(data),
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    success: function (response) {
+      // Handle the successful response here
+      alert("Student added successfully");
+      console.log("Student added successfully:", response);
+    },
+    error: function (error) {
+      // Handle any errors here
+      console.error("Error adding student:", error.responseText);
+    },
+  });
+});
