@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Selected Option in Search Bar</title>
+</head>
+<body>
+    <h1>Show Selected Option in Search Bar</h1>
+    
+    <!-- Search bar for options -->
+    <input type="text" id="search-bar" placeholder="Search for options">
+    
+    <!-- List of clickable options -->
+    <ul id="search-options">
+        <li>Option 1</li>
+        <li>Option 2</li>
+        <li>Option 3</li>
+        <li>Option 4</li>
+    </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchBar = document.getElementById('search-bar');
+            const searchOptions = document.querySelectorAll('#search-options li');
+
+            // Function to handle option click
+            function handleOptionClick(event) {
+                const selectedOption = event.target.textContent;
+                searchBar.value = selectedOption; // Set the search bar value to the selected option
+            }
+
+            // Add click event listener to each option
+            searchOptions.forEach(option => {
+                option.addEventListener('click', handleOptionClick);
+            });
+        });
+    </script>
+</body>
+</html>

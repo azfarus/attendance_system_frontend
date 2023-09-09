@@ -219,11 +219,14 @@ a {
 }
 
 #myChart{
-  width: 80%; /* Set the width of the container */
-  height: 400px; /* Set the height of the container */
-  margin: 0 auto; /* Center the container horizontally */
+  width: 600px; /* Set the width of the container */
+  height: 800px; /* Set the height of the container */
+  margin-left: 200px; /* Center the container horizontally */
   padding: 20px; /* Add padding for spacing */
   background-color: #f0f0f0; /* Set a background color */
+  border: 1px solid black;
+  text-align: center;
+
 }
 
 .nav {
@@ -247,7 +250,7 @@ a {
   #search-bar {
     padding: 10px;
     padding-left: 35px; /* Add left padding for the search icon */
-    width: 800px; /* Adjust the width as needed */
+    width: 600px; /* Adjust the width as needed */
 }
 
 #search-icon {
@@ -286,6 +289,51 @@ a {
   padding: 3px;
   border: 1px solid black;
 }
+#item-list .item:hover {
+  transform: scale(1.1);
+  background-color: #ddd;
+}
 #item-list .item.show {
   display: block;
+}
+#select-button {
+  width: 100px;
+  margin: 0px;
+  padding: 10px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#selected-items {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 600px;
+  margin-left: 10px;
+}
+
+.selected-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.remove-button {
+  background-color: #FF3547;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+#selCrs{
+  width: 600px; /* Set the width of the container */
+  height: 600px; /* Set the height of the container */
+  margin-left: 20px; /* Center the container horizontally */
+  padding: 20px; /* Add padding for spacing */
+  background-color: #f0f0f0; /* Set a background color */
+  border: 1px solid black;
+  text-align: center;
 }
