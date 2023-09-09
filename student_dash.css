@@ -237,8 +237,55 @@ a {
   z-index: 1;
 }
 .circular--square { 
+  padding-left: 20px;
   border-top-left-radius: 50% ; 
   border-top-right-radius: 50%; 
   border-bottom-right-radius: 50%; 
   border-bottom-left-radius:50%;
   margin-left: 20px;}
+
+  #search-bar {
+    padding: 10px;
+    padding-left: 35px; /* Add left padding for the search icon */
+    width: 800px; /* Adjust the width as needed */
+}
+
+#search-icon {
+  position: absolute;
+  left: 10px; /* Adjust the left position as needed */
+  top: 50%; /* Vertically center the icon */
+  transform: translateY(-50%); /* Vertically center the icon */
+}
+.search-container {
+  position: relative;
+  margin: 0px;
+}
+
+#item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 800px;
+}
+.item {
+    margin: 0px;
+    padding: 0px;
+    background-color: #efefef;
+    border: 1px solid black;
+}
+.cbody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+#item-list .item {
+  display: none; /* Initially hide the list items */
+  margin: 3px;
+  padding: 3px;
+  border: 1px solid black;
+}
+#item-list .item.show {
+  display: block;
+}
