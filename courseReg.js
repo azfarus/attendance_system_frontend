@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const text = item.textContent.toLowerCase();
             const isMatch = text.includes(searchTerm);
 
-            if (isMatch) {
+            if (searchTerm === '') {
+                item.style.display = 'none'; // Hide all items when search bar is empty
+            } else if (isMatch) {
                 item.style.display = 'block';
             } else {
                 item.style.display = 'none';
