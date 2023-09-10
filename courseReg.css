@@ -1,0 +1,282 @@
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+/* Add a background image to the container element */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.25s all ease;
+}
+
+
+html {
+  font-size: 10px;
+  font-family: "Josefin Sans", sans-serif;
+  min-width: 65rem;
+}
+
+.p_container {
+  position: relative;
+  display: flex;
+  height: 110vh;
+  width: 100%;
+  overflow: hidden;
+  font-size: 1.5rem;
+  background: linear-gradient(#ffffff, #e5e5e5);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Define the sidebar element and set its properties */
+.sidebar {
+  margin-top: 7.2rem;
+  background-color: #000000;
+  color: #fff;
+  width: 32rem;
+  padding: 2rem;
+}
+
+/* Remove default list styling from sidebar unordered list */
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar h2 {
+  color: rgb(255, 253, 208);
+  list-style: none;
+  margin-bottom: 5rem;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+/* Set styling for each item in sidebar unordered list */
+.sidebar li {
+    text-align: center;
+    padding: 1rem 0;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    font-size: 2.4rem;
+}
+
+/* Set styling for the active item in sidebar unordered list */
+.sidebar li.active {
+  font-weight: bold;
+  color: #d78e35dd;
+}
+
+/* Define the main content area and set its properties */
+.main {
+  flex-grow: 1;
+  padding: 4rem 2rem;
+}
+
+/* Hide all sections by default */
+.section {
+  display: none;
+}
+
+/* Show the active section */
+.section.active {
+  display: block;
+}
+
+/* Define styles for forms and form elements */
+
+
+label {
+  margin-top: 1rem;
+}
+
+
+select {
+    padding: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid #000000;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  }
+
+button:hover {
+  color: #fff;
+}
+
+
+/* Define styles for tables and table elements */
+table {
+  margin-top: 4rem;
+  width: 70%;
+  left: 13.6%;
+  position: relative;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 0.2rem solid #4b4b4b;
+}
+
+th {
+    background-color: #333;
+  color: #ddd;
+  font-weight: bold;
+}
+
+/* Set background color for even rows in tables */
+tbody tr:nth-child(even) {
+  background-color: #cecece;
+}
+
+
+:root {
+  --primary-color: #1d1d1d;
+}
+
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.main {
+  margin-top: 7.3rem;
+}
+
+
+.nav {
+  padding-top: 1.2rem;
+  width: 100%;
+  height: 7.2rem;
+  position: fixed;
+  line-height: 5rem;
+  background-color: #0c18c3e7;
+  justify-content: center;
+  z-index: 1;
+}
+.circular--square { 
+  border-top-left-radius: 50% ; 
+  border-top-right-radius: 50%; 
+  border-bottom-right-radius: 50%; 
+  border-bottom-left-radius:50%;
+  margin-left: 3%;
+}
+
+  #search-bar {
+    padding: 10px;
+    padding-left: 35px; /* Add left padding for the search icon */
+    width: 10vw; /* Adjust the width as needed */
+}
+
+.search-container {
+  margin-left: 15%;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 70%;
+  justify-content: center;
+}
+
+#search-bar {
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #000b54;
+  border-radius: 25px;
+  margin-right:10%;
+}
+
+#search-icon {
+  fill: #00b3ff;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  position: relative;
+  left: 1rem; /* Adjust the left position as needed */
+  top: 1.8rem; /* Vertically center the icon */
+  transform: translateY(-50%);
+}
+
+#select-button {
+  position: relative;
+  padding: 10px 20px;
+  background-color: #2190ff;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#item-list {
+  list-style: none;
+}
+
+#item-list .item {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#item-list .item .remove-button {
+  background-color: #ff2d3e;
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#item-list .item:hover {
+    transform: scale(1.01);
+    background-color: #e0ffd6;
+  }
+  #item-list .item.show {
+    display: block;
+  }
+
+.hh h1 {
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#selected-items {
+  border: 1px solid #ccc;
+  padding: 0;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.selected-item {
+  background-color: #fff;
+  border: 2px solid #ddd;
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#selected-items .selected-item .remove-button {
+  background-color: #d91b2b;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-right: 2rem;
+}
+.hh{
+  margin-top: 10rem;
+}
