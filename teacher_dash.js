@@ -43,6 +43,7 @@ function getSessionTeacherId() {
 function fetchTeacherData() {
   // Get the teacher's ID from the session (you might need to update this part)
   var teacherid = getSessionTeacherId(); // Implement this function to retrieve the teacher ID from the session
+  console.log(teacherid);
   // Make an AJAX request to fetch the teacher's data
 //   $.ajax({
 //     url: "http://localhost:8081/teacher/" + teacherid, // Replace with your backend API endpoint
