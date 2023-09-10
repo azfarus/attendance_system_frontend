@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         searchBar.value = ''; // Clear search bar contents
         suggestionList.innerHTML = ''; // Clear suggestion list
         suggestionList.style.display = 'none'; // Hide suggestion list
+        item.style.display = 'none';
     }
 
     // Call the clearSearchBar function when the page loads
