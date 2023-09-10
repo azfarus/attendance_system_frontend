@@ -1,6 +1,22 @@
-
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 /* Add a background image to the container element */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.25s all ease;
+}
+
+html {
+font-size: 10px;
+font-family: "Josefin Sans", sans-serif;
+min-width: 65rem;
+}
+
+:root {
+--primary-color: #1d1d1d;
+}
 
 .p_container {
   position: relative;
@@ -18,7 +34,7 @@
   margin-top: 7.2rem;
   background-color: #000000;
   color: #fff;
-  width: 36rem;
+  width: 32rem;
   padding: 2rem;
 }
 
@@ -107,83 +123,26 @@ button:hover {
   color: #fff;
 }
 
-button {
-  text-align: center;
-  margin-left: 800px; /* Remove margin-left */
-  margin-right: 600px; /* Add margin-right:auto to center horizontally */
-  position: relative;
-  width: 30rem;
-  height: 5rem;
-  margin-top: 1.1rem;
-  padding: 1rem;
-  border-radius: 2.5rem;
-  border: #ddd;
-  background-color: #ffb300;
-  color: #000;
-  cursor: pointer;
-  box-shadow: 0.5rem 0.6rem 0.8rem rgba(0, 0, 0, 0.268);
-}
 
-#logout_btn {
-  background-color: #ffffffe4;
+button {
+  background-color: #ffb700;
   border: #000000;
   color: #000000;
-  padding: 1rem 7rem;
+  padding: 1.5rem 7rem;
   text-decoration: double;
-  margin: 33rem 0rem 1rem 0rem;
+  border-radius: 2.5rem;
+  margin:  3rem 3rem 3rem 3rem;
   cursor: pointer;
-  font-size: 1.5rem;
-  font-weight: bolder;
-}
-
-#logout_btn:hover {
-  color: #d78e35;
-}
-
-
-/* Define styles for tables and table elements */
-table {
-  margin-top: 4rem;
-  width: 70%;
-  left: 13.6%;
-  position: relative;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  padding: 1rem;
-  text-align: center;
-  border-bottom: 0.2rem solid #4b4b4b;
-}
-
-th {
-    background-color: #333;
-  color: #ddd;
+  font-size:large;
   font-weight: bold;
+  box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
 }
 
-/* Set background color for even rows in tables */
-tbody tr:nth-child(even) {
-  background-color: #cecece;
+button:hover {
+  background-color: #ff8c00;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: 0.25s all ease;
-}
 
-html {
-  font-size: 10px;
-  font-family: "Josefin Sans", sans-serif;
-  min-width: 65rem;
-}
-
-:root {
-  --primary-color: #1d1d1d;
-}
 
 .container,
 .small-container,
@@ -219,13 +178,8 @@ a {
 }
 
 #myChart{
-  width: 600px; /* Set the width of the container */
-  height: 800px; /* Set the height of the container */
-  margin-left: 200px; /* Center the container horizontally */
-  padding: 20px; /* Add padding for spacing */
-  background-color: #f0f0f0; /* Set a background color */
-  border: 1px solid black;
-  text-align: center;
+  width: 80%;
+  height: auto;
 
 }
 
@@ -240,112 +194,8 @@ a {
   z-index: 1;
 }
 .circular--square { 
-  padding-left: 20px;
   border-top-left-radius: 50% ; 
   border-top-right-radius: 50%; 
   border-bottom-right-radius: 50%; 
   border-bottom-left-radius:50%;
-  margin-left: 20px;}
-
-  #search-bar {
-    padding: 10px;
-    padding-left: 35px; /* Add left padding for the search icon */
-    width: 600px; /* Adjust the width as needed */
-}
-
-#search-icon {
-  position: absolute;
-  left: 10px; /* Adjust the left position as needed */
-  top: 50%; /* Vertically center the icon */
-  transform: translateY(-50%); /* Vertically center the icon */
-}
-.search-container {
-  position: relative;
-  margin: 0px;
-}
-
-#item-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 800px;
-}
-.item {
-    margin: 0px;
-    padding: 0px;
-    background-color: #efefef;
-    border: 1px solid black;
-}
-.cbody {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-}
-#item-list .item {
-  display: none; /* Initially hide the list items */
-  margin: 3px;
-  padding: 3px;
-  border: 1px solid black;
-}
-#item-list .item:hover {
-  transform: scale(1.1);
-  background-color: #ddd;
-}
-#item-list .item.show {
-  display: block;
-}
-#select-button {
-  width: 100px;
-  margin: 0px;
-  padding: 10px;
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-#selected-items {
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  padding: 0px;
-  width: 600px; /* Set the width of the container */
-  height: 50px;
-  margin-left: 640px; /* Center the container horizontally */
-  padding: 0px; /* Add padding for spacing */
-  background-color: #f0f0f0; /* Set a background color */
-  text-align: center;
-}
-
-.selected-item {
-  margin-top: 0px;
-  width: 600px;
-  height: 50px;
-  margin-bottom: 5px;
-  font-size: 20px;
-  border: 2px solid black;
-}
-
-.remove-button {
-  position: relative;
-  margin-top: -40px;
-  margin-left: 640px; 
-  background-color: #FF3547;
-  color: #fff;
-  border: none;
-  padding: 0px;
-  width: 100px;
-}
-#selCrs{
-  width: 600px; /* Set the width of the container */
-  height: 600px; /* Set the height of the container */
-  margin-left: 640px; /* Center the container horizontally */
-  padding: 20px; /* Add padding for spacing */
-  background-color: #f0f0f0; /* Set a background color */
-  border: 1px solid black;
-  text-align: center;
-}
-.hh{
-  margin-top: 200px;
-}
+  margin-left: 3%;}
