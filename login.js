@@ -19,8 +19,10 @@ $('#loginButton').click(function() {
         data: JSON.stringify(requestBody),
 
         
-        success: function() {
-            alert('Login Successful');
+        success: function(data) {
+
+            localStorage.setItem("mysession" , data);
+            alert('Login Successful ' + data);
             // Redirect to the appropriate dashboard based on the user type
             if(userType=='admin')
                 window.location.href = "admin.html";

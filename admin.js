@@ -33,12 +33,16 @@ $("#insertTeacherForm").submit(function (event) {
     email: email_t,
   };
 
+  sessiondata = localStorage.getItem("mysession");
   // Make the AJAX request
   $.ajax({
     url: "http://localhost:8081/admin/teacher", // Replace with your backend API endpoint
     method: "POST",
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    headers: {
+      'mysession': sessiondata
+    },
     success: function (response) {
       // Handle the successful response here
       alert("Teacher added successfully");
@@ -61,7 +65,7 @@ $("#insertCourseForm").submit(function (event) {
   var studentCountLimit = $("#student_count_limit").val();
   var section = $("#section_course").val();
   var assignTeacher = $("#assign_teacher").val();
-
+  sessiondata = localStorage.getItem("mysession");
   // Create a data object with the parameters
   var data = {
     department: department,
@@ -77,6 +81,9 @@ $("#insertCourseForm").submit(function (event) {
     method: "POST",
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    headers: {
+      'mysession': sessiondata
+    },
     success: function (response) {
       // Handle the successful response here
       alert("Course added successfully");
@@ -99,7 +106,7 @@ $("#insertStudentForm").submit(function (event) {
   var password = $("#password_student").val();
   var email = $("#mail_student").val();
   var guardianEmail = $("#mail_guardian").val();
-
+  sessiondata = localStorage.getItem("mysession");
   // Create a data object with the parameters
   var data = {
     name: name,
@@ -115,6 +122,9 @@ $("#insertStudentForm").submit(function (event) {
     method: "POST",
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    headers: {
+      'mysession': sessiondata
+    },
     success: function (response) {
       // Handle the successful response here
       alert("Student added successfully");
@@ -129,6 +139,7 @@ $("#insertStudentForm").submit(function (event) {
 
 //Fetch department data from the backend
 $.ajax({
+  
   url: "http://localhost:8081/admin/departments", // Replace with your backend endpoint
   method: "GET",
   success: function (data) {
