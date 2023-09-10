@@ -307,33 +307,45 @@ a {
 }
 
 #selected-items {
-  margin-top: 20px;
+  margin-top: 5px;
   border: 1px solid #ccc;
-  padding: 10px;
-  width: 600px;
-  margin-left: 10px;
+  padding: 0px;
+  width: 600px; /* Set the width of the container */
+  height: 50px;
+  margin-left: 640px; /* Center the container horizontally */
+  padding: 0px; /* Add padding for spacing */
+  background-color: #f0f0f0; /* Set a background color */
+  text-align: center;
 }
 
 .selected-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-top: 0px;
+  width: 600px;
+  height: 50px;
   margin-bottom: 5px;
+  font-size: 20px;
+  border: 2px solid black;
 }
 
 .remove-button {
+  position: relative;
+  margin-top: -40px;
+  margin-left: 640px; 
   background-color: #FF3547;
   color: #fff;
   border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+  padding: 0px;
+  width: 100px;
 }
 #selCrs{
   width: 600px; /* Set the width of the container */
   height: 600px; /* Set the height of the container */
-  margin-left: 20px; /* Center the container horizontally */
+  margin-left: 640px; /* Center the container horizontally */
   padding: 20px; /* Add padding for spacing */
   background-color: #f0f0f0; /* Set a background color */
   border: 1px solid black;
   text-align: center;
+}
+.hh{
+  margin-top: 200px;
 }
