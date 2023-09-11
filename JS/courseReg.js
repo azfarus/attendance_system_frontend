@@ -44,6 +44,7 @@ $.ajax({
 });
 
 
+document.getElementById('dropbtn3').textContent = "Offered courses";
 const deptdrop = document.getElementById("department-dropdown");
 deptdrop.addEventListener('click', function () {
     const sessiondata = localStorage.getItem("mysession");

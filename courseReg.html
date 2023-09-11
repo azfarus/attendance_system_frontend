@@ -161,6 +161,17 @@
                 // Create a JSON object with the selected courses
             }
             function selectItem() {
+
+                
+                const departmentValue = document.getElementById('dropbtn').textContent;
+                const offeredCoursesValue = document.getElementById('dropbtn3').textContent;
+
+                if (departmentValue === 'Department' || offeredCoursesValue === 'Offered courses') {
+                // Display an alert and return without adding the item
+                alert('Please select both department and course.');
+                return;
+                }
+
                 const selectedItemsDiv = document.getElementById('selected-items');
                 const department = document.getElementById('dropbtn').textContent;
                 // const semester = document.getElementById('dropbtn2').textContent;
@@ -186,8 +197,8 @@
                 
                 document.getElementById('select-button').removeEventListener('click', selectItem);
                 //selectedItem.remove();
+                document.getElementById('dropbtn3').textContent = "Offered courses";
             }
-            document.getElementById('dropbtn3').textContent = "Offered courses";
         
                 // Add an event listener for the "Select" button
                 //document.getElementById('select-button').addEventListener('click', function () {
