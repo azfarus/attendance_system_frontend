@@ -167,9 +167,10 @@ margin-left: 3%;
 }
 
 .dropul{
+    background-color: rgb(156, 245, 255);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 
 }
 
@@ -276,13 +277,12 @@ margin-bottom: 20px;
 }
 
 #dropbtn,
-#dropbtn2,
 #dropbtn3 {
     border-radius: 2.5rem;
-    min-width: 20rem;
+    min-width: 25rem;
     background-color: #2190ff;
     color: white;
-    padding: 12px;
+    padding: 1rem 4rem;
     font-size: large;
     border: none;
     text-align: center;
@@ -337,4 +337,18 @@ nav ul {
     #selected-items .selected-item .remove-button {
         margin-right: 0; /* Center the "Remove" button on small screens */
     }
+}
+
+#courseRegBtn {
+    margin-top: 25rem;
+    background-color: #ffb700;
+    border: #000000;
+    color: #000000;
+    padding: 1rem 4.5rem;
+    text-decoration: double;
+    border-radius: 2.5rem;
+    cursor: pointer;
+    font-size:medium;
+    font-weight: bold;
+    box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
 }

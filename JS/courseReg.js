@@ -16,29 +16,6 @@ $(document).ready(function () {
     });
   });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const searchBar = document.getElementById('search-bar');
-    const itemList = document.getElementById('item-list');
-
-    searchBar.addEventListener('input', function () {
-        const searchTerm = searchBar.value.toLowerCase();
-        const courseItems = itemList.querySelectorAll('.item');
-
-        courseItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            const isMatch = text.includes(searchTerm);
-
-            if (searchTerm === '') {
-                item.style.display = 'none'; // Hide all items when search bar is empty
-            } else if (isMatch) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    }); 
-});
-
 // Fetch department data from the backend
 sessiondata = localStorage.getItem("mysession");
 $.ajax({
@@ -90,36 +67,44 @@ $.ajax({
 
 const deptdrop = document.getElementById("department-dropdown");
 deptdrop.addEventListener('click', function () {
+    const sessiondata = localStorage.getItem("mysession");
+    const dept = document.getElementById('dropbtn').textContent;
+    const coursesDropdown = document.getElementById("courses-dropdown");
 
-sessiondata = localStorage.getItem("mysession");
-const dept = document.getElementById('dropbtn').textContent;
-console.log("hello");
-// Fetch course data from the backend
-$.ajax({
-    url: "http://localhost:8081/course/get-course-by-dept", // Replace with your backend API endpoint for courses
-    method: "GET",
-    headers: {
-        'mysession': sessiondata
-    },
-    data:{
-        department: dept
-    },
-    success: function (data) {
-        console.log(data);
-        // Populate the Offered Courses dropdown with dynamic options
-        const coursesDropdown = document.getElementById("courses-dropdown");
-        data.forEach(function (course) {
-            const option = document.createElement("a");
-            option.href = "#"; // Add the appropriate link or action
-            option.textContent = course;
-            option.onclick = function () {
-                changeTitle(course, "dropbtn3"); // Call your changeTitle function
-            };
-            coursesDropdown.appendChild(option);
-        });
-    },
-    error: function (error) {
-        console.error("Error fetching courses:", error);
+    // Clear previous options in the "Offered Courses" dropdown
+    while (coursesDropdown.firstChild) {
+        coursesDropdown.removeChild(coursesDropdown.firstChild);
     }
+
+    // Fetch course data from the backend based on the selected department
+    $.ajax({
+        url: "http://localhost:8081/course/get-course-by-dept",
+        method: "GET",
+        headers: {
+            'mysession': sessiondata
+        },
+        data: {
+            department: dept
+        },
+        success: function (data) {
+            console.log(data);
+            // Populate the "Offered Courses" dropdown with dynamic options
+            data.forEach(function (course) {
+                const option = document.createElement("a");
+                option.href = "#"; // Add the appropriate link or action
+                option.textContent = course;
+                option.onclick = function () {
+                    changeTitle(course, "dropbtn3"); // Call your changeTitle function
+                    // Reset the "Offered Courses" dropdown by clearing its selected option
+                    coursesDropdown.selectedIndex = -1;
+                };
+                coursesDropdown.appendChild(option);
+            });
+        },
+        error: function (error) {
+            console.error("Error fetching courses:", error);
+        }
+    });
 });
-});
+
+

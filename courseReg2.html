@@ -20,6 +20,9 @@
                         <li>Asif Abrar</li>
                         <li>200041106</li>
                     </ul>
+                    <center>
+                        <button type="submit" id="courseRegBtn" onclick="btn()">Register</button>
+                    </center>
                 </div>
                 <div class="main">
                     <div class="cReg">
@@ -36,14 +39,22 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <div class="dropdown">
                                             <button id="dropbtn2">Semester</button>
                                             <div class="dropdown-content" id="semester-dropdown">
-                                                <!-- Options will be populated here -->
+                                                Options will be populated here
+                                                <a>1</a>
+                                                <a>2</a>
+                                                <a>3</a>
+                                                <a>4</a>
+                                                <a>5</a>
+                                                <a>6</a>
+                                                <a>7</a>
+                                                <a>8</a>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <div class="dropdown">
                                             <button id="dropbtn3">Offered Courses</button>
@@ -76,12 +87,75 @@
             }
     
             // JavaScript function to add selected items to the "Selected Items" division
+            function btn() {
+                console.log("xx");
+                const selectedItems = document.querySelectorAll('.selected-item');
+
+                // Create an array to store course information
+                const courses = [];
+
+                selectedItems.forEach(item => {
+                    const courseInfo = item.textContent;
+                    const courseInfoWithoutRemove = courseInfo.replace('Remove', '');
+                    courses.push(courseInfoWithoutRemove);
+                    
+                });
+
+                sessiondata = localStorage.getItem("mysession");
+                  $.ajax({
+                    url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+                    method: "GET",
+                    headers: {
+                      'mysession': sessiondata
+                    },
+                    success: function (response) {
+                        giveID = response;
+                    },
+                    error: function (error) {
+                      // Handle any errors here
+                      window.location.href = "login.html";
+                    },
+                  });
+
+                courses.forEach(course => {
+                    const [dept, courseCode] = course.split(' ');
+                    const coursesJSON = JSON.stringify(courses);
+                    sessiondata = localStorage.getItem("mysession");
+                // Send the JSON data to your backend API using AJAX
+                $.ajax({
+                    url: "http://localhost:8081/course/register", // Replace with your backend API endpoint for course registration
+                    method: "POST",
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                    headers: {
+                    'mysession': sessiondata
+                    },
+                    data:{
+                        department:dept,
+                        course: courseCode,
+                        stud_id: giveID
+                    },
+                    success: function (response) {
+                        // Handle success response
+                        console.log("Courses registered successfully:", response);
+                        alert("Courses registered successfully!");
+                    },
+                    error: function (error) {
+                        // Handle error response
+                        console.error("Error registering courses:", error);
+                        alert("Error registering courses. Please try again.");
+                    }
+                });
+                });
+                console.log(courses);
+
+                // Create a JSON object with the selected courses
+            }
             function selectItem() {
                 const selectedItemsDiv = document.getElementById('selected-items');
                 const department = document.getElementById('dropbtn').textContent;
-                const semester = document.getElementById('dropbtn2').textContent;
+                // const semester = document.getElementById('dropbtn2').textContent;
                 const offeredCourses = document.getElementById('dropbtn3').textContent;
-                const courseInfo = `${department} ${offeredCourses} (${semester})`;
+                const courseInfo = `${department} ${offeredCourses}`;
     
                 const selectedItem = document.createElement('div');
                 selectedItem.className = 'selected-item';
@@ -102,12 +176,13 @@
                 
                 document.getElementById('select-button').removeEventListener('click', selectItem);
             }
-            selectedItem.remove();
-    
-            // Add an event listener for the "Select" button
-            document.getElementById('select-button').addEventListener('click', function () {
-                selectItem();
-            });
+            document.getElementById('dropbtn3').textContent = "Offered courses";
+                selectedItem.remove();
+        
+                // Add an event listener for the "Select" button
+                document.getElementById('select-button').addEventListener('click', function () {
+                    selectItem();
+                });
         </script>
     </body>
 </html>
