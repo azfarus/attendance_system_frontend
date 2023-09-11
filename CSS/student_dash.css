@@ -54,9 +54,9 @@ min-width: 65rem;
 /* Set styling for each item in sidebar unordered list */
 .sidebar li {
     text-align: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     cursor: pointer;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-size: 2.4rem;
 }
 
@@ -128,12 +128,11 @@ button {
   background-color: #ffb700;
   border: #000000;
   color: #000000;
-  padding: 1.5rem 7rem;
+  padding: 1rem 4.5rem;
   text-decoration: double;
   border-radius: 2.5rem;
-  margin:  3rem 3rem 3rem 3rem;
   cursor: pointer;
-  font-size:large;
+  font-size:medium;
   font-weight: bold;
   box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
 }

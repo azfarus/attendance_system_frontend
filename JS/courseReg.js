@@ -1,3 +1,21 @@
+$(document).ready(function () {
+    sessiondata = localStorage.getItem("mysession");
+    $.ajax({
+      url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+      method: "GET",
+      headers: {
+        'mysession': sessiondata
+      },
+      success: function (response) {
+  
+      },
+      error: function (error) {
+        // Handle any errors here
+        window.location.href = "login.html";
+      },
+    });
+  });
+  
 document.addEventListener('DOMContentLoaded', function () {
     const searchBar = document.getElementById('search-bar');
     const itemList = document.getElementById('item-list');

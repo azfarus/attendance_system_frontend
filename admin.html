@@ -21,6 +21,9 @@
                         <li data-target="#insertTeacherSection">Insert Teacher</li>
                         <li data-target="#insertStudentSection">Insert Student</li>
                     </ul>
+                    <!-- <div class="logout text-center">
+                        <button class="btn btn-danger text-center" id="logoutButton">LOGOUT</button>
+                    </div> -->
                 </div>
                 <div class="main">
                     <div class="section active" id="insertCourseSection">
@@ -31,12 +34,14 @@
                                 
                             </select>
                             <label for="code_course">Code:</label>
-                            <input class="form-control" type="number" id="code_course" name="code_course" required>
-                            <label for="section_course">Section:</label>
+                            <input class="form-control" type="number" id="code_course" name="code_course" min="0" required>
+                            <label for="code_course">Semester :</label>
+                            <input class="form-control" type="number" id="semester_course" name="semester_course" min="0"required>
+                            <label for="section_course">Section :</label>
                             <input class="form-control" type="text" id="section_course" name="section_course" required>
-                            <label for="student_count_limit">Student Count Limit:</label>
-                            <input class="form-control" type="number" id="student_count_limit" name="student_count_limit" required>
-                            <label for="assign_teacher">Enter Teacher ID to Assign:</label>
+                            <label for="student_count_limit">Student Count Limit :</label>
+                            <input class="form-control" type="number" id="student_count_limit" name="student_count_limit" min="0" required>
+                            <label for="assign_teacher">Enter Teacher ID to Assign :</label>
                             <input class="form-control" type="text" id="assign_teacher" name="assign_teacher" required>
         
                             <button type="submit" id="Add_Course_btn">ADD COURSE</button>
@@ -65,6 +70,12 @@
                             <input class="form-control" type="text" id="id_student" name="id_student" required>
                             <label for="password_student">Password :</label>
                             <input class="form-control" type="text" id="password_student" name="password_student" required>
+                            <label for="dept_student">Department:</label>
+                            <select id="dept_student" name="dept_student">
+                                
+                            </select>
+                            <label for="semester_student">Semester :</label>
+                            <input class="form-control" type="number" id="semester_student" name="semester_student" min="0" required>
                             <label for="mail_student">Student E-mail :</label>
                             <input class="form-control" type="email" id="mail_student" name="mail_student" required>
                             <label for="mail_guardian">Guardian E-mail :</label>
