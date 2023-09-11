@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./CSS/courseReg2.css">
+</head>
+    <body>
+        <div class="nav">
+            <h2 class="text-center mt-2 display-4 text-light"><b>STUDENT DASHBOARD</b></h2>
+        </div>
+        <div class="container_main">
+            <div class="p_container">
+                <div class="sidebar">
+                    <img class="circular--square" src = "images/pp.jpg" style="width:260px;height:260px;"><br>
+                    <ul><br>
+                        <li>Asif Abrar</li>
+                        <li>200041106</li>
+                    </ul>
+                </div>
+                <div class="main">
+                    <div class="cReg">
+                        <h1>Course Registration</h1> <br><hr>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <div class="dropdown">
+                                    <button id="dropbtn">Department</button>
+                                    <div class="dropdown-content">
+                                        <a href="#" onclick="changeTitle('CSE','dropbtn')">CSE</a>
+                                        <a href="#" onclick="changeTitle('EEE','dropbtn')">EEE</a>
+                                        <a href="#" onclick="changeTitle('MPE','dropbtn')">MPE</a>
+                                        <a href="#" onclick="changeTitle('CEE','dropbtn')">CEE</a>
+                                        <a href="#" onclick="changeTitle('BTM','dropbtn')">BTM</a>
+                                    </div>
+                                </div> </li>
+                                <li><div class="dropdown">
+                                    <button id="dropbtn2">Semester</button>
+                                    <div class="dropdown-content">
+                                        <a href="#" onclick="changeTitle('1st','dropbtn2')">1st</a>
+                                        <a href="#" onclick="changeTitle('2nd','dropbtn2')">2nd</a>
+                                        <a href="#" onclick="changeTitle('3rd','dropbtn2')">3rd</a>
+                                        <a href="#" onclick="changeTitle('4th','dropbtn2')">4th</a>
+                                        <a href="#" onclick="changeTitle('5th','dropbtn2')">5th</a>
+                                    </div>
+                                </div></li>
+                                <li><div class="dropdown">
+                                    <button id="dropbtn3">Offered Courses</button>
+                                    <div class="dropdown-content">
+                                        <a href="#" onclick="changeTitle('4107','dropbtn3')">4107</a>
+                                        <a href="#" onclick="changeTitle('4105','dropbtn3')">4105</a>
+                                        <a href="#" onclick="changeTitle('4147','dropbtn3')">4147</a>
+                                        <a href="#" onclick="changeTitle('4244','dropbtn3')">4244</a>
+                                        <a href="#" onclick="changeTitle('4201','dropbtn3')">4201</a>
+                                    </div>
+                                </div></li>
+                                <button id="select-button" onclick = "selectItem('dropbtn1')">Select</button>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="hh"><h1>Registered Courses:</h1> <br><hr></div>
+                    <div id="selected-items">
+                        <!-- Selected items will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./JS/admin.js"></script>
+        <script src = "./JS/courseReg.js"></script>
+    
+        <script>
+            // JavaScript function to change the dropdown title
+            function changeTitle(newTitle, dropdownId) {
+                document.getElementById(dropdownId).textContent = newTitle;
+            }
+    
+            // JavaScript function to add selected items to the "Selected Items" division
+            function selectItem() {
+                const selectedItemsDiv = document.getElementById('selected-items');
+                const department = document.getElementById('dropbtn').textContent;
+                const semester = document.getElementById('dropbtn2').textContent;
+                const offeredCourses = document.getElementById('dropbtn3').textContent;
+                const courseInfo = `${department} ${offeredCourses} (${semester})`;
+    
+                const selectedItem = document.createElement('div');
+                selectedItem.className = 'selected-item';
+                selectedItem.textContent = courseInfo;
+    
+                const removeButton = document.createElement('button');
+                removeButton.className = 'remove-button';
+                removeButton.textContent = 'Remove';
+                removeButton.addEventListener('click', function () {
+                    selectedItem.remove();
+                    // Re-add the event listener to the "Select" button
+                    document.getElementById('select-button').addEventListener('click', selectItem);
+                });
+    
+                selectedItem.appendChild(removeButton);
+                
+                selectedItemsDiv.appendChild(selectedItem);
+                
+                document.getElementById('select-button').removeEventListener('click', selectItem);
+            }
+            selectedItem.remove();
+    
+            // Add an event listener for the "Select" button
+            document.getElementById('select-button').addEventListener('click', function () {
+                selectItem();
+            });
+        </script>
+    </body>
+</html>

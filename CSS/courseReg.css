@@ -223,7 +223,7 @@ a {
   border: 1px solid #000000;
   padding: 10px;
   margin-bottom: 10px;
-  display: flex;
+  display: none; /*ekhane change korsi*/
   justify-content: space-between;
   align-items: center;
 }

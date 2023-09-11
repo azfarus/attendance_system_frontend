@@ -20,42 +20,42 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    const selectButton = document.getElementById('select-button');
-    const selectedItemsDiv = document.getElementById('selected-items');
+    // const selectButton = document.getElementById('select-button');
+    // const selectedItemsDiv = document.getElementById('selected-items');
 
-    selectButton.addEventListener('click', function () {
-        const selectedItem = searchBar.value.trim();
+    // selectButton.addEventListener('click', function () {
+    //     const selectedItem = searchBar.value.trim();
 
-        if (selectedItem !== '') {
-            const selectedItems = document.querySelectorAll('.selected-item');
-            let alreadySelected = false;
+    //     if (selectedItem !== '') {
+    //         const selectedItems = document.querySelectorAll('.selected-item');
+    //         let alreadySelected = false;
 
-            selectedItems.forEach(item => {
-                if (item.textContent === selectedItem) {
-                    alreadySelected = true;
-                }
-            });
+    //         selectedItems.forEach(item => {
+    //             if (item.textContent === selectedItem) {
+    //                 alreadySelected = true;
+    //             }
+    //         });
 
-            if (!alreadySelected) {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'selected-item';
-                itemDiv.textContent = selectedItem;
+    //         if (!alreadySelected) {
+    //             const itemDiv = document.createElement('div');
+    //             itemDiv.className = 'selected-item';
+    //             itemDiv.textContent = selectedItem;
 
-                const removeButton = document.createElement('button');
-                removeButton.className = 'remove-button';
-                removeButton.textContent = 'Remove';
+    //             const removeButton = document.createElement('button');
+    //             removeButton.className = 'remove-button';
+    //             removeButton.textContent = 'Remove';
 
-                removeButton.addEventListener('click', function () {
-                    itemDiv.remove();
-                });
+    //             removeButton.addEventListener('click', function () {
+    //                 itemDiv.remove();
+    //             });
 
-                itemDiv.appendChild(removeButton);
-                selectedItemsDiv.appendChild(itemDiv);
-            }
-        }
+    //             itemDiv.appendChild(removeButton);
+    //             selectedItemsDiv.appendChild(itemDiv);
+    //         }
+    //     }
 
-        searchBar.value = '';
-    });
+    //     searchBar.value = '';
+    // });
     
 });
 document.addEventListener('DOMContentLoaded', function () {
