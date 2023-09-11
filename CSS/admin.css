@@ -223,3 +223,17 @@ a {
   justify-content: center;
   z-index: 1;
 }
+
+
+.logout-container a {
+  position: relative;
+  text-decoration: none;
+  margin-inline-end: 10rem;
+}
+
+.logout-container img {
+  border-radius: 35%;
+  width: 30px; /* Adjust the width and height as needed */
+  height: 30px;
+  vertical-align: middle;
+}

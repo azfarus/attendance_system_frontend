@@ -30,35 +30,28 @@
                                 <ul class=" dropul text-center">
                                     <li>
                                         <div class="dropdown">
-                                    <button id="dropbtn">Department</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="changeTitle('CSE','dropbtn')">CSE</a>
-                                        <a href="#" onclick="changeTitle('EEE','dropbtn')">EEE</a>
-                                        <a href="#" onclick="changeTitle('MPE','dropbtn')">MPE</a>
-                                        <a href="#" onclick="changeTitle('CEE','dropbtn')">CEE</a>
-                                        <a href="#" onclick="changeTitle('BTM','dropbtn')">BTM</a>
-                                    </div>
-                                </div> </li>
-                                <li><div class="dropdown">
-                                    <button id="dropbtn2">Semester</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="changeTitle('1st','dropbtn2')">1st</a>
-                                        <a href="#" onclick="changeTitle('2nd','dropbtn2')">2nd</a>
-                                        <a href="#" onclick="changeTitle('3rd','dropbtn2')">3rd</a>
-                                        <a href="#" onclick="changeTitle('4th','dropbtn2')">4th</a>
-                                        <a href="#" onclick="changeTitle('5th','dropbtn2')">5th</a>
-                                    </div>
-                                </div></li>
-                                <li><div class="dropdown">
-                                    <button id="dropbtn3">Offered Courses</button>
-                                    <div class="dropdown-content">
-                                        <a href="#" onclick="changeTitle('4107','dropbtn3')">4107</a>
-                                        <a href="#" onclick="changeTitle('4105','dropbtn3')">4105</a>
-                                        <a href="#" onclick="changeTitle('4147','dropbtn3')">4147</a>
-                                        <a href="#" onclick="changeTitle('4244','dropbtn3')">4244</a>
-                                        <a href="#" onclick="changeTitle('4201','dropbtn3')">4201</a>
-                                    </div>
-                                </div></li>
+                                            <button id="dropbtn">Department</button>
+                                            <div class="dropdown-content" id="department-dropdown">
+                                                <!-- Options will be populated here -->
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown">
+                                            <button id="dropbtn2">Semester</button>
+                                            <div class="dropdown-content" id="semester-dropdown">
+                                                <!-- Options will be populated here -->
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown">
+                                            <button id="dropbtn3">Offered Courses</button>
+                                            <div class="dropdown-content" id="courses-dropdown">
+                                                <!-- Options will be populated here -->
+                                            </div>
+                                        </div>
+                                    </li>                                    
                                 <button id="select-button" onclick = "selectItem('dropbtn1')">Select</button>
                             </ul>
                         </div>

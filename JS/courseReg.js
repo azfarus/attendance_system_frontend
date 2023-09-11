@@ -15,7 +15,7 @@ $(document).ready(function () {
       },
     });
   });
-  
+
 document.addEventListener('DOMContentLoaded', function () {
     const searchBar = document.getElementById('search-bar');
     const itemList = document.getElementById('item-list');
@@ -36,73 +36,90 @@ document.addEventListener('DOMContentLoaded', function () {
                 item.style.display = 'none';
             }
         });
-    });
-
-    // const selectButton = document.getElementById('select-button');
-    // const selectedItemsDiv = document.getElementById('selected-items');
-
-    // selectButton.addEventListener('click', function () {
-    //     const selectedItem = searchBar.value.trim();
-
-    //     if (selectedItem !== '') {
-    //         const selectedItems = document.querySelectorAll('.selected-item');
-    //         let alreadySelected = false;
-
-    //         selectedItems.forEach(item => {
-    //             if (item.textContent === selectedItem) {
-    //                 alreadySelected = true;
-    //             }
-    //         });
-
-    //         if (!alreadySelected) {
-    //             const itemDiv = document.createElement('div');
-    //             itemDiv.className = 'selected-item';
-    //             itemDiv.textContent = selectedItem;
-
-    //             const removeButton = document.createElement('button');
-    //             removeButton.className = 'remove-button';
-    //             removeButton.textContent = 'Remove';
-
-    //             removeButton.addEventListener('click', function () {
-    //                 itemDiv.remove();
-    //             });
-
-    //             itemDiv.appendChild(removeButton);
-    //             selectedItemsDiv.appendChild(itemDiv);
-    //         }
-    //     }
-
-    //     searchBar.value = '';
-    // });
-    
+    }); 
 });
-document.addEventListener('DOMContentLoaded', function () {
-    const searchBar = document.getElementById('search-bar');
-    const searchOptions = document.querySelectorAll('#item-list li');
 
-    // Function to handle option click
-    function handleOptionClick(event) {
-        const selectedOption = event.target.textContent;
-        searchBar.value = selectedOption; // Set the search bar value to the selected option
+// Fetch department data from the backend
+sessiondata = localStorage.getItem("mysession");
+$.ajax({
+    url: "http://localhost:8081/admin/departments", // Replace with your backend API endpoint for departments
+    method: "GET",
+    headers: {
+        'mysession': sessiondata
+    },
+    success: function (data) {
+        // Populate the Department dropdown with dynamic options
+        const departmentDropdown = document.getElementById("department-dropdown");
+        console.log(data);
+        data.forEach(function (department) {
+            const option = document.createElement("a");
+            option.href = "#"; // Add the appropriate link or action
+            option.textContent = department;
+            option.onclick = function () {
+                changeTitle(department, "dropbtn"); // Call your changeTitle function
+            };
+            departmentDropdown.appendChild(option);
+        });
+    },
+    error: function (error) {
+        console.error("Error fetching departments:", error);
     }
-
-    // Add click event listener to each option
-    searchOptions.forEach(option => {
-        option.addEventListener('click', handleOptionClick);
-    });
-
 });
-document.addEventListener('DOMContentLoaded', function () {
-    const searchBar = document.getElementById('search-bar');
-    const suggestionList = document.getElementById('search-options');
 
-    // Function to clear search bar contents and suggestions
-    function clearSearchBar() {
-        searchBar.value = ''; // Clear search bar contents
-        suggestionList.innerHTML = ''; // Clear suggestion list
-        suggestionList.style.display = 'none'; // Hide suggestion list
+// Fetch semester data from the backend
+// $.ajax({
+//     url: "http://your-backend-url/semester-endpoint", // Replace with your backend API endpoint for semesters
+//     method: "GET",
+//     success: function (data) {
+//         // Populate the Semester dropdown with dynamic options
+//         const semesterDropdown = document.getElementById("semester-dropdown");
+//         data.forEach(function (semester) {
+//             const option = document.createElement("a");
+//             option.href = "#"; // Add the appropriate link or action
+//             option.textContent = semester;
+//             option.onclick = function () {
+//                 changeTitle(semester, "dropbtn2"); // Call your changeTitle function
+//             };
+//             semesterDropdown.appendChild(option);
+//         });
+//     },
+//     error: function (error) {
+//         console.error("Error fetching semesters:", error);
+//     }
+// });
+
+const deptdrop = document.getElementById("department-dropdown");
+deptdrop.addEventListener('click', function () {
+
+sessiondata = localStorage.getItem("mysession");
+const dept = document.getElementById('dropbtn').textContent;
+console.log("hello");
+// Fetch course data from the backend
+$.ajax({
+    url: "http://localhost:8081/course/get-course-by-dept", // Replace with your backend API endpoint for courses
+    method: "GET",
+    headers: {
+        'mysession': sessiondata
+    },
+    data:{
+        department: dept
+    },
+    success: function (data) {
+        console.log(data);
+        // Populate the Offered Courses dropdown with dynamic options
+        const coursesDropdown = document.getElementById("courses-dropdown");
+        data.forEach(function (course) {
+            const option = document.createElement("a");
+            option.href = "#"; // Add the appropriate link or action
+            option.textContent = course;
+            option.onclick = function () {
+                changeTitle(course, "dropbtn3"); // Call your changeTitle function
+            };
+            coursesDropdown.appendChild(option);
+        });
+    },
+    error: function (error) {
+        console.error("Error fetching courses:", error);
     }
-
-    // Call the clearSearchBar function when the page loads
-    clearSearchBar();
+});
 });
