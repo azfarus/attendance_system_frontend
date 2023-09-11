@@ -9,8 +9,16 @@
     <link rel="stylesheet" href="./CSS/student_dash.css">
 </head>
     <body>
-        <div class="nav">
-            <h2 class="text-center mt-2 display-4 text-light"><b>STUDENT DASHBOARD</b></h2>
+        <div>
+            <ul class="nav navbar-nav">
+                <li>&nbsp;</li>
+                <li class="text-center"><h2 class="text-center pl-5 ml-5 mb-3 display-4 text-light"><b>STUDENT DASHBOARD</b></h2></li>
+                <li class="text-right"><div class="logout-container">
+                    <a class="mr-5" id="logoutButton" href="login.html">
+                        <img class="mb-3" src="./images/logout.jpg" alt="Logout">
+                    </a>
+            </div></li>
+            </ul>
         </div>
         <div class="container_main">
             <div class="p_container">
@@ -39,7 +47,7 @@
         <script>
             // Add a click event listener to the button
             document.getElementById('courseRegBtn').addEventListener('click', function () {
-                window.location.href = 'courseReg2.html';
+                window.location.href = 'courseReg.html';
             });
         </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

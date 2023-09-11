@@ -198,3 +198,16 @@ a {
   border-bottom-right-radius: 50%; 
   border-bottom-left-radius:50%;
   margin-left: 3%;}
+
+  .logout-container a {
+    position: relative;
+    text-decoration: none;
+    margin-inline-end: 10rem;
+  }
+  
+  .logout-container img {
+    border-radius: 55%;
+    width: 40px; /* Adjust the width and height as needed */
+    height: 40px;
+    vertical-align: middle;
+  }
