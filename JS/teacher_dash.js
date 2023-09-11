@@ -48,7 +48,6 @@ function getSessionTeacherId() {
     },
     success: function (data) {
       teacherid = data; // Store the teacher's ID
-      console.log("Teacher ID:", teacherid);
     },
     error: function () {
       console.error("Error fetching teacher ID");
@@ -62,29 +61,38 @@ function getSessionTeacherId() {
 // Function to fetch teacher's data using AJAX
 function fetchTeacherData() {
   // Get the teacher's ID from the session (you might need to update this part)
-  var teacherid = getSessionTeacherId(); // Implement this function to retrieve the teacher ID from the session
-  console.log(teacherid);
+  var tid = getSessionTeacherId(); // Implement this function to retrieve the teacher ID from the session
+  console.log(tid);
   // Make an AJAX request to fetch the teacher's data
-//   $.ajax({
-//     url: "http://localhost:8081/teacher/" + teacherid, // Replace with your backend API endpoint
-//     method: "GET",
-//     success: function (teacherData) {
-//       // Handle the successful response here
-//       console.log(teacherData);
-//       // Populate the teacher's dashboard with the retrieved data
-//       populateTeacherDashboard(teacherData);
-//     },
-//     error: function (error) {
-//       // Handle any errors here
-//       console.error("Error fetching teacher data:", error.responseText);
-//     },
-//   });
-// }
-
-// // Function to populate the teacher's dashboard with data
-// function populateTeacherDashboard(teacherData) {
-//   // Example: $("#teacherName").text(teacherData.name);
+  $.ajax({
+    url: "http://localhost:8081/teacher/info", // Replace with your backend API endpoint
+    method: "GET",
+    headers: {
+      'mysession': sessiondata
+    },
+    data: {
+      teacherid: tid
+    },
+    success: function (teacherData) {
+      // Handle the successful response here
+      console.log(teacherData);
+      // Populate the teacher's dashboard with the retrieved data
+      populateTeacherDashboard(teacherData);
+    },
+    error: function (error) {
+      // Handle any errors here
+      console.error("Error fetching teacher data:", error.responseText);
+    },
+  });
 }
+
+// Function to populate the teacher's dashboard with data
+function populateTeacherDashboard(teacherData) {
+  $("#t_id").text(teacherData.id);
+  $("#t_name").text(teacherData.name);
+  $("#t_mail").text(teacherData.email);
+}
+
 
 // Call the function to fetch teacher's data when the page loads
 $(document).ready(function () {

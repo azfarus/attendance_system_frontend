@@ -56,8 +56,7 @@ min-width: 65rem;
     text-align: center;
     padding: 0.5rem 0;
     cursor: pointer;
-    margin-bottom: 1rem;
-    font-size: 2.4rem;
+    font-size: 2rem;
 }
 
 /* Set styling for the active item in sidebar unordered list */
@@ -125,6 +124,7 @@ button:hover {
 
 
 button {
+  margin-top: 18rem;
   background-color: #ffb700;
   border: #000000;
   color: #000000;

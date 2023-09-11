@@ -30,7 +30,7 @@
 .sidebar h2 {
   color: rgb(255, 253, 208);
   list-style: none;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
   font-size: 2.2rem;
   text-align: center;
 }
@@ -40,8 +40,7 @@
     text-align: center;
     padding: 1rem 0;
     cursor: pointer;
-    margin-bottom: 2rem;
-    font-size: 2.4rem;
+    font-size: 2.0rem;
 }
 
 /* Set styling for the active item in sidebar unordered list */

@@ -44,3 +44,69 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
   });
+
+  // Function to get the Student's ID from the session
+function getSessionStudentId() {
+  var Studentid = null;
+
+  sessiondata = localStorage.getItem("mysession");
+  // Make an AJAX GET request to fetch the Student's ID from the session
+  $.ajax({
+    url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+    method: "GET",
+    async: false, // Synchronous request to wait for the response
+    headers: {
+      'mysession': sessiondata
+    },
+    success: function (data) {
+      Studentid = data; // Store the Student's ID
+    },
+    error: function () {
+      console.error("Error fetching Student ID");
+    },
+  });
+
+  return Studentid;
+}
+
+
+// Function to fetch Student's data using AJAX
+function fetchStudentData() {
+  // Get the Student's ID from the session (you might need to update this part)
+  var sid = getSessionStudentId(); // Implement this function to retrieve the Student ID from the session
+  console.log(sid);
+  // Make an AJAX request to fetch the Student's data
+  $.ajax({
+    url: "http://localhost:8081/student/info", // Replace with your backend API endpoint
+    method: "GET",
+    headers: {
+      'mysession': sessiondata
+    },
+    data: {
+      studentid: sid
+    },
+    success: function (StudentData) {
+      // Handle the successful response here
+      console.log(StudentData);
+      // Populate the Student's dashboard with the retrieved data
+      populateStudentDashboard(StudentData);
+    },
+    error: function (error) {
+      // Handle any errors here
+      console.error("Error fetching Student data:", error.responseText);
+    },
+  });
+}
+
+// Function to populate the Student's dashboard with data
+function populateStudentDashboard(StudentData) {
+  $("#s_id").text(StudentData.id);
+  $("#s_name").text(StudentData.name);
+  $("#s_mail").text(StudentData.email);
+}
+
+
+// Call the function to fetch Student's data when the page loads
+$(document).ready(function () {
+  fetchStudentData();
+});
