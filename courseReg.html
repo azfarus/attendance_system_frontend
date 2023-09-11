@@ -161,44 +161,57 @@
                 // Create a JSON object with the selected courses
             }
             function selectItem() {
-
-                
                 const departmentValue = document.getElementById('dropbtn').textContent;
                 const offeredCoursesValue = document.getElementById('dropbtn3').textContent;
-
+            
                 if (departmentValue === 'Department' || offeredCoursesValue === 'Offered courses') {
-                // Display an alert and return without adding the item
-                alert('Please select both department and course.');
-                return;
+                    // Display an alert and return without adding the item
+                    alert('Please select both department and course.');
+                    return;
                 }
-
-                const selectedItemsDiv = document.getElementById('selected-items');
-                const department = document.getElementById('dropbtn').textContent;
-                // const semester = document.getElementById('dropbtn2').textContent;
-                const offeredCourses = document.getElementById('dropbtn3').textContent;
-                const courseInfo = `${department} ${offeredCourses}`;
-    
-                const selectedItem = document.createElement('div');
-                selectedItem.className = 'selected-item';
-                selectedItem.textContent = courseInfo;
-    
-                const removeButton = document.createElement('button');
-                removeButton.className = 'remove-button';
-                removeButton.textContent = 'Remove';
-                removeButton.addEventListener('click', function () {
-                    selectedItem.remove();
-                    // Re-add the event listener to the "Select" button
-                    document.getElementById('select-button').addEventListener('click', selectItem);
+            
+                const selectedItems = document.querySelectorAll('.selected-item');
+            
+                // Check if the selected course is already in the list
+                let isDuplicate = false;
+                selectedItems.forEach(item => {
+                    const courseInfo = item.textContent;
+                    const courseInfoWithoutRemove = courseInfo.replace('Remove', '');
+                    const [dept, courseCode] = courseInfoWithoutRemove.split(' ');
+                    if (departmentValue === dept && offeredCoursesValue === courseCode) {
+                        isDuplicate = true;
+                        alert('Course already selected');
+                    }
                 });
-    
-                selectedItem.appendChild(removeButton);
-                
-                selectedItemsDiv.appendChild(selectedItem);
-                
-                document.getElementById('select-button').removeEventListener('click', selectItem);
-                //selectedItem.remove();
-                document.getElementById('dropbtn3').textContent = "Offered courses";
+            
+                if (!isDuplicate) {
+                    const selectedItemsDiv = document.getElementById('selected-items');
+                    const department = document.getElementById('dropbtn').textContent;
+                    const offeredCourses = document.getElementById('dropbtn3').textContent;
+                    const courseInfo = `${department} ${offeredCourses}`;
+            
+                    const selectedItem = document.createElement('div');
+                    selectedItem.className = 'selected-item';
+                    selectedItem.textContent = courseInfo;
+            
+                    const removeButton = document.createElement('button');
+                    removeButton.className = 'remove-button';
+                    removeButton.textContent = 'Remove';
+                    removeButton.addEventListener('click', function () {
+                        selectedItem.remove();
+                        // Re-add the event listener to the "Select" button
+                        document.getElementById('select-button').addEventListener('click', selectItem);
+                    });
+            
+                    selectedItem.appendChild(removeButton);
+                    selectedItemsDiv.appendChild(selectedItem);
+            
+                    // Remove the event listener after adding the item
+                    document.getElementById('select-button').removeEventListener('click', selectItem);
+                    document.getElementById('dropbtn3').textContent = "Offered courses";
+                }
             }
+            
         
                 // Add an event listener for the "Select" button
                 //document.getElementById('select-button').addEventListener('click', function () {
