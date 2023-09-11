@@ -1,3 +1,21 @@
+$(document).ready(function () {
+  sessiondata = localStorage.getItem("mysession");
+  $.ajax({
+    url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+    method: "GET",
+    headers: {
+      'mysession': sessiondata
+    },
+    success: function (response) {
+
+    },
+    error: function (error) {
+      // Handle any errors here
+      window.location.href = "login.html";
+    },
+  });
+});
+
 const sidebarItems = document.querySelectorAll(".sidebar li");
 const sections = document.querySelectorAll(".section");
 
@@ -19,19 +37,21 @@ sidebarItems.forEach((item) => {
 function getSessionTeacherId() {
   var teacherid = null;
 
+  sessiondata = localStorage.getItem("mysession");
   // Make an AJAX GET request to fetch the teacher's ID from the session
   $.ajax({
-    url: "http://localhost:8081/session/get-teacher-session-data", // Replace with your backend API endpoint
+    url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
     method: "GET",
     async: false, // Synchronous request to wait for the response
+    headers: {
+      'mysession': sessiondata
+    },
     success: function (data) {
       teacherid = data; // Store the teacher's ID
       console.log("Teacher ID:", teacherid);
     },
-    error: function (xhr, textStatus, errorThrown) {
+    error: function () {
       console.error("Error fetching teacher ID");
-      console.log("Status: " + xhr.status);
-      console.log("Response Text: " + xhr.responseText);
     },
   });
 

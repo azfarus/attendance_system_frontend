@@ -219,11 +219,9 @@ a {
 }
 
 #myChart{
-  width: 80%; /* Set the width of the container */
-  height: 400px; /* Set the height of the container */
-  margin: 0 auto; /* Center the container horizontally */
-  padding: 20px; /* Add padding for spacing */
   background-color: #f0f0f0; /* Set a background color */
+  width: 80%;
+  height: auto;
 }
 
 .nav {
