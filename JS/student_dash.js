@@ -76,6 +76,7 @@ function fetchStudentData() {
   var sid = getSessionStudentId(); // Implement this function to retrieve the Student ID from the session
   console.log(sid);
   // Make an AJAX request to fetch the Student's data
+  sessiondata = localStorage.getItem("mysession");
   $.ajax({
     url: "http://localhost:8081/student/info", // Replace with your backend API endpoint
     method: "GET",
