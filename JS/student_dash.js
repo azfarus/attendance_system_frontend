@@ -1,13 +1,15 @@
 $(document).ready(function () {
   sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
   $.ajax({
-    url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+    url: "http://localhost:8081/session/get-session-data",
     method: "GET",
     headers: {
-      'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     success: function (response) {
-
+      
     },
     error: function (error) {
       // Handle any errors here
@@ -48,15 +50,17 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to get the Student's ID from the session
 function getSessionStudentId() {
   var Studentid = null;
-
+  
   sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
   // Make an AJAX GET request to fetch the Student's ID from the session
   $.ajax({
     url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
     method: "GET",
     async: false, // Synchronous request to wait for the response
     headers: {
-      'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     success: function (data) {
       Studentid = data; // Store the Student's ID
@@ -65,7 +69,7 @@ function getSessionStudentId() {
       console.error("Error fetching Student ID");
     },
   });
-
+  
   return Studentid;
 }
 
@@ -77,11 +81,13 @@ function fetchStudentData() {
   console.log(sid);
   // Make an AJAX request to fetch the Student's data
   sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
   $.ajax({
     url: "http://localhost:8081/student/info", // Replace with your backend API endpoint
     method: "GET",
     headers: {
-      'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     data: {
       studentid: sid

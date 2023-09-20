@@ -1,11 +1,13 @@
 //get session
 $(document).ready(function () {
   sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
   $.ajax({
     url: "http://localhost:8081/session/get-session-data",
     method: "GET",
     headers: {
-      'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     success: function (response) {
 
@@ -54,6 +56,7 @@ $("#insertTeacherForm").submit(function (event) {
   };
   
   sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
   
   // Make the AJAX request to add teacher
   $.ajax({
@@ -62,7 +65,8 @@ $("#insertTeacherForm").submit(function (event) {
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
     headers: {
-      'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     success: function (response) {
       // Handle the successful response here
@@ -87,8 +91,7 @@ $("#insertCourseForm").submit(function (event) {
   var studentCountLimit = $("#student_count_limit").val();
   var section = $("#section_course").val();
   var assignTeacher = $("#assign_teacher").val();
-  
-  sessiondata = localStorage.getItem("mysession");
+
   // Create a data object with the parameters
   var data = {
     department: department,
@@ -100,7 +103,8 @@ $("#insertCourseForm").submit(function (event) {
   };
   
   sessiondata = localStorage.getItem("mysession");
-
+  hashdata = localStorage.getItem("myhash");
+  
   // Make the AJAX request to add course
   $.ajax({
     url: "http://localhost:8081/admin/course",
@@ -108,7 +112,8 @@ $("#insertCourseForm").submit(function (event) {
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
     headers: {
-      'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     success: function (response) {
       // Handle the successful response here
@@ -147,6 +152,7 @@ $("#insertStudentForm").submit(function (event) {
   };
   
   sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
   // Make the AJAX request to add student
   $.ajax({
     url: "http://localhost:8081/admin/student", // Replace with your backend API endpoint
@@ -154,7 +160,8 @@ $("#insertStudentForm").submit(function (event) {
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
     headers: {
-      'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     success: function (response) {
       // Handle the successful response here
@@ -170,13 +177,15 @@ $("#insertStudentForm").submit(function (event) {
 
 
 sessiondata = localStorage.getItem("mysession");
+hashdata = localStorage.getItem("myhash");
 
 //Fetch department data from the backend
 $.ajax({
   url: "http://localhost:8081/admin/departments", // Replace with your backend endpoint
   method: "GET",
   headers: {
-    'mysession': sessiondata
+    'mysession': sessiondata,
+    'Authorization': 'Basic ' + hashdata
   },
   success: function (data) {
     // Populate the <select> with dynamic options

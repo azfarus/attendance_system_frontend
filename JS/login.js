@@ -11,17 +11,20 @@ $('#loginButton').click(function() {
         password : password
     }
 
-    console.log(JSON.stringify(requestBody));
+    let hash = btoa(id + ":" + password);
     $.ajax({
         type: 'POST',
         url: 'http://localhost:8081/login/'+userType,
         contentType: 'application/json',
         data: JSON.stringify(requestBody),
+        headers:{
+            'Authorization': 'Basic ' + hash
+        },
 
         
         success: function(data) {
-
             localStorage.setItem("mysession" , data);
+            localStorage.setItem("myhash" , hash);
             alert('Login Successful ' + data);
             // Redirect to the appropriate dashboard based on the user type
             if(userType=='admin')

@@ -1,28 +1,32 @@
 $(document).ready(function () {
-    sessiondata = localStorage.getItem("mysession");
-    $.ajax({
-      url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
-      method: "GET",
-      headers: {
-        'mysession': sessiondata
-      },
-      success: function (response) {
-  
-      },
-      error: function (error) {
-        // Handle any errors here
-        window.location.href = "login.html";
-      },
-    });
+  sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
+  $.ajax({
+    url: "http://localhost:8081/session/get-session-data",
+    method: "GET",
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    success: function (response) {
+
+    },
+    error: function (error) {
+      // Handle any errors here
+      window.location.href = "login.html";
+    },
   });
+});
 
 // Fetch department data from the backend
 sessiondata = localStorage.getItem("mysession");
+hashdata = localStorage.getItem("myhash");
 $.ajax({
-    url: "http://localhost:8081/admin/departments", // Replace with your backend API endpoint for departments
-    method: "GET",
+  url: "http://localhost:8081/admin/departments", // Replace with your backend API endpoint for departments
+  method: "GET",
     headers: {
-        'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     success: function (data) {
         // Populate the Department dropdown with dynamic options
@@ -61,7 +65,8 @@ deptdrop.addEventListener('click', function () {
         url: "http://localhost:8081/course/get-course-by-dept",
         method: "GET",
         headers: {
-            'mysession': sessiondata
+          'mysession': sessiondata,
+          'Authorization': 'Basic ' + hashdata
         },
         data: {
             department: dept
@@ -82,22 +87,24 @@ deptdrop.addEventListener('click', function () {
             });
         },
         error: function (error) {
-            console.error("Error fetching courses:", error);
+          console.error("Error fetching courses:", error);
         }
     });
 });
 
 function getSessionStudentId() {
-    var Studentid = null;
+    var studentid = null;
   
     sessiondata = localStorage.getItem("mysession");
+    hashdata = localStorage.getItem("myhash");
     // Make an AJAX GET request to fetch the Student's ID from the session
     $.ajax({
       url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
       method: "GET",
       async: false, // Synchronous request to wait for the response
       headers: {
-        'mysession': sessiondata
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
       },
       success: function (data) {
         studentid = data; // Store the Student's ID
@@ -120,7 +127,8 @@ function getSessionStudentId() {
       url: "http://localhost:8081/student/info", // Replace with your backend API endpoint
       method: "GET",
       headers: {
-        'mysession': sessiondata
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
       },
       data: {
         studentid: sid

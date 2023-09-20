@@ -1,10 +1,12 @@
 $(document).ready(function () {
   sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
   $.ajax({
-    url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+    url: "http://localhost:8081/session/get-session-data",
     method: "GET",
     headers: {
-      'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     success: function (response) {
 
@@ -38,13 +40,15 @@ function getSessionTeacherId() {
   var teacherid = null;
 
   sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
   // Make an AJAX GET request to fetch the teacher's ID from the session
   $.ajax({
     url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
     method: "GET",
     async: false, // Synchronous request to wait for the response
     headers: {
-      'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     success: function (data) {
       teacherid = data; // Store the teacher's ID
@@ -58,6 +62,7 @@ function getSessionTeacherId() {
 }
 
 
+hashdata = localStorage.getItem("myhash");
 // Function to fetch teacher's data using AJAX
 function fetchTeacherData() {
   var tid = getSessionTeacherId();
@@ -67,7 +72,8 @@ function fetchTeacherData() {
     url: "http://localhost:8081/teacher/info", // Replace with your backend API endpoint
     method: "GET",
     headers: {
-      'mysession': sessiondata
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     data: {
       teacherid: tid
