@@ -113,8 +113,7 @@ function getSessionStudentId() {
   
   // Function to fetch Student's data using AJAX
   function fetchStudentData() {
-    // Get the Student's ID from the session (you might need to update this part)
-    var sid = getSessionStudentId(); // Implement this function to retrieve the Student ID from the session
+    var sid = getSessionStudentId();
     console.log("session data fetched");
     // Make an AJAX request to fetch the Student's data
     $.ajax({

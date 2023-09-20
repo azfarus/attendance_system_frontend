@@ -1,7 +1,8 @@
+//get session
 $(document).ready(function () {
   sessiondata = localStorage.getItem("mysession");
   $.ajax({
-    url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+    url: "http://localhost:8081/session/get-session-data",
     method: "GET",
     headers: {
       'mysession': sessiondata
@@ -16,7 +17,7 @@ $(document).ready(function () {
   });
 });
 
-
+//frontend js
 const sidebarItems = document.querySelectorAll(".sidebar li");
 const sections = document.querySelectorAll(".section");
 
@@ -53,7 +54,8 @@ $("#insertTeacherForm").submit(function (event) {
   };
   
   sessiondata = localStorage.getItem("mysession");
-  // Make the AJAX request
+  
+  // Make the AJAX request to add teacher
   $.ajax({
     url: "http://localhost:8081/admin/teacher", // Replace with your backend API endpoint
     method: "POST",
@@ -98,9 +100,10 @@ $("#insertCourseForm").submit(function (event) {
   };
   
   sessiondata = localStorage.getItem("mysession");
-  // Make the AJAX request
+
+  // Make the AJAX request to add course
   $.ajax({
-    url: "http://localhost:8081/admin/course", // Replace with your backend API endpoint
+    url: "http://localhost:8081/admin/course",
     method: "POST",
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -131,6 +134,7 @@ $("#insertStudentForm").submit(function (event) {
   var password = $("#password_student").val();
   var department = $("#dept_student").val();
   var semester = $("#semester_student").val();
+
   // Create a data object with the parameters
   var data = {
     name: name,
@@ -143,7 +147,7 @@ $("#insertStudentForm").submit(function (event) {
   };
   
   sessiondata = localStorage.getItem("mysession");
-  // Make the AJAX request
+  // Make the AJAX request to add student
   $.ajax({
     url: "http://localhost:8081/admin/student", // Replace with your backend API endpoint
     method: "POST",
@@ -166,9 +170,9 @@ $("#insertStudentForm").submit(function (event) {
 
 
 sessiondata = localStorage.getItem("mysession");
+
 //Fetch department data from the backend
 $.ajax({
-  
   url: "http://localhost:8081/admin/departments", // Replace with your backend endpoint
   method: "GET",
   headers: {

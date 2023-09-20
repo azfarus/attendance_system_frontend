@@ -60,8 +60,7 @@ function getSessionTeacherId() {
 
 // Function to fetch teacher's data using AJAX
 function fetchTeacherData() {
-  // Get the teacher's ID from the session (you might need to update this part)
-  var tid = getSessionTeacherId(); // Implement this function to retrieve the teacher ID from the session
+  var tid = getSessionTeacherId();
   console.log(tid);
   // Make an AJAX request to fetch the teacher's data
   $.ajax({
