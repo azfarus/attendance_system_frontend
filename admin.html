@@ -29,6 +29,8 @@
                         <li class="active" data-target="#insertCourseSection">Insert Course</li>
                         <li data-target="#insertTeacherSection">Insert Teacher</li>
                         <li data-target="#insertStudentSection">Insert Student</li>
+                        <!--Ekhane extra Feature add kora hoise-->
+                        <li data-target="#assignTeacherSection">Assign Teachers</li>
                     </ul>
                     <!-- <div class="logout text-center">
                         <button class="btn btn-danger text-center" id="logoutButton">LOGOUT</button>
@@ -90,6 +92,25 @@
                             <label for="mail_guardian">Guardian E-mail :</label>
                             <input class="form-control" type="email" id="mail_guardian" name="mail_guardian" required>
                             <button type="submit" id="Add_Student_btn">ADD STUDENT</button>
+                        </form>
+                    </div>
+                    <div class="section" id="assignTeacherSection">
+                        <h1>ASSIGN TEACHERS</h1>
+                        <form class="form_ctrl" id="assignTeacherForm">
+                            <label for="id_teacher">Teacher ID:</label>
+                            <select id="teacher_id" name="teacher_id" placeholder="Teacher-ID">
+                                <option value="" disabled selected>Select an option</option>
+
+                            </select>
+                            <label for="dept_course">Department:</label>
+                            <select id="dept_course" name="dept_course">
+                                
+                            </select>
+                            <label for="code_course">Courses:</label>
+                            <select id="courses" name="courses">
+                                
+                            </select>
+                            <button type="submit" id="Add_Student_btn">Assign Teacher</button>
                         </form>
                     </div>
                 </div>
