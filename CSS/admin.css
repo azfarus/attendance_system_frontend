@@ -4,7 +4,7 @@
 .p_container {
   position: relative;
   display: flex;
-  height: 150vh;
+  height: 155vh;
   width: 100%;
   overflow: hidden;
   font-size: 1.5rem;
@@ -73,6 +73,7 @@
   flex-direction: column;
   max-width: 70rem;
   margin: auto;
+  margin-top: 2rem;
   background-color: #ffffff45;
   border-radius: 2rem;
   box-shadow: 0.2rem 0.1rem 1rem rgba(0, 0, 0, 0.2);
@@ -275,7 +276,7 @@ a {
     padding-top: 7.2rem;
     flex-direction: column;
     align-items: center;
-    min-height: 190vh;
+    min-height: 205vh;
   }
 
   .sidebar {
