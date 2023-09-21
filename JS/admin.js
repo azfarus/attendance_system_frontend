@@ -253,34 +253,85 @@ $('#StudentCSVForm').submit(function (event) {
 sessiondata = localStorage.getItem("mysession");
 hashdata = localStorage.getItem("myhash");
 
-//Fetch department data from the backend
-$.ajax({
-  url: "http://localhost:8081/admin/departments", // Replace with your backend endpoint
-  method: "GET",
-  headers: {
-    'mysession': sessiondata,
-    'Authorization': 'Basic ' + hashdata
-  },
-  success: function (data) {
-    // Populate the <select> with dynamic options
-    var selectElement = $("#dept_course");
-    var selectElement2 = $("#dept_student");
-    
-    // Iterate through the fetched data and create <option> elements
-    for (var i = 0; i < data.length; i++) {
-      var department = data[i];
-      selectElement.append($('<option>', {
-        value: department,
-        text: department
-      }));
-      selectElement2.append($('<option>', {
-        value: department,
-        text: department
-      }));
+// Function to populate the department dropdown
+function populateDepartmentDropdown() {
+  $.ajax({
+    url: "http://localhost:8081/admin/departments",
+    method: "GET",
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    success: function (data) {
+      // Populate the <select> with dynamic options
+      var selectElement = $("#dept_course");
+      var selectElement2 = $("#dept_student");
+      var selectElement3 = $("#dept_teacher");
+
+      // Iterate through the fetched data and create <option> elements
+      for (var i = 0; i < data.length; i++) {
+        var department = data[i];
+        selectElement.append($('<option>', {
+          value: department,
+          text: department
+        }));
+        selectElement2.append($('<option>', {
+          value: department,
+          text: department
+        }));
+        selectElement3.append($('<option>', {
+          value: department,
+          text: department
+        }));
+      }
+    },
+    error: function (error) {
+      // Handle errors
+      console.error("Error fetching departments:", error);
     }
-  },
-  error: function (error) {
-    // Handle errors
-    console.error("Error fetching departments:", error);
-  }
+  });
+}
+
+// Populate the department dropdown initially
+populateDepartmentDropdown();
+
+// Function to fetch and populate courses based on selected department
+function populateCoursesDropdown(dept) {
+  $.ajax({
+    url: "http://localhost:8081/course/get-course-by-dept",
+    method: "GET",
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    data: {
+      department: dept
+    },
+    success: function (data) {
+      console.log(data);
+      var selectElement = $("#courses_teacher");
+
+      // Clear previous options
+      selectElement.empty();
+
+      // Iterate through the fetched data and create <option> elements
+      for (var i = 0; i < data.length; i++) {
+        var course = data[i];
+        selectElement.append($('<option>', {
+          value: course,
+          text: course
+        }));
+      }
+    },
+    error: function (error) {
+      console.error("Error fetching courses:", error);
+    }
+  });
+}
+
+// Add an event listener to the department dropdown
+$("#dept_teacher").change(function () {
+  var selectedDept = $(this).val();
+  // Call the function to populate courses based on the selected department
+  populateCoursesDropdown(selectedDept);
 });
