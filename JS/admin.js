@@ -89,10 +89,10 @@ $('#TeacherCSVForm').submit(function (event) {
   event.preventDefault();
   const formData = new FormData();
   const fileInput = document.getElementById('csv_file');
-  formData.append('csv_file', fileInput.files[0]);
+  formData.append('file', fileInput.files[0]);
   $.ajax({
       type: 'POST',
-      url: 'http://localhost:8081/api/upload-csv', // Replace with your backend API endpoint
+      url: 'http://localhost:8081/admin/upload-csv/2', // Replace with your backend API endpoint
       data: formData,
       headers: {
         'mysession': sessiondata,
@@ -169,10 +169,10 @@ $('#CourseCSVForm').submit(function (event) {
   event.preventDefault();
   const formData = new FormData();
   const fileInput = document.getElementById('csv_file');
-  formData.append('csv_file', fileInput.files[0]);
+  formData.append('file', fileInput.files[0]);
   $.ajax({
       type: 'POST',
-      url: 'http://localhost:8081/api/upload-csv', // Replace with your backend API endpoint
+      url: 'http://localhost:8081/admin/upload-csv/1', // Replace with your backend API endpoint
       data: formData,
       headers: {
         'mysession': sessiondata,
@@ -250,10 +250,10 @@ $('#StudentCSVForm').submit(function (event) {
     event.preventDefault();
     const formData = new FormData();
     const fileInput = document.getElementById('csv_file');
-    formData.append('csv_file', fileInput.files[0]);
+    formData.append('file', fileInput.files[0]);
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:8081/api/upload-csv', // Replace with your backend API endpoint
+        url: 'http://localhost:8081/admin/upload-csv/3', // Replace with your backend API endpoint
         data: formData,
         headers: {
           'mysession': sessiondata,

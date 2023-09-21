@@ -246,29 +246,36 @@ a {
   display: inline-block;
   margin-top: 1rem; 
   margin-bottom: 2rem; 
-  background-color: #f0f0f0; 
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
-  padding: 8px 12px; 
+  background-color: #ffffff; 
+  border: 1px solid #000000; 
+  border-radius: 25px; 
+  padding: 0px 5px 4px 20px; 
   cursor: pointer; 
+  z-index: 2;
 }
 
 .file-input {
-  position: absolute;
-  font-size: 100px; 
-  opacity: 0; 
-  right: 0;
-  top: 0;
+  cursor: pointer;
+  background-color: #e7ffe8;
+}
+
+.file-input-label input[type="file"] {
+  display: none;
+  font-size: larger;
+}
+
+
+.file-input-label {
+  display: inline-block;
+  background-color: #3498db; /* Background color for the button */
+  color: #fff; /* Text color for the button */
+  padding: 5px 12px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners for the button */
   cursor: pointer;
 }
 
-.file-input-label {
-  margin-right: 10px; 
-  color: #00145b; 
-}
-
 .file-input-container:hover {
-  background-color: #d5ffd8;
+  background-color: #e7ffe8;
 }
 
 @media (max-width: 768px) {
