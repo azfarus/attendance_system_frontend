@@ -80,6 +80,10 @@ $("#insertTeacherForm").submit(function (event) {
   });
 });
 
+
+sessiondata = localStorage.getItem("mysession");
+hashdata = localStorage.getItem("myhash");
+
 //teacher csv upload
 $('#TeacherCSVForm').submit(function (event) {
   event.preventDefault();
@@ -90,6 +94,10 @@ $('#TeacherCSVForm').submit(function (event) {
       type: 'POST',
       url: 'http://localhost:8081/api/upload-csv', // Replace with your backend API endpoint
       data: formData,
+      headers: {
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
+      },
       processData: false, // Don't process the data
       contentType: false, // Don't set content type (it will be set automatically)
       success: function (response) {
@@ -152,6 +160,10 @@ $("#insertCourseForm").submit(function (event) {
   });
 });
 
+
+sessiondata = localStorage.getItem("mysession");
+hashdata = localStorage.getItem("myhash");
+
 //Course csv upload
 $('#CourseCSVForm').submit(function (event) {
   event.preventDefault();
@@ -162,6 +174,10 @@ $('#CourseCSVForm').submit(function (event) {
       type: 'POST',
       url: 'http://localhost:8081/api/upload-csv', // Replace with your backend API endpoint
       data: formData,
+      headers: {
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
+      },
       processData: false, // Don't process the data
       contentType: false, // Don't set content type (it will be set automatically)
       success: function (response) {
@@ -225,6 +241,10 @@ $("#insertStudentForm").submit(function (event) {
   });
 });
 
+
+sessiondata = localStorage.getItem("mysession");
+hashdata = localStorage.getItem("myhash");
+
 //student csv upload
 $('#StudentCSVForm').submit(function (event) {
     event.preventDefault();
@@ -235,6 +255,10 @@ $('#StudentCSVForm').submit(function (event) {
         type: 'POST',
         url: 'http://localhost:8081/api/upload-csv', // Replace with your backend API endpoint
         data: formData,
+        headers: {
+          'mysession': sessiondata,
+          'Authorization': 'Basic ' + hashdata
+        },
         processData: false, // Don't process the data
         contentType: false, // Don't set content type (it will be set automatically)
         success: function (response) {
@@ -306,6 +330,10 @@ function populateCoursesDropdown(dept) {
     },
     data: {
       department: dept
+    },
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
     },
     success: function (data) {
       console.log(data);
