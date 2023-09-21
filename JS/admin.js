@@ -80,6 +80,31 @@ $("#insertTeacherForm").submit(function (event) {
   });
 });
 
+//teacher csv upload
+$('#TeacherCSVForm').submit(function (event) {
+  event.preventDefault();
+  const formData = new FormData();
+  const fileInput = document.getElementById('csv_file');
+  formData.append('csv_file', fileInput.files[0]);
+  $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8081/api/upload-csv', // Replace with your backend API endpoint
+      data: formData,
+      processData: false, // Don't process the data
+      contentType: false, // Don't set content type (it will be set automatically)
+      success: function (response) {
+          // Handle success response from the backend
+          console.log('File uploaded successfully:', response);
+          alert('File uploaded successfully.');
+      },
+      error: function (error) {
+          // Handle error response from the backend
+          console.error('Error uploading file:', error);
+          alert('Error uploading file. Please try again.');
+      }
+  });
+});
+
 // When the form is submitted
 $("#insertCourseForm").submit(function (event) {
   event.preventDefault(); // Prevent the default form submission
@@ -124,6 +149,31 @@ $("#insertCourseForm").submit(function (event) {
       // Handle any errors here
       console.error("Error adding course:", error.responseText);
     },
+  });
+});
+
+//Course csv upload
+$('#CourseCSVForm').submit(function (event) {
+  event.preventDefault();
+  const formData = new FormData();
+  const fileInput = document.getElementById('csv_file');
+  formData.append('csv_file', fileInput.files[0]);
+  $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8081/api/upload-csv', // Replace with your backend API endpoint
+      data: formData,
+      processData: false, // Don't process the data
+      contentType: false, // Don't set content type (it will be set automatically)
+      success: function (response) {
+          // Handle success response from the backend
+          console.log('File uploaded successfully:', response);
+          alert('File uploaded successfully.');
+      },
+      error: function (error) {
+          // Handle error response from the backend
+          console.error('Error uploading file:', error);
+          alert('Error uploading file. Please try again.');
+      }
   });
 });
 
@@ -175,6 +225,30 @@ $("#insertStudentForm").submit(function (event) {
   });
 });
 
+//student csv upload
+$('#StudentCSVForm').submit(function (event) {
+    event.preventDefault();
+    const formData = new FormData();
+    const fileInput = document.getElementById('csv_file');
+    formData.append('csv_file', fileInput.files[0]);
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8081/api/upload-csv', // Replace with your backend API endpoint
+        data: formData,
+        processData: false, // Don't process the data
+        contentType: false, // Don't set content type (it will be set automatically)
+        success: function (response) {
+            // Handle success response from the backend
+            console.log('File uploaded successfully:', response);
+            alert('File uploaded successfully.');
+        },
+        error: function (error) {
+            // Handle error response from the backend
+            console.error('Error uploading file:', error);
+            alert('Error uploading file. Please try again.');
+        }
+    });
+});
 
 sessiondata = localStorage.getItem("mysession");
 hashdata = localStorage.getItem("myhash");

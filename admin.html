@@ -54,8 +54,14 @@
                             <input class="form-control" type="number" id="student_count_limit" name="student_count_limit" min="0" required>
                             <label for="assign_teacher">Enter Teacher ID to Assign :</label>
                             <input class="form-control" type="text" id="assign_teacher" name="assign_teacher" required>
-        
                             <button type="submit" id="Add_Course_btn">ADD COURSE</button>
+                        </form>
+                        <form class="form_ctrl" id="CourseCSVForm">
+                            <div class="file-input-container">
+                                <label class="file-input-label" for="csv_file">Choose CSV File:</label>
+                                <input type="file" id="csv_file" class="file-input" name="csv_file" accept=".csv">
+                            </div>
+                            <button type="submit" id="Upload_CSV_btn">UPLOAD CSV</button>
                         </form>
                     </div>
                     <div class="section" id="insertTeacherSection">
@@ -70,6 +76,13 @@
                             <label for="mail_teacher">E-mail Address :</label>
                             <input class="form-control" type="text" id="mail_teacher" name="mail_teacher" required>
                             <button type="submit" id="addTeacherButton">ADD TEACHER</button>
+                        </form>
+                        <form class="form_ctrl" id="TeacherCSVForm">
+                            <div class="file-input-container">
+                                <label class="file-input-label" for="csv_file">Choose CSV File:</label>
+                                <input type="file" id="csv_file" class="file-input" name="csv_file" accept=".csv">
+                            </div>
+                            <button type="submit" id="Upload_CSV_btn">UPLOAD CSV</button>
                         </form>
                     </div>
                     <div class="section" id="insertStudentSection">
@@ -92,6 +105,13 @@
                             <label for="mail_guardian">Guardian E-mail :</label>
                             <input class="form-control" type="email" id="mail_guardian" name="mail_guardian" required>
                             <button type="submit" id="Add_Student_btn">ADD STUDENT</button>
+                        </form>
+                        <form class="form_ctrl" id="StudentCSVForm">
+                            <div class="file-input-container">
+                                <label class="file-input-label" for="csv_file">Choose CSV File:</label>
+                                <input type="file" id="csv_file" class="file-input" name="csv_file" accept=".csv">
+                            </div>
+                            <button type="submit" id="Upload_CSV_btn">UPLOAD CSV</button>
                         </form>
                     </div>
                     <div class="section" id="assignTeacherSection">
