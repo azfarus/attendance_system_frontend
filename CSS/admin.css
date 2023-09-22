@@ -240,42 +240,56 @@ a {
 }
 
 
-.file-input-container {
+.file-container {
+  padding-top: 3rem;
   position: relative;
-  overflow: hidden;
-  display: inline-block;
-  margin-top: 1rem; 
-  margin-bottom: 2rem; 
-  background-color: #ffffff; 
-  border: 1px solid #000000; 
-  border-radius: 25px; 
-  padding: 0px 5px 4px 20px; 
-  cursor: pointer; 
-  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .file-input {
+  font-size: 1.6rem;
+  background: white;
+  border-radius: 5rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  width: auto;
   cursor: pointer;
-  background-color: #e7ffe8;
+  outline: none;
+  padding: 0.5rem 2rem;
 }
 
-.file-input-label input[type="file"] {
-  display: none;
-  font-size: larger;
-}
-
-
-.file-input-label {
+.file-input::before {
+  content: "Select CSV";
   display: inline-block;
-  background-color: #3498db; /* Background color for the button */
-  color: #fff; /* Text color for the button */
-  padding: 5px 12px; /* Padding for the button */
-  border-radius: 5px; /* Rounded corners for the button */
+  color: black;
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  white-space: nowrap;
   cursor: pointer;
+  border-radius: 5rem;
+  transition: 0.25s;
 }
 
-.file-input-container:hover {
-  background-color: #e7ffe8;
+.file-input:hover::before {
+  background-color: #6cff62;
+  color: rgb(11, 0, 54);
+}
+
+.file-input:active {
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.file-input:hover {
+  background-color: #a6ff9f;
+  color: rgb(11, 0, 54);
+
+}
+
+::-webkit-file-upload-button {
+  visibility: hidden;
 }
 
 @media (max-width: 768px) {
