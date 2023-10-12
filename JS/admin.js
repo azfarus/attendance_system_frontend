@@ -81,6 +81,49 @@ $("#insertTeacherForm").submit(function (event) {
 });
 
 
+
+// When the form is submitted
+$("#assignTeacherForm").submit(function (event) {
+  event.preventDefault(); // Prevent the default form submission
+  
+  // Get the form values
+  var id_t = $("#teacherIdInput").val();
+  var dept_t = $("#dept_teacher").val();
+  var course_t = $("#courses_teacher").val();
+  
+  
+  // Create a data object with the parameters
+  var data = {
+    department: dept_t,
+    courseCode: course_t,
+    teacherid :id_t
+  };
+  
+  sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
+  
+  // Make the AJAX request to add teacher
+  $.ajax({
+    url: "http://localhost:8081/admin/course-teacher-assign", // Replace with your backend API endpoint
+    method: "POST",
+    data: jQuery.param(data),
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    success: function (response) {
+      // Handle the successful response here
+      alert("Course assigned successfully");
+      console.log("Course assigned successfully ", response);
+    },
+    error: function (error) {
+      // Handle any errors here
+      console.error("Error registering course:", error.responseText);
+    },
+  });
+});
+
 sessiondata = localStorage.getItem("mysession");
 hashdata = localStorage.getItem("myhash");
 
@@ -90,9 +133,10 @@ $('#TeacherCSVForm').submit(function (event) {
   const formData = new FormData();
   const fileInput = document.getElementById('csv_file');
   formData.append('file', fileInput.files[0]);
+  formData.append('type', 2);
   $.ajax({
       type: 'POST',
-      url: 'http://localhost:8081/admin/upload-csv/2', // Replace with your backend API endpoint
+      url: 'http://localhost:8081/admin/upload-csv', // Replace with your backend API endpoint
       data: formData,
       headers: {
         'mysession': sessiondata,
@@ -131,8 +175,7 @@ $("#insertCourseForm").submit(function (event) {
     courseId: code,
     semester: semester,
     count: studentCountLimit,
-    section: section,
-    teacherId: assignTeacher,
+    section: section
   };
   
   sessiondata = localStorage.getItem("mysession");
@@ -170,9 +213,10 @@ $('#CourseCSVForm').submit(function (event) {
   const formData = new FormData();
   const fileInput = document.getElementById('csv_file');
   formData.append('file', fileInput.files[0]);
+  formData.append('type', 3);
   $.ajax({
       type: 'POST',
-      url: 'http://localhost:8081/admin/upload-csv/1', // Replace with your backend API endpoint
+      url: 'http://localhost:8081/admin/upload-csv', // Replace with your backend API endpoint
       data: formData,
       headers: {
         'mysession': sessiondata,
@@ -251,9 +295,10 @@ $('#StudentCSVForm').submit(function (event) {
     const formData = new FormData();
     const fileInput = document.getElementById('csv_file');
     formData.append('file', fileInput.files[0]);
+    formData.append('type', 1);
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:8081/admin/upload-csv/3', // Replace with your backend API endpoint
+        url: 'http://localhost:8081/admin/upload-csv', // Replace with your backend API endpoint
         data: formData,
         headers: {
           'mysession': sessiondata,
@@ -291,7 +336,8 @@ function populateDepartmentDropdown() {
       var selectElement = $("#dept_course");
       var selectElement2 = $("#dept_student");
       var selectElement3 = $("#dept_teacher");
-
+      
+      
       // Iterate through the fetched data and create <option> elements
       for (var i = 0; i < data.length; i++) {
         var department = data[i];

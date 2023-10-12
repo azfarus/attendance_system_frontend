@@ -50,7 +50,7 @@
                             <label for="student_count_limit">Student Count Limit :</label>
                             <input class="form-control" type="number" id="student_count_limit" name="student_count_limit" min="0" required>
                             <label for="assign_teacher">Enter Teacher ID to Assign :</label>
-                            <input class="form-control" type="text" id="assign_teacher" name="assign_teacher" required>
+                            <input class="form-control" type="text" id="assign_teacher" name="assign_teacher" >
                             <button type="submit" id="Add_Course_btn">ADD COURSE</button>
                         </form>
                         <form class="form_ctrl" id="CourseCSVForm">
@@ -112,9 +112,7 @@
                         <h1>ASSIGN TEACHERS</h1>
                         <form class="form_ctrl" id="assignTeacherForm">
                             <label for="id_teacher">Teacher ID:</label>
-                            <select id="teacher_id" name="teacher_id" placeholder="Teacher-ID">
-                                <option value="" disabled selected>Select an option</option>
-                            </select>
+                            <input  class="form-control" type="text" id="teacherIdInput" name="teacherIdInput" >
 
                             <label for="dept_teacher">Department:</label>
                             <select id="dept_teacher" name="dept_teacher">
