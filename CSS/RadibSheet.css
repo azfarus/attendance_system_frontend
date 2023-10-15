@@ -1,0 +1,60 @@
+/* Add this CSS in a separate file or in a <style> tag within your HTML file */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+#attendance-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#attendance-table th, #attendance-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#attendance-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+#attendance-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#attendance-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button.P {
+    background-color: green;
+    color: white;
+}
+
+button.A {
+    background-color: red;
+    color: white;
+}
+
+button.L {
+    background-color: yellow;
+    color: black;
+}
+
+button:hover {
+    filter: brightness(1.2);
+}
