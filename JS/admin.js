@@ -131,7 +131,7 @@ hashdata = localStorage.getItem("myhash");
 $('#TeacherCSVForm').submit(function (event) {
   event.preventDefault();
   const formData = new FormData();
-  const fileInput = document.getElementById('csv_file');
+  const fileInput = document.getElementById('csv_file_teacher');
   formData.append('file', fileInput.files[0]);
   formData.append('type', 2);
   $.ajax({
@@ -211,7 +211,7 @@ hashdata = localStorage.getItem("myhash");
 $('#CourseCSVForm').submit(function (event) {
   event.preventDefault();
   const formData = new FormData();
-  const fileInput = document.getElementById('csv_file');
+  const fileInput = document.getElementById('csv_file_course');
   formData.append('file', fileInput.files[0]);
   formData.append('type', 3);
   $.ajax({
@@ -293,7 +293,7 @@ hashdata = localStorage.getItem("myhash");
 $('#StudentCSVForm').submit(function (event) {
     event.preventDefault();
     const formData = new FormData();
-    const fileInput = document.getElementById('csv_file');
+    const fileInput = document.getElementById('csv_file_student');
     formData.append('file', fileInput.files[0]);
     formData.append('type', 1);
     $.ajax({
