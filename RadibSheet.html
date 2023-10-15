@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Student Dashboard</title>
+    <title>Teacher - Take Attendance</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./CSS/student_dash.css">
     <style>
@@ -35,6 +35,7 @@
         .attendance-table {
             width: 100%;
             border-collapse: collapse;
+            overflow-x: auto;
         }
 
         .attendance-table th, .attendance-table td {
@@ -79,7 +80,7 @@
         <div>
             <ul class="nav navbar-nav">
                 <li>&nbsp;</li>
-                <li class="text-center"><h2 class="text-center pl-5 ml-5 mb-3 display-4 text-light"><b>STUDENT DASHBOARD</b></h2></li>
+                <li class="text-center"><h2 class="nav-text text-center pl-5 ml-5 mb-3 display-4 text-light"><b> ATTENDANCE SHEET L-3 </b></h2></li>
                 <li class="text-right"><div class="logout-container">
                     <a class="mr-5" id="logoutButton" href="login.html">
                         <img class="mb-3" src="./images/logout.jpg" alt="Logout">
@@ -89,26 +90,14 @@
         </div>
         <div class="container_main">
             <div class="p_container">
-                <div class="sidebar">
-                    <img class="circular--square" src = "images/pp.jpg" style="width:260px;height:260px;"><br>
-                    <ul><br>
-                        <li id="s_name">Asif Abrar</li>
-                        <li id="s_id">200041106</li>
-                        <li id="s_mail">mail@gmail.com</li>
-                    </ul>
-                    <center>
-                        <button type="submit" id="courseRegBtn">Course Registration</button>
-                    </center>
-                </div>
                 <div class="main">
                     <div class="section active">
-                                <h1>Attendance System</h1>
                             <table class="attendance-table">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Attendance</th>
+                                        <th>Present</th>
                                         <th>Late</th>
                                         <th>Absent</th>
                                     </tr>
