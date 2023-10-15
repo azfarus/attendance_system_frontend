@@ -1,21 +1,9 @@
 // attendance.js
 
 const dataFromBackend = {
-    "Student1": {
-        "L1": "P",
-        "L2": "A",
-        "L3": "L"
-    },
-    "Student2": {
-        "L1": "P",
-        "L2": "P",
-        "L3": "A"
-    },
-    "Student3": {
-        "L1": "L",
-        "L2": "A",
-        "L3": "P"
-    }
+    "Student1": ["P", "A", "L"],
+    "Student2": ["P", "P", "A"],
+    "Student3": ["L", "A", "P"]
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -27,17 +15,18 @@ document.addEventListener("DOMContentLoaded", function () {
         row.insertCell(0).textContent = student;
 
         const attendanceData = dataFromBackend[student];
-        const columns = ["L1", "L2", "L3", "Today"];
+        for (let i = 0; i < 3; i++) {
+            const cell = row.insertCell(i + 1);
+            cell.textContent = attendanceData[i];
+        }
 
-        columns.forEach((column, index) => {
-            const cell = row.insertCell(index + 1);
-            const button = document.createElement("button");
-            button.textContent = attendanceData[column] || "P"; // Set initial value from JSON data or default to "P"
-            button.id = student;
-            button.classList.add(attendanceData[column] || "P"); // Assign class based on initial status or default to "P"
-            button.addEventListener("click", toggleAttendance);
-            cell.appendChild(button);
-        });
+        const todayCell = row.insertCell(4);
+        const button = document.createElement("button");
+        button.textContent = attendanceData[0]; // Set initial value from JSON data
+        button.id = student;
+        button.classList.add(attendanceData[0]); // Assign class based on initial status
+        button.addEventListener("click", toggleAttendance);
+        todayCell.appendChild(button);
     });
 
     function toggleAttendance(event) {
