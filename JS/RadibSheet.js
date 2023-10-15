@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const todayCell = row.insertCell(4);
         const button = document.createElement("button");
-        button.textContent = attendanceData[0]; // Set initial value from JSON data
+        button.textContent = 'P'; // Set initial value from JSON data
         button.id = student;
-        button.classList.add(attendanceData[0]); // Assign class based on initial status
+        button.classList.add('P'); // Assign class based on initial status
         button.addEventListener("click", toggleAttendance);
         todayCell.appendChild(button);
     });
