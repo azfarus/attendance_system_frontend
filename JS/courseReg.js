@@ -13,7 +13,9 @@ $(document).ready(function () {
     },
     error: function (error) {
       // Handle any errors here
-      window.location.href = "login.html";
+      console.log(error);
+      alert(error);
+      //window.location.href = "login.html";
     },
   });
 });
@@ -22,7 +24,7 @@ $(document).ready(function () {
 sessiondata = localStorage.getItem("mysession");
 hashdata = localStorage.getItem("myhash");
 $.ajax({
-  url: "http://localhost:8081/admin/departments", // Replace with your backend API endpoint for departments
+  url: "http://localhost:8081/student/departments", // Replace with your backend API endpoint for departments
   method: "GET",
     headers: {
       'mysession': sessiondata,

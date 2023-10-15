@@ -13,7 +13,7 @@ $(document).ready(function () {
     },
     error: function (error) {
       // Handle any errors here
-      window.location.href = "login.html";
+      //window.location.href = "login.html";
     },
   });
 });
