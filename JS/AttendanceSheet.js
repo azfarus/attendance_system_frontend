@@ -62,3 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
         button.classList.add(attendanceStates[currentIndex]);
     }
 });
+
+function sheetSubmitBtn() {
+    window.location.href = "teacher_dash.html";
+}
+

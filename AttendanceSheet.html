@@ -3,27 +3,26 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./CSS/RadibSheet.css">
+        <link rel="stylesheet" href="./CSS/AttendanceSheet.css">
         <link rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="./JS/RadibSheet.js"></script>
-        <title>Attendance Sheet</title>
-    </head>
-    <body>
-        <div>
-            <ul class="nav navbar-nav">
-                <li>&nbsp;</li>
-                <li class="text-center"><h2 class="nav-text text-center pl-5 ml-5 mb-3 display-4 text-light"><b>ATTENDANCE SHEET</b></h2></li>
-                <li class="text-right">
-                    <div class="logout-container">
-                        <a class="mr-5" id="logoutButton" href="teacher_dash.html">
-                            <img class="mb-3" src="./images/back.jpg"
+            <title>Attendance Sheet</title>
+        </head>
+        <body>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li>&nbsp;</li>
+                    <li class="text-center"><h2 class="nav-text text-center pl-5 ml-5 mb-3 display-4 text-light"><b>ATTENDANCE SHEET</b></h2></li>
+                    <li class="text-right">
+                        <div class="logout-container">
+                            <a class="mr-5" id="logoutButton" href="teacher_dash.html">
+                                <img class="mb-3" src="./images/back.jpg"
                                 alt="Logout">
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
             <div class="p_container">
                 <div class="main">
                     <table id="attendance-table">
@@ -48,7 +47,11 @@
                     </table>
                 </div>
             </div>
+            <center>
+                <button type="submit" id="sheetSubmitBtn" onclick="sheetSubmitBtn();">Submit Sheet</button>
+            </center>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./JS/AttendanceSheet.js"></script>
     </body>
-</html>
+    </html>

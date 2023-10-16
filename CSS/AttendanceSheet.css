@@ -12,7 +12,7 @@
   position:static;
   display:block;
   width: 100%;
-  overflow-x: auto;
+  overflow-x:auto;
   font-size: 1.5rem;
   font-family: "Poppins", sans-serif;
 }
@@ -200,6 +200,28 @@ a {
   width: 40px; /* Adjust the width and height as needed */
   height: 40px;
   vertical-align: middle;
+}
+
+#sheetSubmitBtn {
+  min-width: 20rem;
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+  background-color: #000144;
+  border: #000000;
+  color: #ffffff;
+  padding: 1.2rem 7.5rem;
+  text-decoration: double;
+  border-radius: 2.5rem;
+  cursor: pointer;
+  font-size:large;
+  font-weight: bold;
+  box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
+}
+
+#sheetSubmitBtn:hover {
+  border-width: .1rem;
+  background-color: #80ff75;
+  color: #000000;
 }
 
 @media (max-width: 560px) {
