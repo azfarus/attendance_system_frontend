@@ -3,21 +3,52 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="CSS/RadibSheet.css">
-        <script src="JS/RadibSheet.js"></script>
+        <link rel="stylesheet" href="./CSS/RadibSheet.css">
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="./JS/RadibSheet.js"></script>
         <title>Attendance Sheet</title>
     </head>
     <body>
-
-        <table id="attendance-table">
-            <tr>
-                <th>Student ID</th>
-                <th>L1</th>
-                <th>L2</th>
-                <th>L3</th>
-                <th>Today</th>
-            </tr>
-        </table>
-
+        <div>
+            <ul class="nav navbar-nav">
+                <li>&nbsp;</li>
+                <li class="text-center"><h2 class="nav-text text-center pl-5 ml-5 mb-3 display-4 text-light"><b>ATTENDANCE SHEET</b></h2></li>
+                <li class="text-right">
+                    <div class="logout-container">
+                        <a class="mr-5" id="logoutButton" href="teacher_dash.html">
+                            <img class="mb-3" src="./images/back.jpg"
+                                alt="Logout">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+            <div class="p_container">
+                <div class="main">
+                    <table id="attendance-table">
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>L1</th>
+                            <th>L2</th>
+                            <th>L3</th>
+                            <th>L4</th>
+                            <th>L5</th>
+                            <th>L6</th>
+                            <th>L7</th>
+                            <th>L8</th>
+                            <th>L9</th>
+                            <th>L10</th>
+                            <th>L11</th>
+                            <th>L12</th>
+                            <th>L13</th>
+                            <th>Today</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </body>
 </html>

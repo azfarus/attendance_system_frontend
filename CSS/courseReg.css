@@ -362,14 +362,14 @@ nav ul {
     position: relative;
     text-decoration: none;
     margin-inline-end: 10rem;
-  }
+}
   
-  .logout-container img {
+.logout-container img {
     border-radius: 55%;
     width: 40px; /* Adjust the width and height as needed */
     height: 40px;
     vertical-align: middle;
-  }
+}
 
   /* Add this to your existing CSS or create a new style block */
 .list-container {
