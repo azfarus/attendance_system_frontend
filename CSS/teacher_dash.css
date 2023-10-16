@@ -303,3 +303,48 @@ a {
     font-size: 26px;
   }
 }
+
+/* Add styles for course blocks */
+.course-blocks {
+  margin-right: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.course {
+  width: calc(33.33% - 20px); /* Each row holds 3 blocks with some spacing */
+  padding: 3rem;
+  margin: 2rem 1rem;
+  border-radius: 2.2rem;
+  background-color: #05004b; /* Blue background */
+  color: white;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer; /* Change mouse cursor to a pointer */
+
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.course:hover {
+  background-color: orange; /* Change background color on hover */
+  color: #000;
+  transform: scale(1.05); /* Scale the block on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Enhance the box shadow on hover */
+}
+
+.course-code {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.course-name {
+  font-size: 1.6rem;
+}
+
+
+.headingText{
+  font-size:x-large;
+  font-weight: bold;
+}
+
+/* You can add additional CSS for different courses and customize the colors */

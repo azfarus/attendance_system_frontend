@@ -32,11 +32,46 @@
                 </div>
                 <div class="main">
                     <div class="section active">
-                        <h1>TO Be ADDED</h1> <br>
+                        <h1 class="headingText">Taken Courses</h1>
+                        <div class="course-blocks">
+                            <div class="course">
+                                <div class="course-code">CSE4101</div>
+                                <div class="course-name">Introduction to Computer Science</div>
+                            </div>
+                            <div class="course">
+                                <div class="course-code">CSE4203</div>
+                                <div class="course-name">Data Structures and Algorithms</div>
+                            </div>
+                            <div class="course">
+                                <div class="course-code">CSE4308</div>
+                                <div class="course-name">Database Management Systems</div>
+                            </div>
+                            <div class="course">
+                                <div class="course-code">CSE4502</div>
+                                <div class="course-name">Operating Systems Lab</div>
+                            </div>
+                            <div class="course">
+                                <div class="course-code">CSE4512</div>
+                                <div class="course-name">Networking Lab</div>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get all course blocks by class name
+                var courseBlocks = document.querySelectorAll(".course");
+        
+                // Add click event listener to each course block
+                courseBlocks.forEach(function (block) {
+                    block.addEventListener("click", function () {
+                        // Redirect all course blocks to "Attendance.html"
+                        window.location.href = "AttendanceSheet.html";
+                    });
+                });
+            });
+        </script>        
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="./JS/teacher_dash.js"></script>
