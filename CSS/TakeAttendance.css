@@ -12,7 +12,6 @@
   position:static;
   display:block;
   width: 100%;
-  justify-content: center;
   overflow-x:auto;
   font-size: 1.5rem;
   font-family: "Poppins", sans-serif;
@@ -77,7 +76,7 @@
 
 #attendance-table td:nth-child(2) {
     font-weight:400;
-    min-width: 40rem;
+    min-width: 24rem;
     left: 0;
     color: rgb(0, 0, 0);
     font-size: large;
@@ -100,12 +99,10 @@
 
 button {
     min-width: 5.5rem;
-    border-radius: 1rem; /* Add this line to make the edges round */
     padding: 7px 10px;
-    border: #000000;
+    border: #000000 solid 1px;
     cursor: pointer;
 }
-
 
 button.P {
     background-color: green;
@@ -146,7 +143,9 @@ button:hover {
 }
 
 #logout_btn:hover {
-  color: #d78e35;
+    font-size: larger;
+    color: #d7ae35;
+
 }
 
 html {
@@ -224,8 +223,9 @@ a {
 
 #sheetSubmitBtn:hover {
   border-width: .1rem;
-  background-color: #80ff75;
+  background-color: #04ea00ac;
   color: #000000;
+  transform: scale(1.02);
 }
 
 @media (max-width: 560px) {
