@@ -164,10 +164,10 @@ $("#insertCourseForm").submit(function (event) {
   // Get the form values
   var department = $("#dept_course").val();
   var code = $("#code_course").val();
+  var course_name = $("#course_name").val();
   var semester = $("#semester_course").val();
-  var studentCountLimit = $("#student_count_limit").val();
   var section = $("#section_course").val();
-  var assignTeacher = $("#assign_teacher").val();
+  var studentCountLimit = $("#student_count_limit").val();
 
   // Create a data object with the parameters
   var data = {
@@ -175,7 +175,8 @@ $("#insertCourseForm").submit(function (event) {
     courseId: code,
     semester: semester,
     count: studentCountLimit,
-    section: section
+    section: section,
+    courseName: course_name
   };
   
   sessiondata = localStorage.getItem("mysession");
