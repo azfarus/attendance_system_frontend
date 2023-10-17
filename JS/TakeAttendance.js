@@ -1,42 +1,51 @@
 // AttendanceSheet.js
-const dataFromBackend = {
-    200041122: "Radib Bin Kabir",
-    200041101: "Abu Hena Shadid",
-    200041102: "Tawsif Dipto",
-    200041103: "Jarin Hridy",
-    200041104: "Helo Abrar",
-    200041105: "Rahim Abrar",
-    200041106: "Asif Abrar",
-    200041107: "Desi Abrar",
-    200041108: "Bidesi Abrar",
-    200041109: "Kamrul Abrar",
-    200041110: "Ayman Abrar",
-    200041111: "Karim Abrar",
-    200041142: "Sami Shajeed",
-    200041113: "Ehsanul Haque",
-    200041114: "Tanbir Choudhury",
-    200041144: "Tanvir Dihan",
-    200041116: "Iftekhar Ifty",
-    200041126: "Abdullah",
-    200041139: "Zannatul Samarukh",
-    200041119: "Samin Yeasir",
-    200041120: "Arian Inan",
-    200041121: "Shofiq Kaiser",
-    200041130: "Samnun Azfar",
-};
+sessiondata = localStorage.getItem("mysession");
+hashdata = localStorage.getItem("myhash");
 
+// Get the current URL
+var url = new URL(window.location.href);
+// Get the value of the 'hid' query parameter
+var hid = url.searchParams.get('hid');
+console.log(hid);
 
-document.addEventListener("DOMContentLoaded", function () {
+let dataFromBackend = {}; // Initialize as an empty object
+
+$.ajax({
+    url: 'http://localhost:8081/attendance/get-students', // Replace with the actual API endpoint
+    method: 'GET',
+    dataType: 'json',
+    headers: {
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
+    },
+    data: {
+        hid: hid
+    },
+    success: function (data) {
+      console.log(data);
+      dataFromBackend = data; // Populate dataFromBackend with the fetched data
+      displayAttendanceData(); // Call a function to display data after it's fetched
+    },
+    error: function (error) {
+      // Handle any errors
+      console.error('Error fetching data:', error);
+    }
+});
+
+function displayAttendanceData() {
     const table = document.getElementById("attendance-table");
-    const students = Object.keys(dataFromBackend);
 
-    students.forEach((student) => {
+    students = Object.keys(dataFromBackend);
+
+    const attendanceData = {}; // Initialize an object to store attendance data
+
+    students.forEach((studentId) => {
         const row = table.insertRow();
 
         // Display Student ID in the first column
-        row.insertCell(0).textContent = student;
+        row.insertCell(0).textContent = studentId;
 
-        const studentName = dataFromBackend[student];
+        const studentName = dataFromBackend[studentId];
 
         // Display Student Name in the second column
         row.insertCell(1).textContent = studentName;
@@ -47,23 +56,52 @@ document.addEventListener("DOMContentLoaded", function () {
         const button = document.createElement("button");
         button.textContent = "P"; // Set the initial value to "P"
         button.classList.add("P");
+        button.value = studentId;
         button.addEventListener("click", toggleAttendance);
         attendanceCell.appendChild(button);
+
+        // Initialize the attendance data object with "P" for each student
+        attendanceData[studentId] = "P";
     });
 
     function toggleAttendance(event) {
         const button = event.target;
         const attendanceStates = ["P", "A", "L"];
         let currentIndex = attendanceStates.indexOf(button.textContent);
+        button.classList.remove(attendanceStates[currentIndex]);
         currentIndex = (currentIndex + 1) % attendanceStates.length;
         button.textContent = attendanceStates[currentIndex];
-
-        // Remove existing class and add class based on the new status
-        button.classList.remove("P", "A", "L");
         button.classList.add(attendanceStates[currentIndex]);
+        // Update the attendance data object with the new status
+        const studentId = button.value;
+        attendanceData[studentId] = attendanceStates[currentIndex];
     }
-});
+
+    // Function to submit attendance data
+    function submitAttendanceData() {
+        $.ajax({
+            url: 'http://localhost:8081/attendance/submit-attendance', // Replace with your API endpoint
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(attendanceData),
+            headers: {
+                'mysession': sessiondata,
+                'Authorization': 'Basic ' + hashdata
+            },
+            success: function (response) {
+                console.log(attendanceData);
+                console.log('Attendance data submitted successfully:', response);
+            },
+            error: function (error) {
+                console.error('Error submitting attendance data:', error);
+            }
+        });
+    }
+
+    // Attach a click event handler to a submit button
+    document.getElementById("sheetSubmitBtn").addEventListener("click", submitAttendanceData);
+}
 
 function sheetSubmitBtn() {
-    window.location.href = "teacher_dash.html";
+    //window.location.href = "teacher_dash.html";
 }
