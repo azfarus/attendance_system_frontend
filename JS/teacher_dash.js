@@ -89,6 +89,66 @@ function fetchTeacherData() {
       console.error("Error fetching teacher data:", error.responseText);
     },
   });
+
+  $.ajax({
+    url: "http://localhost:8081/teacher/sheets",
+    method: "GET",
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    data: {
+      teacherId: tid
+    },
+    success: function (teacherCourses) {
+      // Assuming teacherCourses is an array of course objects
+      console.log(teacherCourses);
+  
+      // Get the course-blocks element
+      const courseBlocks = document.querySelector(".course-blocks");
+  
+      // Loop through the teacherCourses array
+      teacherCourses.forEach(course => {
+        // Create a new course block
+        const courseBlock = document.createElement("div");
+        courseBlock.className = "course";
+  
+        // Create course code element
+        const courseCode = document.createElement("div");
+        courseCode.className = "course-code";
+        courseCode.textContent = course.department + course.courseid;
+  
+        // Create course name element
+        const courseName = document.createElement("div");
+        courseName.className = "course-name";
+        courseName.textContent = course.coursename;
+  
+        // Create "View Sheet" button
+        const viewSheetButton = document.createElement("button");
+        viewSheetButton.textContent = "View Sheet";
+        viewSheetButton.value = course.hid; // Set the course HID as the button value
+        viewSheetButton.addEventListener("click", redirectToSheet);
+  
+        // Create "Take Attendance" button
+        const takeAttendanceButton = document.createElement("button");
+        takeAttendanceButton.textContent = "Take Attendance";
+        takeAttendanceButton.value = course.hid; // Set the course HID as the button value
+        takeAttendanceButton.addEventListener("click", redirectToAttendance);
+  
+        // Append course code, course name, "View Sheet" button, and "Take Attendance" button to the course block
+        courseBlock.appendChild(courseCode);
+        courseBlock.appendChild(courseName);
+        courseBlock.appendChild(viewSheetButton);
+        courseBlock.appendChild(takeAttendanceButton);
+  
+        // Append the course block to the course-blocks container
+        courseBlocks.appendChild(courseBlock);
+      });
+    },
+    error: function (error) {
+      console.error("Error fetching teacher data:", error.responseText);
+    },
+  });  
 }
 
 // Function to populate the teacher's dashboard with data
@@ -96,6 +156,18 @@ function populateTeacherDashboard(teacherData) {
   $("#t_id").text(teacherData.id);
   $("#t_name").text(teacherData.name);
   $("#t_mail").text(teacherData.email);
+}
+
+// Function to redirect to the attendance sheet page
+function redirectToSheet(event) {
+  const hid = event.target.value;
+  window.location.href = "AttendanceSheet.html?hid=" + hid;
+}
+
+// Function to redirect to the attendance page
+function redirectToAttendance(event) {
+  const hid = event.target.value;
+  window.location.href = "TakeAttendance.html?hid=" + hid;
 }
 
 
