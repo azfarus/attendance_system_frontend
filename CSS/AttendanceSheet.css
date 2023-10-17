@@ -51,21 +51,6 @@
     font-size: large;
     z-index: 1;
 }
-
-#attendance-table th:last-child{
-    min-width: 15rem;
-    color: white;
-    font-size: large;
-    z-index: 1;
-}
-
-#attendance-table td:last-child {
-    font-weight: bold;
-    min-width: 15rem;
-    font-size: large;
-    z-index: 1;
-}
-
 #attendance-table th:nth-child(2) {
     min-width: 18rem;
     left: 0;
@@ -96,32 +81,6 @@
 #attendance-table tr:hover {
     background-color: #ebffe2;
 }
-
-button {
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-}
-
-button.P {
-    background-color: green;
-    color: white;
-}
-
-button.A {
-    background-color: red;
-    color: white;
-}
-
-button.L {
-    background-color: yellow;
-    color: black;
-}
-
-button:hover {
-    filter: brightness(1.2);
-}
-
 
 /* Define the main content area and set its properties */
 .main {

@@ -1,30 +1,30 @@
-// attendance.js
-
+// AttendanceSheet.js
 const dataFromBackend = {
-    "200041122": ["Radib Bin Kabir","P", "A", "L","P","P","P","P","P","P","P","P","P","P"],
-    "200041101": ["Abu Hena Shadid","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041102": ["Tawsif Dipto","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041103": ["Jarin Hridy","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041104": ["Helo Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041105": ["Rahim Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041106": ["Asif Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041107": ["Desi Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041108": ["Bidesi Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041109": ["Kamrul Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041110": ["Ayman Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041111": ["Karim Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041142": ["Sami Shajeed","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041113": ["Ehsanul Haque","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041114": ["Tanbir Choudhury","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041144": ["Tanvir Dihan","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041116": ["Iftekhar Ifty","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041126": ["Abdullah","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041139": ["Zannatul Samarukh","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041119": ["Samin Yeasir","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041120": ["Arian Inan","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041121": ["Shofiq Kaiser","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041130": ["Samnun Azfar","L", "A", "P","P","P","P","P","P","P","P","P","P","P"]
+    200041122: "Radib Bin Kabir",
+    200041101: "Abu Hena Shadid",
+    200041102: "Tawsif Dipto",
+    200041103: "Jarin Hridy",
+    200041104: "Helo Abrar",
+    200041105: "Rahim Abrar",
+    200041106: "Asif Abrar",
+    200041107: "Desi Abrar",
+    200041108: "Bidesi Abrar",
+    200041109: "Kamrul Abrar",
+    200041110: "Ayman Abrar",
+    200041111: "Karim Abrar",
+    200041142: "Sami Shajeed",
+    200041113: "Ehsanul Haque",
+    200041114: "Tanbir Choudhury",
+    200041144: "Tanvir Dihan",
+    200041116: "Iftekhar Ifty",
+    200041126: "Abdullah",
+    200041139: "Zannatul Samarukh",
+    200041119: "Samin Yeasir",
+    200041120: "Arian Inan",
+    200041121: "Shofiq Kaiser",
+    200041130: "Samnun Azfar",
 };
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const table = document.getElementById("attendance-table");
@@ -32,25 +32,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     students.forEach((student) => {
         const row = table.insertRow();
+
+        // Display Student ID in the first column
         row.insertCell(0).textContent = student;
 
-        const attendanceData = dataFromBackend[student];
-        for (let i = 0; i < 14; i++) {
-            const cell = row.insertCell(i + 1);
-            cell.textContent = attendanceData[i];
-        }
+        const studentName = dataFromBackend[student];
 
-        const todayCell = row.insertCell(15);
+        // Display Student Name in the second column
+        row.insertCell(1).textContent = studentName;
+
+        // Create the third column with a single button for P, A, L
+        const attendanceCell = row.insertCell(2);
+
         const button = document.createElement("button");
-        button.textContent = 'P'; // Set initial value from JSON data
-        button.id = student;
-        button.classList.add('P'); // Assign class based on initial status
+        button.textContent = "P"; // Set the initial value to "P"
+        button.classList.add("P");
         button.addEventListener("click", toggleAttendance);
-        todayCell.appendChild(button);
+        attendanceCell.appendChild(button);
     });
 
     function toggleAttendance(event) {
-        const studentId = event.target.id;
         const button = event.target;
         const attendanceStates = ["P", "A", "L"];
         let currentIndex = attendanceStates.indexOf(button.textContent);
@@ -66,4 +67,3 @@ document.addEventListener("DOMContentLoaded", function () {
 function sheetSubmitBtn() {
     window.location.href = "teacher_dash.html";
 }
-
