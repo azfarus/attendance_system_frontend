@@ -9,9 +9,10 @@
 }
 
 html {
-font-size: 10px;
-font-family: "Josefin Sans", sans-serif;
-min-width: 65rem;
+  font-size: 10px;
+  font-family: "Josefin Sans", sans-serif;
+  min-width: 65rem;
+  background: linear-gradient(#ffffff, #e5e5e5);
 }
 
 :root {
@@ -19,23 +20,22 @@ min-width: 65rem;
 }
 
 .p_container {
-  position: relative;
   display: flex;
-  height: 110vh;
   width: 100%;
   overflow: hidden;
   font-size: 1.5rem;
-  background: linear-gradient(#ffffff, #e5e5e5);
   font-family: "Poppins", sans-serif;
 }
 
 /* Define the sidebar element and set its properties */
 .sidebar {
+  position: fixed;
   margin-top: 7.2rem;
   background-color: #000000;
   color: #fff;
-  width: 32rem;
-  padding: 2rem;
+  width: 30rem;
+  padding: 1rem;
+  height: 100vh;
 }
 
 /* Remove default list styling from sidebar unordered list */
@@ -46,17 +46,17 @@ min-width: 65rem;
 .sidebar h2 {
   color: rgb(255, 253, 208);
   list-style: none;
-  margin-bottom: 5rem;
-  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
   text-align: center;
 }
 
 /* Set styling for each item in sidebar unordered list */
 .sidebar li {
     text-align: center;
-    padding: 0.5rem 0;
+    padding: 1rem 0;
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 /* Set styling for the active item in sidebar unordered list */
@@ -67,9 +67,10 @@ min-width: 65rem;
 
 /* Define the main content area and set its properties */
 .main {
-  flex-grow: 1;
-  padding: 4rem 2rem;
+  flex: 1;
+  padding: 4rem 2rem 4rem 32rem;
 }
+
 
 /* Hide all sections by default */
 .section {
@@ -141,8 +142,6 @@ button:hover {
   background-color: #ff8c00;
 }
 
-
-
 .container,
 .small-container,
 .medium-container {
@@ -210,6 +209,41 @@ a {
     width: 40px; /* Adjust the width and height as needed */
     height: 40px;
     vertical-align: middle;
+  }
+
+  @media (max-width: 768px) {
+    .p_container {
+      flex-direction: column;
+      align-items: center;
+      min-height: 205vh;
+    }
+  
+    .circular--square{
+      margin: auto;
+      padding: auto;
+      display: block;
+    }
+  
+    .sidebar{
+      width: 100%;
+      padding: 1rem;
+      display: block;
+      position: relative;
+      height: fit-content;
+    }
+    .main{
+      padding: 2rem;
+    }
+  
+    .form_ctrl {
+      font-size: 1.2rem;
+    }
+
+    button{
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+
   }
 
   @media (max-width: 560px) {

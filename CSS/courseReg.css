@@ -2,70 +2,73 @@
 /* Add a background image to the container element */
 
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-transition: 0.25s all ease;
-}
-
-
-html {
-font-size: 10px;
-font-family: "Josefin Sans", sans-serif;
-min-width: 65rem;
-}
-
-.p_container {
-position: relative;
-display: flex;
-height: 110vh;
-width: 100%;
-overflow: hidden;
-font-size: 1.5rem;
-background: linear-gradient(#ffffff, #e5e5e5);
-font-family: "Poppins", sans-serif;
-}
-
-/* Define the sidebar element and set its properties */
-.sidebar {
-margin-top: 7.2rem;
-background-color: #000000;
-color: #fff;
-width: 32rem;
-padding: 2rem;
-}
-
-/* Remove default list styling from sidebar unordered list */
-.sidebar ul {
-list-style: none;
-}
-
-.sidebar h2 {
-color: rgb(255, 253, 208);
-list-style: none;
-margin-bottom: 5rem;
-font-size: 2.2rem;
-text-align: center;
-}
-
-/* Set styling for each item in sidebar unordered list */
-.sidebar li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: 0.25s all ease;
+  }
+  
+  html {
+    font-size: 10px;
+    font-family: "Josefin Sans", sans-serif;
+    min-width: 65rem;
+    background: linear-gradient(#ffffff, #e5e5e5);
+  }
+  
+  :root {
+  --primary-color: #1d1d1d;
+  }
+  
+  .p_container {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    font-size: 1.5rem;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* Define the sidebar element and set its properties */
+  .sidebar {
+    position: fixed;
+    margin-top: 7.2rem;
+    background-color: #000000;
+    color: #fff;
+    width: 30rem;
+    padding: 1rem;
+    height: 100vh;
+  }
+  
+  /* Remove default list styling from sidebar unordered list */
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar h2 {
+    color: rgb(255, 253, 208);
+    list-style: none;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
     text-align: center;
-    padding: 1rem 0;
-    cursor: pointer;
-    font-size: 2rem;
-}
-
-/* Set styling for the active item in sidebar unordered list */
-.sidebar li.active {
-font-weight: bold;
-color: #d78e35dd;
-}
-
-/* Define the main content area and set its properties */
-.main {
-flex-grow: 1;
-padding: 4rem 2rem;
+  }
+  
+  /* Set styling for each item in sidebar unordered list */
+  .sidebar li {
+      text-align: center;
+      padding: 1rem 0;
+      cursor: pointer;
+      font-size: 1.8rem;
+  }
+  
+  /* Set styling for the active item in sidebar unordered list */
+  .sidebar li.active {
+    font-weight: bold;
+    color: #d78e35dd;
+  }
+  
+  /* Define the main content area and set its properties */
+  .main {
+    flex: 1;
+    padding: 4rem 2rem 4rem 32rem;
 }
 
 /* Hide all sections by default */
@@ -165,27 +168,27 @@ margin-left: 3%;
 }
 
 .dropul{
-    background-color: rgb(156, 245, 255);
+    background-color: rgba(0, 208, 255, 0.221);
     display: flex;
     align-items: center;
     justify-content: space-around;
-
 }
 
 #select-button {
-min-width: 25rem;
-font-size: large;
-margin-left: 2.2rem;
-margin-right: 4rem;
-position: relative;
-padding: 10px 20px;
-background-color: #05c46b;
-color: #fff;
-border: 1px solid black;
-width: 20rem;
-height: 5rem;
-border-radius: 25px;
-cursor: pointer;
+    border-radius: 2.5rem;
+    min-width: 25rem;
+    background-color: #00be49;
+    color: white;
+    padding: 1.2rem 4rem;
+    font-size: large;
+    border: none;
+    text-align: center;
+}
+
+#select-button:hover {
+    background-color: #00e759;
+    color: rgb(0, 0, 0);
+    font-size:larger;
 }
 
 #item-list {
@@ -268,7 +271,7 @@ margin-bottom: 20px;
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #2190ff;
+    background-color: #002448;
     min-width: 20rem;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -279,9 +282,9 @@ margin-bottom: 20px;
 #dropbtn3 {
     border-radius: 2.5rem;
     min-width: 25rem;
-    background-color: #2190ff;
+    background-color: #001780;
     color: white;
-    padding: 1rem 4rem;
+    padding: 1.2rem 4rem;
     font-size: large;
     border: none;
     text-align: center;
@@ -312,7 +315,7 @@ nav ul {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: cyan;
+    background-color: rgb(255, 174, 0);
 }
 
 /* Show the dropdown menu on hover */
@@ -322,7 +325,7 @@ nav ul {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-    background-color: #2190ff;
+    background-color: #3bbeff;
     color: black;
 }
 
@@ -376,3 +379,44 @@ nav ul {
     max-height: 32rem; /* Set your desired maximum height */
     overflow-y: auto; /* Enable vertical scrolling when the content overflows */
 }
+
+@media (max-width: 768px) {
+    .p_container {
+      flex-direction: column;
+      align-items: center;
+      min-height: 205vh;
+    }
+  
+    .circular--square{
+      margin: auto;
+      padding: auto;
+      display: block;
+    }
+  
+    .sidebar{
+      width: 100%;
+      padding: 1rem;
+      display: block;
+      position: relative;
+      height: fit-content;
+    }
+    .main{
+      padding: 2rem;
+    }
+  
+    .form_ctrl {
+      font-size: 1.2rem;
+    }
+
+    button{
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+
+  }
+
+  @media (max-width: 560px) {
+    .nav-text {
+      font-size: 26px;
+    }
+  }

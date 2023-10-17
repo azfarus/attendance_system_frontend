@@ -1,24 +1,40 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 /* Add a background image to the container element */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.25s all ease;
+}
+
+html {
+  font-size: 10px;
+  font-family: "Josefin Sans", sans-serif;
+  min-width: 65rem;
+  background: linear-gradient(#ffffff, #e5e5e5);
+}
+
+:root {
+--primary-color: #1d1d1d;
+}
 .p_container {
-  position: relative;
   display: flex;
-  height: 155vh;
   width: 100%;
   overflow: hidden;
   font-size: 1.5rem;
-  background: linear-gradient(#ffffff, #e5e5e5);
   font-family: "Poppins", sans-serif;
 }
 
 /* Define the sidebar element and set its properties */
 .sidebar {
+  position: fixed;
   margin-top: 7.2rem;
   background-color: #000000;
   color: #fff;
-  width: 22rem;
-  padding: 2rem;
+  width: 24rem;
+  padding: 1rem;
+  height: 100vh;
 }
 
 /* Remove default list styling from sidebar unordered list */
@@ -29,6 +45,7 @@
 .sidebar h2 {
   color: rgb(255, 253, 208);
   list-style: none;
+  margin-top: 5rem;
   margin-bottom: 5rem;
   font-size: 2.2rem;
   text-align: center;
@@ -39,7 +56,8 @@
     text-align: center;
     padding: 1rem 0;
     cursor: pointer;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 1.8rem;
 }
 
@@ -51,8 +69,8 @@
 
 /* Define the main content area and set its properties */
 .main {
-  flex-grow: 1;
-  padding: 4rem 2rem;
+  flex: 1;
+  padding: 4rem 2rem 4rem 26rem;
 }
 
 /* Hide all sections by default */
@@ -243,6 +261,23 @@ a {
   .nav-text {
     font-size: 26px;
   }
+  .sidebar{
+    width: 100%;
+    padding: 1rem;
+    display: block;
+    position: relative;
+  }
+}
+@media (max-width: 768px){
+  .sidebar{
+    width: 100%;
+    padding: 1rem;
+    display: block;
+    position: relative;
+  }
+  .main{
+    padding: 2rem;
+  }
 }
 
 
@@ -300,21 +335,22 @@ a {
 
 @media (max-width: 768px) {
   .p_container {
-    padding-top: 7.2rem;
     flex-direction: column;
     align-items: center;
     min-height: 205vh;
   }
 
-  .sidebar {
-    margin-top: 0;
+  .sidebar{
     width: 100%;
     padding: 1rem;
+    display: block;
+    position: relative;
+    height: fit-content;
+  }
+  .main{
+    padding: 2rem;
   }
 
-  /* Add any additional responsive styles here */
-
-  /* Example: Adjust font size for smaller screens */
   .form_ctrl {
     font-size: 1.2rem;
   }
