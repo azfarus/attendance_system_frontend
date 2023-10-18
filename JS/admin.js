@@ -90,13 +90,15 @@ $("#assignTeacherForm").submit(function (event) {
   var id_t = $("#teacherIdInput").val();
   var dept_t = $("#dept_teacher").val();
   var course_t = $("#courses_teacher").val();
+  var section_t = $("#section_teacher").val();
   
   
   // Create a data object with the parameters
   var data = {
     department: dept_t,
     courseCode: course_t,
-    teacherid :id_t
+    teacherid :id_t,
+    section : section_t
   };
   
   sessiondata = localStorage.getItem("mysession");
