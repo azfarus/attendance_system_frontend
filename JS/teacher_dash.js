@@ -105,6 +105,7 @@ function fetchTeacherData() {
         const courseName = document.createElement("div");
         courseName.className = "course-name";
         courseName.textContent = course.coursename;
+        courseName.style.color = "#fafad2";
   
         // Create "View Sheet" button
         const viewSheetButton = document.createElement("button");

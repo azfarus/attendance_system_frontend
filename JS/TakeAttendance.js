@@ -10,8 +10,71 @@ console.log(hid);
 
 let dataFromBackend = {}; // Initialize as an empty object
 
+function getSessionTeacherId() {
+    var teacherid = null;
+
+    sessiondata = localStorage.getItem("mysession");
+    hashdata = localStorage.getItem("myhash");
+    // Make an AJAX GET request to fetch the teacher's ID from the session
+    $.ajax({
+        url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+        method: "GET",
+        async: false, // Synchronous request to wait for the response
+        headers: {
+            'mysession': sessiondata,
+            'Authorization': 'Basic ' + hashdata
+            },
+        success: function (data) {
+            teacherid = data; // Store the teacher's ID
+            },
+        error: function () {
+            console.error("Error fetching teacher ID");
+            },
+    });
+    return teacherid;
+}
+
+var tid = getSessionTeacherId();
+console.log(tid);
+// Make an AJAX request to fetch the teacher's data
 $.ajax({
-    url: 'http://localhost:8081/attendance/get-students', // Replace with the actual API endpoint
+    url: "http://localhost:8081/teacher/sheets", // Replace with your backend API endpoint
+    method: "GET",
+    async: false, // Synchronous request to wait for the response
+    headers: {
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
+    },
+    data: {
+        teacherId: tid
+    },
+    success: function (teacherCourses) {
+
+    const currentDate = new Date();
+    const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    const formattedDate = currentDate.getDate() + ' ' + months[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
+
+    console.log(teacherCourses);
+    const hidToMatch = hid;
+    for (const course of teacherCourses) {
+        if (course.hid == hidToMatch) {
+            document.getElementById('courseCode').textContent = course.department +" "+ course.courseid +" "+course.section;
+            document.getElementById('courseName').textContent = course.coursename;
+            document.getElementById("courseDate").textContent = formattedDate;
+                break;
+            }
+        }
+    },
+        error: function (error) {
+      // Handle any errors here
+        console.error("Error fetching teacher data:", error.responseText);
+    },
+});
+
+
+
+$.ajax({
+    url: 'http://localhost:8081/attendance/get-students',
     method: 'GET',
     dataType: 'json',
     headers: {
