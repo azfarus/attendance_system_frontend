@@ -17,7 +17,34 @@
   font-family: "Poppins", sans-serif;
 }
 
+#sheetInfo {
+  position: fixed;
+  background-color: #eef9ff;
+  width: 100%;
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 5px 15px;
+  z-index: -1;
+}
+
+#courseCode{
+  font-size: 2.8rem;
+  font-weight: bolder;
+  color: #ff5e00;
+  margin: 5px 0;
+}
+
+#courseName {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #02006f;
+  margin: 5px 0;
+}
+
 #attendance-table {
+    margin-top: 12.5rem;
     width: auto;
     border-collapse: collapse;
     background-color: white;
@@ -42,30 +69,36 @@
 }
 
 #attendance-table td:first-child {
-    font-weight: bold;
-    min-width: 20rem;
-    position: sticky;
-    left: 0;
-    background-color: #ff9900;
-    color: rgb(0, 0, 0);
-    font-size: large;
-    z-index: 1;
+  font-weight: bold;
+  min-width: 22rem;
+  position: sticky;
+  left: 0;
+  background-color: #ff9900;
+  color: rgb(0, 0, 0);
+  font-size: large;
+  z-index: 1;
+  transition: background-color 0.2s ease-in-out;
 }
+
+#attendance-table tr:hover td:first-child {
+background-color: rgb(255, 213, 0);
+}
+
 #attendance-table th:nth-child(2) {
-    min-width: 18rem;
-    left: 0;
-    color: white;
-    font-size: large;
-    z-index: 1;
+  min-width: 33rem;
+  left: 0;
+  color: white;
+  font-size: large;
+  z-index: 1;
 }
 
 #attendance-table td:nth-child(2) {
-    font-weight:400;
-    min-width: 24rem;
-    left: 0;
-    color: rgb(0, 0, 0);
-    font-size: large;
-    z-index: 1;
+  font-weight:400;
+  min-width: 24rem;
+  left: 0;
+  color: rgb(0, 0, 0);
+  font-size: large;
+  z-index: 1;
 }
 
 
@@ -75,7 +108,7 @@
 }
 
 #attendance-table tr:nth-child(odd) {
-    background-color: #f2fbff;
+    background-color: #f7feff;
 }
 
 #attendance-table tr:hover {
@@ -85,7 +118,7 @@
 /* Define the main content area and set its properties */
 .main {
   flex-grow: 1;
-  padding: 1.5rem 0rem;
+  padding: 1rem 0rem;
 }
 
 #logout_btn {
@@ -179,8 +212,9 @@ a {
 
 #sheetSubmitBtn:hover {
   border-width: .1rem;
-  background-color: #80ff75;
+  background-color: #04ea00ac;
   color: #000000;
+  transform: scale(1.02);
 }
 
 @media (max-width: 560px) {

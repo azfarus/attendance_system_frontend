@@ -33,13 +33,6 @@
   margin: 5px 0;
 }
 
-#courseDate{
-  font-size: 2rem;
-  font-weight: bold;
-  color: #000000;
-  margin: 8px 0;
-}
-
 #courseName {
   font-size: 2.4rem;
   font-weight: 600;
@@ -47,6 +40,12 @@
   margin: 5px 0;
 }
 
+#courseDate{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000000;
+  margin: 8px 0;
+}
 
 #attendance-table {
     width: auto;
@@ -57,17 +56,21 @@
 }
 
 #attendance-table th, #attendance-table td {
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
     padding: 8px;
     text-align: center;
     min-width: 90px; /* Set a fixed width for table cells */
+}
+
+#attendance-table th{
+  border: 1px solid #ffffff;
 }
 
 #attendance-table th:first-child{
     min-width: 22rem;
     position: sticky;
     left: 0;
-    color: white;
+    color: rgb(255, 253, 238);
     font-size: large;
     z-index: 1;
 }
@@ -81,7 +84,13 @@
     color: rgb(0, 0, 0);
     font-size: large;
     z-index: 1;
+    transition: background-color 0.3s ease-in-out;
 }
+
+#attendance-table tr:hover td:first-child {
+  background-color: rgb(255, 213, 0);
+}
+
 
 #attendance-table th:last-child{
     min-width: 15rem;
@@ -121,7 +130,7 @@
 }
 
 #attendance-table tr:nth-child(odd) {
-    background-color: #fffef1;
+    background-color: #fffff1;
 }
 
 #attendance-table tr:hover {
@@ -129,25 +138,31 @@
 }
 
 button {
-    min-width: 5.5rem;
+    min-width: 5.8rem;
     padding: 7px 10px;
-    border: #000000 solid 1px;
+    border: #000000 solid 2px;
     cursor: pointer;
-}
-
-button.P {
-    background-color: green;
+  }
+  
+  button.P {
+    background-color: rgb(0, 166, 0);
     color: white;
-}
-
-button.A {
+    border-radius: 2rem;
+    font-weight: bold;
+  }
+  
+  button.A {
     background-color: red;
     color: white;
-}
-
-button.L {
+    border-radius: 1.9rem;
+    font-weight: bold;
+  }
+  
+  button.L {
     background-color: yellow;
     color: black;
+    border-radius: 1.9rem;
+    font-weight: bold;
 }
 
 button:hover {
