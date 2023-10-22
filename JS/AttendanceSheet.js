@@ -1,6 +1,6 @@
 // attendance.js
 
-const dataFromBackend = {
+var dataFromBackend = {
     "200041122": ["Radib Bin Kabir","P", "A", "L","P","P","P","P","P","P","P","P","P","P"],
     "200041101": ["Abu Hena Shadid","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
     "200041102": ["Tawsif Dipto","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
@@ -88,20 +88,64 @@ $.ajax({
 });
 
 
-document.addEventListener("DOMContentLoaded", function () {
+
+function loadPrevAttendance() {
     const table = document.getElementById("attendance-table");
     const students = Object.keys(dataFromBackend);
 
-    students.forEach((student) => {
+    // Get the existing table row by its id
+    const headerRow = document.getElementById("start-row");
+    const headerCell = document.createElement("th");
+    headerCell.textContent = "Student ID";
+    headerRow.appendChild(headerCell);
+
+    const headers = dataFromBackend["start"];
+
+    // Populate the table header row with headers
+    headers.forEach(headerText => {
+        const headerCell = document.createElement("th");
+        headerCell.textContent = headerText;
+        headerRow.appendChild(headerCell);
+    });
+
+    students.filter(student => student !== "start").forEach((student) => {
         const row = table.insertRow();
         row.insertCell(0).textContent = student;
-
+        
         const attendanceData = dataFromBackend[student];
-        for (let i = 0; i < 14; i++) {
-            const cell = row.insertCell(i + 1);
-            cell.textContent = attendanceData[i];
-        }
+            for (let i = 0; i < attendanceData.length ; i++) {
+                const cell = row.insertCell(i + 1);
+                cell.textContent = attendanceData[i];
+            }
     });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    $.ajax({
+        url: "http://localhost:8081/attendance/prev-attendance/"+hid, // Replace with your backend API endpoint
+        method: "GET",
+        async: false, // Synchronous request to wait for the response
+        headers: {
+            'mysession': sessiondata,
+            'Authorization': 'Basic ' + hashdata
+        },
+        data: {
+            teacherId: tid
+        },
+        success: function (response) {
+            dataFromBackend=response;
+            console.log(dataFromBackend);
+            loadPrevAttendance();
+        },
+            error: function (error) {
+          // Handle any errors here
+            console.error("Error fetching teacher data:", error.responseText);
+        },
+    });
+    
+    
 });
 
 function sheetSubmitBtn() {

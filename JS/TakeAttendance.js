@@ -143,7 +143,7 @@ function displayAttendanceData() {
     // Function to submit attendance data
     function submitAttendanceData() {
         $.ajax({
-            url: 'http://localhost:8081/attendance/submit-attendance', // Replace with your API endpoint
+            url: 'http://localhost:8081/attendance/submit-attendance/'+hid, // Replace with your API endpoint
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(attendanceData),
