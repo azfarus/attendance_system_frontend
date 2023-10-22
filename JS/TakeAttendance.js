@@ -166,5 +166,5 @@ function displayAttendanceData() {
 }
 
 function sheetSubmitBtn() {
-    //window.location.href = "teacher_dash.html";
+    window.location.href = "teacher_dash.html";
 }

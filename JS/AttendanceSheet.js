@@ -116,13 +116,18 @@ function loadPrevAttendance() {
             for (let i = 0; i < attendanceData.length ; i++) {
                 const cell = row.insertCell(i + 1);
                 cell.textContent = attendanceData[i];
+                cell.style.fontWeight = "600";
+                if(attendanceData[i]=="A"){
+                    cell.style.backgroundColor = "#ff1e479e";
+                }
+                else if(attendanceData[i]=="L"){
+                    cell.style.backgroundColor = "#fbff1ea9";
+                }
             }
     });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
-
     $.ajax({
         url: "http://localhost:8081/attendance/prev-attendance/"+hid, // Replace with your backend API endpoint
         method: "GET",
