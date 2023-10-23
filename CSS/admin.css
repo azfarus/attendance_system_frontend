@@ -64,7 +64,10 @@ html {
 /* Set styling for the active item in sidebar unordered list */
 .sidebar li.active {
   font-weight: bold;
-  color: #d78e35dd;
+  color: #000246;
+  background-color: #ffffff;
+  border-left: #ff0000 solid 0.8rem;
+  border-radius: .5rem;
 }
 
 /* Define the main content area and set its properties */

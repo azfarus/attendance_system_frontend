@@ -44,11 +44,14 @@ html {
 }
 
 .sidebar h2 {
-  color: rgb(255, 253, 208);
+  color: rgb(255, 253, 212);
   list-style: none;
   margin-bottom: 1rem;
-  font-size: 1.8rem;
+  font-size: 2rem;
   text-align: center;
+}
+#s_mail{
+  font-size: 1.7rem;
 }
 
 /* Set styling for each item in sidebar unordered list */
@@ -62,7 +65,10 @@ html {
 /* Set styling for the active item in sidebar unordered list */
 .sidebar li.active {
   font-weight: bold;
-  color: #d78e35dd;
+  color: #000246;
+  background-color: #ffffff;
+  border-left: #ff0000 solid 0.8rem;
+  border-radius: .5rem;
 }
 
 /* Define the main content area and set its properties */
@@ -88,13 +94,12 @@ html {
   padding: 4rem 8rem;
   display: flex;
   flex-direction: column;
-  max-width: 180rem;
+  max-width: 70rem;
   margin: auto;
+  margin-top: 2rem;
   background-color: #ffffff45;
   border-radius: 2rem;
   box-shadow: 0.2rem 0.1rem 1rem rgba(0, 0, 0, 0.2);
-  width: 190rem;
-  height: 80rem;
 }
 
 label {
@@ -108,7 +113,6 @@ label {
   border-radius: 2.5rem;
   border: 1px solid #000000;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
-  width: 200px;
 }
 
 select {
@@ -119,13 +123,9 @@ select {
     box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
   }
 
-button:hover {
-  color: #fff;
-}
 
-
-button {
-  margin-top: 18rem;
+#courseRegBtn {
+  margin-top: 11rem;
   background-color: #ffb700;
   border: #000000;
   color: #000000;
@@ -138,8 +138,31 @@ button {
   box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
 }
 
-button:hover {
+#courseRegBtn:hover {
+  color: #fff;
   background-color: #ff8c00;
+}
+
+
+#updateProfileButton:hover {
+  background-color: #fff718d8;
+  color: #030060;
+}
+
+#updateProfileButton {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-left: auto; /* Remove margin-left */
+  margin-right: auto; /* Add margin-right:auto to center horizontally */
+  width: 20rem;
+  padding: 1rem;
+  border-radius: 2.5rem;
+  border: #ddd;
+  background-color: #ffa600;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0.5rem 0.6rem 0.8rem rgba(0, 0, 0, 0.268);
 }
 
 .container,
@@ -240,10 +263,62 @@ a {
     }
 
     button{
-      margin-top: 4rem;
+      margin-top: 1rem;
       margin-bottom: 2rem;
     }
 
+  }
+
+  .file-container {
+    padding-top: 8rem;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .file-input {
+    font-size: 1.6rem;
+    background: white;
+    border-radius: 5rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    padding: 0.5rem 2rem;
+  }
+  
+  .file-input::before {
+    content: "Select Profile Picture";
+    display: inline-block;
+    color: black;
+    font-weight: 500;
+    font-size: 1.6rem;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 5rem;
+    transition: 0.25s;
+  }
+  
+  .file-input:hover::before {
+    background-color: #6cff62;
+    color: rgb(11, 0, 54);
+  }
+  
+  .file-input:active {
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .file-input:hover {
+    background-color: #a6ff9f;
+    color: rgb(11, 0, 54);
+  
+  }
+  
+  ::-webkit-file-upload-button {
+    visibility: hidden;
   }
 
   @media (max-width: 560px) {
