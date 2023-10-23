@@ -4,13 +4,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./CSS/TakeAttendance.css">
-        <link rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
             <title>Attendance Sheet</title>
         </head>
         <body>
             <div>
                 <ul class="nav navbar-nav">
+                    <li>
+                        <div id="toggleImages" class="toggle-icon">
+                            <i class="fa-solid fa-image-portrait" style="color: #ff7b00;"></i>
+                        </div>
+                    </li>
                     <li>&nbsp;</li>
                     <li class="text-center"><h2 class="nav-text text-center pl-5 ml-5 mb-3 display-4 text-light"><b>ATTENDANCE SHEET</b></h2></li>
                     <li class="text-right">
@@ -35,6 +40,7 @@
                             <tr>
                                 <th>Student ID</th>
                                 <th>Name</th>
+                                <th>Image</th>
                                 <th>Today</th>
                             </tr>
                         </table>

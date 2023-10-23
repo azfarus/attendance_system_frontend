@@ -113,9 +113,14 @@ function displayAttendanceData() {
         // Display Student Name in the second column
         row.insertCell(1).textContent = studentName;
 
-        // Create the third column with a single button for P, A, L
-        const attendanceCell = row.insertCell(2);
+        const imgCell = row.insertCell(2);
+        const img = document.createElement("img");
+        img.src = "http://localhost:8081/student/get-photo/" + studentId;
+        img.classList.add("student-image");
+        imgCell.appendChild(img);
 
+        // Create the third column with a single button for P, A, L
+        const attendanceCell = row.insertCell(3);
         const button = document.createElement("button");
         button.textContent = "P"; // Set the initial value to "P"
         button.classList.add("P");
@@ -164,6 +169,28 @@ function displayAttendanceData() {
     // Attach a click event handler to a submit button
     document.getElementById("sheetSubmitBtn").addEventListener("click", submitAttendanceData);
 }
+
+const toggleImagesButton = document.getElementById('toggleImages');
+let imagesVisible = false;
+
+toggleImagesButton.addEventListener('click', function () {
+    console.log('Toggle images button clicked');
+    const table = document.getElementById("attendance-table");
+    const columnIndex = 2;
+
+    for (let i = 0; i < table.rows.length; i++) {
+        const row = table.rows[i];
+        const cell = row.cells[columnIndex];
+
+        if (imagesVisible) {
+            cell.style.display = "none";
+        } else {
+            // Show the image cell in each row
+            cell.style.display = "table-cell";
+        }
+    }
+    imagesVisible = !imagesVisible; // Toggle the visibility state
+});
 
 function sheetSubmitBtn() {
     window.location.href = "teacher_dash.html";

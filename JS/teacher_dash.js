@@ -110,12 +110,14 @@ function fetchTeacherData() {
         // Create "View Sheet" button
         const viewSheetButton = document.createElement("button");
         viewSheetButton.textContent = "View Sheet";
+        viewSheetButton.style.fontWeight = "500"
         viewSheetButton.value = course.hid; // Set the course HID as the button value
         viewSheetButton.addEventListener("click", redirectToSheet);
   
         // Create "Take Attendance" button
         const takeAttendanceButton = document.createElement("button");
         takeAttendanceButton.textContent = "Take Attendance";
+        takeAttendanceButton.style.fontWeight = "500"
         takeAttendanceButton.value = course.hid; // Set the course HID as the button value
         takeAttendanceButton.addEventListener("click", redirectToAttendance);
   
@@ -141,6 +143,33 @@ function populateTeacherDashboard(teacherData) {
   $("#t_name").text(teacherData.name);
   $("#t_mail").text(teacherData.email);
 }
+
+// Add this JavaScript code to trigger file input when clicking on the profile picture
+const profilePicture = document.getElementById("profilePicture");
+const profilePictureInput = document.getElementById("profilePictureInput");
+
+profilePicture.addEventListener("click", function () {
+    profilePictureInput.click(); // Trigger the file input element when the profile picture is clicked
+});
+
+// Add this JavaScript code to handle file selection and update the profile picture
+profilePictureInput.addEventListener("change", function () {
+  const selectedFile = profilePictureInput.files[0]; // Get the selected file
+
+  if (selectedFile) {
+      // Create a FileReader to read the selected image file
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+          // Update the profile picture's src attribute with the selected image data
+          profilePicture.src = e.target.result;
+      };
+
+      // Read the selected file as a data URL (for displaying as an image)
+      reader.readAsDataURL(selectedFile);
+  }
+});
+
 
 // Function to redirect to the attendance sheet page
 function redirectToSheet(event) {
