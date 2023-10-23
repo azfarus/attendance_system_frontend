@@ -1,24 +1,3 @@
-$(document).ready(function () {
-  sessiondata = localStorage.getItem("mysession");
-  hashdata = localStorage.getItem("myhash");
-  $.ajax({
-    url: "http://localhost:8081/session/get-session-data",
-    method: "GET",
-    headers: {
-      'mysession': sessiondata,
-      'Authorization': 'Basic ' + hashdata
-    },
-    success: function (response) {
-
-    },
-    error: function (error) {
-      // Handle any errors here
-      console.log(error);
-      alert(error);
-      //window.location.href = "login.html";
-    },
-  });
-});
 
 // Fetch department data from the backend
 sessiondata = localStorage.getItem("mysession");
@@ -119,48 +98,6 @@ function getSessionStudentId() {
     return studentid;
   }
 
-  // Function to fetch Student's data using AJAX
-  function fetchStudentData() {
-    var sid = getSessionStudentId();
-    console.log("session data fetched");
-    // Make an AJAX request to fetch the Student's data
-    $.ajax({
-      url: "http://localhost:8081/student/info", // Replace with your backend API endpoint
-      method: "GET",
-      headers: {
-        'mysession': sessiondata,
-        'Authorization': 'Basic ' + hashdata
-      },
-      data: {
-        studentid: sid
-      },
-      success: function (StudentData) {
-        // Handle the successful response here
-        console.log(StudentData);
-        // Populate the Student's dashboard with the retrieved data
-        populateStudentDashboard(StudentData);
-      },
-      error: function (error) {
-        // Handle any errors here
-        console.error("Error fetching Student data:", error.responseText);
-      },
-    });
-  }
-  
-  // Function to populate the Student's dashboard with data
-  function populateStudentDashboard(StudentData) {
-    $("#s_id").text(StudentData.id);
-    $("#s_name").text(StudentData.name);
-    $("#s_mail").text(StudentData.email);
-  }
-  
-  
-  // Call the function to fetch Student's data when the page loads
-  $(document).ready(function () {
-    fetchStudentData();
-  });
-
-
             let getID;
             // JavaScript function to change the dropdown title
             function changeTitle(newTitle, dropdownId) {
@@ -169,24 +106,7 @@ function getSessionStudentId() {
             
             sessiondata = localStorage.getItem("mysession");
             hashdata = localStorage.getItem("myhash");
-            
-                  $.ajax({
-                    url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
-                    method: "GET",
-                    headers: {
-                      'mysession': sessiondata,
-                      'Authorization': 'Basic ' + hashdata
-                    },
-                    success: function (response) {
-                        getID = response;
-                        console.log(getID);
-                    },
-                    error: function (error) {
-                      // Handle any errors here
-                      alert(error);
-                      window.location.href = "login.html";
-                    },
-                  });
+            getID = getSessionStudentId();
     
             // JavaScript function to add selected items to the "Selected Items" division
             function btn() {
@@ -226,6 +146,7 @@ function getSessionStudentId() {
                         // Handle success response
                         console.log("Courses registered successfully:", response);
                         alert("Courses registered successfully!");
+                        window.location.href = 'student_dash.html';
                     },
                     error: function (error) {
                         // Handle error response

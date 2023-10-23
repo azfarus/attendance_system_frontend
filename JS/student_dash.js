@@ -127,7 +127,84 @@ function populateStudentDashboard(StudentData) {
   $("#s_id").text(StudentData.id);
   $("#s_name").text(StudentData.name);
   $("#s_mail").text(StudentData.email);
+
+  sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
+      const profilePicture = document.getElementById('profilePicture');
+      profilePicture.src = "http://localhost:8081/student/get-photo/" + StudentData.id;
+
+  // Make a GET request to fetch the student's photo
+  // $.ajax({
+  //   url: "http://localhost:8081/student/get-photo/" + StudentData.id,
+  //   method: 'GET',
+  //   headers: {
+  //     'mysession': sessiondata,
+  //     'Authorization': 'Basic ' + hashdata
+  //   },
+  //   responseType: 'blob', // Set the response type to 'blob' to handle binary data
+  //   success: function (data) {
+  //     console.log(data);
+  //     // Create a URL for the blob data
+  //     var binaryData = [];
+  //     binaryData.push(data);
+  //     const imageUrl = window.URL.createObjectURL(new Blob(binaryData, { type: "image/jpeg" }));
+  //     console.log(imageUrl.toString());
+
+  //     // Display the image in an HTML element
+  //   },
+  //   error: function (error) {
+  //     console.error('Error fetching student photo:', error);
+  //   }
+  // });
 }
+
+
+$('#updateStudentForm').submit(function(event) {
+  event.preventDefault(); // Prevent the default form submission
+  var sid = getSessionStudentId(); // Implement this function to retrieve the Student ID from the session
+  
+  // Collect form data
+  var formData = {
+    phonenumber: $('#phone_student').val(),
+    email: $('#email_student').val(),
+    address: $('#address_student').val()
+  };
+  
+  // Create a new FormData object
+  var form = new FormData();
+  
+  // Append form fields to FormData
+  for (var key in formData) {
+    form.append(key, formData[key]);
+  }
+
+  // Append the image file
+  form.append('file', $('#profile_image')[0].files[0]);
+  console.log(formData);
+
+  // Make an AJAX POST request
+  $.ajax({
+      url: 'http://localhost:8081/student/update-data/'+sid, // Replace with your backend API endpoint
+      type: 'POST',
+      headers: {
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
+      },
+      data: form,
+      processData: false, // Prevent jQuery from processing the data
+      contentType: false, // Prevent jQuery from setting the content type
+      success: function(response) {
+          // Handle the success response from the backen
+          alert("Data updated successfully");
+          console.log('Data sent successfully:', response);
+          window.location.href = "student_dash.html";
+      },
+      error: function(error) {
+          // Handle errors
+          console.error('Error sending data:', error);
+      }
+  });
+});
 
 
 // Call the function to fetch Student's data when the page loads

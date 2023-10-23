@@ -65,11 +65,19 @@ html {
 /* Set styling for the active item in sidebar unordered list */
 .sidebar li.active {
   font-weight: bold;
-  color: #000246;
-  background-color: #ffffff;
+  color: #e2f6ff;
+  background-color: #1e00ff81;
   border-left: #ff0000 solid 0.8rem;
   border-radius: .5rem;
 }
+/* .sidebar li.active {
+  font-weight: bold;
+  color: #000246;
+  background-color: #f6fcff;
+  border-left: #ff0000 solid 0.8rem;
+  border-radius: .5rem;
+} */
+
 
 /* Define the main content area and set its properties */
 .main {
@@ -122,26 +130,6 @@ select {
     border: 1px solid #000000;
     box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
   }
-
-
-#courseRegBtn {
-  margin-top: 11rem;
-  background-color: #ffb700;
-  border: #000000;
-  color: #000000;
-  padding: 1rem 4.5rem;
-  text-decoration: double;
-  border-radius: 2.5rem;
-  cursor: pointer;
-  font-size:medium;
-  font-weight: bold;
-  box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
-}
-
-#courseRegBtn:hover {
-  color: #fff;
-  background-color: #ff8c00;
-}
 
 
 #updateProfileButton:hover {
@@ -219,7 +207,20 @@ a {
   border-top-right-radius: 50%; 
   border-bottom-right-radius: 50%; 
   border-bottom-left-radius:50%;
-  margin-left: 3%;}
+  margin-left: 3%;
+}
+#profilePicture{
+  width: 5rem;
+  height: 5rem;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  border: 2px solid #ffb700;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+}
 
   .logout-container a {
     position: relative;
@@ -270,7 +271,7 @@ a {
   }
 
   .file-container {
-    padding-top: 8rem;
+    margin-top: 4rem;
     position: relative;
     top: 50%;
     left: 50%;
