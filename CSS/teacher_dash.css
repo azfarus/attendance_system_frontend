@@ -223,6 +223,20 @@ a {
   justify-content: center;
   z-index: 1;
 }
+
+#profilePicture{
+  width: 5rem;
+  height: 5rem;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  border: 2px solid #ffb700;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+}
+
 .circular--square { 
   border-top-left-radius: 50% ; 
   border-top-right-radius: 50%; 
