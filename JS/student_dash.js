@@ -120,6 +120,34 @@ function fetchStudentData() {
       console.error("Error fetching Student data:", error.responseText);
     },
   });
+
+  
+const studentId = sid;
+
+$.ajax({
+    url: `http://localhost:8081/student/get-student-data/${studentId}`,
+    method: "GET",
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    dataType: "json",
+    success: function (data) {
+        console.log("Student Data:", data);
+
+        const phoneNumber = '0' + data.phoneNumber;
+        const email = data.email;
+        const address = data.address;
+
+        $("#phone_student").val(phoneNumber);
+        $("#email_student").val(email);
+        $("#address_student").val(address);
+    },
+    error: function (error) {
+        console.error("Error fetching student data:", error);
+    }
+});
+
 }
 
 // Function to populate the Student's dashboard with data
@@ -163,9 +191,21 @@ $('#updateStudentForm').submit(function(event) {
   event.preventDefault(); // Prevent the default form submission
   var sid = getSessionStudentId(); // Implement this function to retrieve the Student ID from the session
   
+  var phn = $('#phone_student').val();
+        phn = phn.replace(/[^0-9+]/g, "");
+        // Remove any prefix like "+88" or "+sth"
+        if (phn.startsWith("+88")) {
+            phn = phn.slice(3,14);
+            console.log(phn);
+          }
+          // Limit the length to 11 digits
+          phn = phn.slice(0, 11);
+          console.log(phn);
+
+
   // Collect form data
   var formData = {
-    phonenumber: $('#phone_student').val(),
+    phonenumber: phn,
     email: $('#email_student').val(),
     address: $('#address_student').val()
   };
