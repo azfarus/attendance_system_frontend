@@ -146,6 +146,7 @@ function populateTeacherDashboard(teacherData) {
 
 // Add this JavaScript code to trigger file input when clicking on the profile picture
 const profilePicture = document.getElementById("profilePicture");
+profilePicture.src = "http://localhost:8081/teacher/get-photo/" + getSessionTeacherId();
 const profilePictureInput = document.getElementById("profilePictureInput");
 
 profilePicture.addEventListener("click", function () {
@@ -155,8 +156,33 @@ profilePicture.addEventListener("click", function () {
 // Add this JavaScript code to handle file selection and update the profile picture
 profilePictureInput.addEventListener("change", function () {
   const selectedFile = profilePictureInput.files[0]; // Get the selected file
+  const formData = new FormData();
+  formData.append("file", selectedFile);
+  const uploadUrl = "http://localhost:8081/teacher/upload-photo/" + getSessionTeacherId();
+  $.ajax({
+    url: uploadUrl,
+    type: "POST",
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function (data) {
+        if (data && data > 0) {
+            alert("Photo uploaded successfully.");
+        } else {
+            alert("Failed to upload photo.");
+        }
+    },
+    error: function (error) {
+        console.error("Error uploading photo:", error);
+    },
+});
 
-  if (selectedFile) {
+
+if (selectedFile) {
       // Create a FileReader to read the selected image file
       const reader = new FileReader();
 

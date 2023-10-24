@@ -46,6 +46,7 @@
 #attendance-table {
     margin-top: 12.5rem;
     width: auto;
+    border: #000000 0.2rem solid;
     border-collapse: collapse;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -53,11 +54,15 @@
 }
 
 #attendance-table th, #attendance-table td {
-    border: 1px solid #ddd;
+    border: 2px solid #100000;
     padding: 8px;
     text-align: center;
     min-width: 90px; /* Set a fixed width for table cells */
     font-size: large;
+}
+#attendance-table th{
+  border-left: #000f7d 0.2rem solid;
+  border-right: #00158a 0.2rem solid;
 }
 
 #attendance-table th:first-child{

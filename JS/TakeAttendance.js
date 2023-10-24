@@ -158,7 +158,8 @@ function displayAttendanceData() {
             },
             success: function (response) {
                 console.log(attendanceData);
-                console.log('Attendance data submitted successfully:', response);
+                alert('Attendance Taken Successfully:', response);
+                window.location.href = "teacher_dash.html";
             },
             error: function (error) {
                 console.error('Error submitting attendance data:', error);
@@ -191,7 +192,3 @@ toggleImagesButton.addEventListener('click', function () {
     }
     imagesVisible = !imagesVisible; // Toggle the visibility state
 });
-
-function sheetSubmitBtn() {
-    window.location.href = "teacher_dash.html";
-}
