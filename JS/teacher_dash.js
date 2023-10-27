@@ -240,7 +240,7 @@ sidebarItems.forEach((item) => {
     
     // Make the AJAX request to add teacher
     $.ajax({
-      url: "http://localhost:8081/admin/course-teacher-assign", // Replace with your backend API endpoint
+      url: "http://localhost:8081/teacher/course-teacher-assign", // Replace with your backend API endpoint
       method: "POST",
       data: jQuery.param(data),
       contentType: "application/x-www-form-urlencoded; charset=UTF-8",

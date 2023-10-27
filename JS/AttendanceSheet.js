@@ -30,6 +30,7 @@ var dataFromBackend = {
 var url = new URL(window.location.href);
 // Get the value of the 'hid' query parameter
 var hid = url.searchParams.get('hid');
+var globalcourse;
 console.log(hid);
 
 function getSessionTeacherId() {
@@ -75,6 +76,7 @@ $.ajax({
     const hidToMatch = hid;
     for (const course of teacherCourses) {
         if (course.hid == hidToMatch) {
+            globalcourse = course.department + course.courseid + course.section;
             document.getElementById('courseCode').textContent = course.department +" "+ course.courseid +" "+course.section;
             document.getElementById('courseName').textContent = course.coursename;
             break;
@@ -190,6 +192,31 @@ function emailBtnfunc() {
 }
 
 function sheetSubmitBtn() {
-    window.location.href = "teacher_dash.html";
-}
+    const table = document.getElementById("attendance-table");
+    const rows = table.querySelectorAll("tr");
+    let csvContent = "";
 
+    // Iterate through table rows and cells to extract data
+    rows.forEach(function (row) {
+        const cols = row.querySelectorAll("td");
+        let rowData = [];
+        cols.forEach(function (col) {
+            rowData.push(col.textContent);
+        });
+        if (rowData.length > 0) {
+        csvContent += rowData.join(",") + "\n";
+        }
+    });
+    
+    // Create a Blob with the CSV data
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    
+    // Create a download link for the Blob
+    const link = document.createElement("a");
+    link.href = window.URL.createObjectURL(blob);
+    const dlink = "attendance-data-" + globalcourse + ".csv";
+    link.download = dlink;
+    
+    // Trigger a click event on the download link
+    link.click();
+}

@@ -296,14 +296,12 @@ a {
   vertical-align: middle;
 }
 
-#sheetSubmitBtn {
-  min-width: 20rem;
-  margin-top: 4rem;
-  margin-bottom: 6rem;
+#sheetSubmitBtn, #sheetPdfBtn {
+  min-width: 32rem;
   background-color: #000144;
   border: #000000;
   color: #ffffff;
-  padding: 1.2rem 7.5rem;
+  padding: 1.1rem 7rem;
   text-decoration: double;
   border-radius: 2.5rem;
   cursor: pointer;
@@ -312,11 +310,23 @@ a {
   box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
 }
 
-#sheetSubmitBtn:hover {
+#sheetSubmitBtn:hover{
   border-width: .1rem;
-  background-color: #04ea00ac;
+  background-color: #1eff35b4;
   color: #000000;
-  transform: scale(1.02);
+  transform: scale(1.01);
+}
+
+#sheetPdfBtn:hover{
+  border-width: .1rem;
+  background-color: #fffb1eb4;
+  color: #000000;
+  transform: scale(1.01);
+}
+
+#sheetSubmitBtn{
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
 }
 
 @media (max-width: 1000px) {
