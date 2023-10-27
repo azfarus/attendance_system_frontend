@@ -35,8 +35,6 @@
                             Course</li>
                         <li data-target="#insertTeacherSection">Insert Teacher</li>
                         <li data-target="#insertStudentSection">Insert Student</li>
-                        <!--Ekhane extra Feature add kora hoise-->
-                        <li data-target="#assignTeacherSection">Assign Teachers</li>
                     </ul>
                 </div>
                 <div class="main">
@@ -157,37 +155,6 @@
                                     accept=".csv">
                             </div>
                             <button type="submit" id="Upload_CSV_btn">UPLOAD CSV</button>
-                        </form>
-                    </div>
-                    <div class="section" id="assignTeacherSection">
-                        <h1>ASSIGN TEACHERS</h1>
-                        <form class="form_ctrl" id="assignTeacherForm">
-                            <label for="id_teacher">Teacher ID:</label>
-                            <input class="form-control" type="text"
-                                id="teacherIdInput" name="teacherIdInput">
-
-                            <label for="dept_teacher">Department:</label>
-                            <select id="dept_teacher" name="dept_teacher">
-                                <option value disabled selected>Select an option</option>
-                            </select>
-
-                            <label for="courses_teacher">Courses:</label>
-                            <select id="courses_teacher" name="courses_teacher">
-                                <option value disabled selected>Select
-                                    Department First</option>
-                            </select>
-
-                            
-                            <label for="section_teacher">Section:</label>
-                            <select id="section_teacher" name="section_teacher" required>
-                                <option value="" disabled selected>Select Section</option>
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="C">C</option>
-                            </select>
-
-                            <button type="submit" id="Add_Student_btn">Assign
-                                Teacher</button>
                         </form>
                     </div>
                 </div>

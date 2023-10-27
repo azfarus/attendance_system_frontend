@@ -160,30 +160,6 @@ function populateStudentDashboard(StudentData) {
   hashdata = localStorage.getItem("myhash");
       const profilePicture = document.getElementById('profilePicture');
       profilePicture.src = "http://localhost:8081/student/get-photo/" + StudentData.id;
-
-  // Make a GET request to fetch the student's photo
-  // $.ajax({
-  //   url: "http://localhost:8081/student/get-photo/" + StudentData.id,
-  //   method: 'GET',
-  //   headers: {
-  //     'mysession': sessiondata,
-  //     'Authorization': 'Basic ' + hashdata
-  //   },
-  //   responseType: 'blob', // Set the response type to 'blob' to handle binary data
-  //   success: function (data) {
-  //     console.log(data);
-  //     // Create a URL for the blob data
-  //     var binaryData = [];
-  //     binaryData.push(data);
-  //     const imageUrl = window.URL.createObjectURL(new Blob(binaryData, { type: "image/jpeg" }));
-  //     console.log(imageUrl.toString());
-
-  //     // Display the image in an HTML element
-  //   },
-  //   error: function (error) {
-  //     console.error('Error fetching student photo:', error);
-  //   }
-  // });
 }
 
 
