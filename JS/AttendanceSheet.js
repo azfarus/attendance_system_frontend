@@ -207,16 +207,17 @@ function sheetSubmitBtn() {
         csvContent += rowData.join(",") + "\n";
         }
     });
-    
+
     // Create a Blob with the CSV data
     const blob = new Blob([csvContent], { type: "text/csv" });
-    
+
     // Create a download link for the Blob
     const link = document.createElement("a");
     link.href = window.URL.createObjectURL(blob);
     const dlink = "attendance-data-" + globalcourse + ".csv";
     link.download = dlink;
-    
+
     // Trigger a click event on the download link
     link.click();
 }
+

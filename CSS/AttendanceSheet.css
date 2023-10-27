@@ -296,8 +296,10 @@ a {
   vertical-align: middle;
 }
 
-#sheetSubmitBtn, #sheetPdfBtn {
+#sheetSubmitBtn{
   min-width: 32rem;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
   background-color: #000144;
   border: #000000;
   color: #ffffff;
@@ -315,18 +317,6 @@ a {
   background-color: #1eff35b4;
   color: #000000;
   transform: scale(1.01);
-}
-
-#sheetPdfBtn:hover{
-  border-width: .1rem;
-  background-color: #fffb1eb4;
-  color: #000000;
-  transform: scale(1.01);
-}
-
-#sheetSubmitBtn{
-  margin-top: 4rem;
-  margin-bottom: 1.5rem;
 }
 
 @media (max-width: 1000px) {
