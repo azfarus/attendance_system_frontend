@@ -150,6 +150,34 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
     
+    // Array of student IDs
+const studentIDs = [200041122, 200041125, 200041143, 200041101, 200041138];
+
+// Function to populate student IDs
+function populateStudentIDs(studentIDs) {
+    const studentList = document.getElementById("studentList");
+
+    // Group the student IDs into rows of 5
+    for (let i = 0; i < studentIDs.length; i += 5) {
+        const row = document.createElement("div");
+        row.className = "student-row";
+
+    // Create individual student ID elements
+    for (let j = i; j < i + 5 && j < studentIDs.length; j++) {
+        const studentID = document.createElement("div");
+        studentID.className = "student-id";
+        studentID.textContent = studentIDs[j];
+
+        row.appendChild(studentID);
+    }
+
+    studentList.appendChild(row);
+    }
+}
+
+// Call the populateStudentIDs function with the array
+populateStudentIDs(studentIDs);
+
     
 });
 

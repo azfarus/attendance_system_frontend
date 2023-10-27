@@ -13,23 +13,44 @@
   display:block;
   width: 100%;
   overflow-x:auto;
+  overflow-y:auto;
   font-size: 1.5rem;
   font-family: "Poppins", sans-serif;
 }
 
 #sheetInfo {
   position: fixed;
+  display: flex;
   background-color: #eef9ff;
   width: 100%;
   padding-top: 1.5rem;
   padding-bottom: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 5px 15px;
-  z-index: -1;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 99;
 }
 
-#courseCode{
+
+.courseInfo {
+  text-align: left;
+  flex: 2; /* CourseInfo takes 40% of the available width */
+  padding: 0 20px;
+  border-right: 1px solid #ccc; /* Add a vertical separator between sections */
+}
+
+.belowInfo {
+  display: block;
+  text-align: left;
+  padding-left: 20px; /* Add some left padding for separation */
+  overflow-y: hidden; /* Add a scrollbar if the content overflows */
+  flex: 3; /* BelowInfo takes 60% of the available width */
+  padding: 0 20px;
+  flex-direction: column;
+}
+
+#courseCode {
   font-size: 2.8rem;
   font-weight: bolder;
   color: #ff5e00;
@@ -43,8 +64,50 @@
   margin: 5px 0;
 }
 
+.cInfo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 5px 0;
+}
+
+.student-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.student-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.student-id {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 7px 14px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin-right: 15px;
+}
+
+.student-id:hover{
+  background-color: #ffd0d08b;
+}
+
+#belowAttHeading{
+  font-size: 20px;
+  padding-bottom: 10px;
+  font-weight: 600;
+  color: #1f0000;
+}
+
 #attendance-table {
-    margin-top: 12.5rem;
+    margin-top: 20rem;
     width: auto;
     border: #000000 0.2rem solid;
     border-collapse: collapse;
@@ -125,6 +188,7 @@ background-color: rgb(255, 213, 0);
 .main {
   flex-grow: 1;
   padding: 1rem 0rem;
+  min-height: 40vh;
 }
 
 #logout_btn {
@@ -221,6 +285,53 @@ a {
   background-color: #04ea00ac;
   color: #000000;
   transform: scale(1.02);
+}
+
+
+#emailBtn {
+  display: block;
+  min-width: 20rem;
+  margin-top: 1rem;
+  margin-left: 3rem;
+  margin-bottom: .5rem;
+  background-color: #000144;
+  border: #000000;
+  color: #ffffff;
+  padding: .8rem 4.5rem;
+  text-decoration: double;
+  border-radius: 2.5rem;
+  cursor: pointer;
+  font-size:large;
+  font-weight: bold;
+  box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
+}
+
+#emailBtn:hover {
+  border-width: .1rem;
+  background-color: #ff0000;
+  color: #ffffff;
+  transform: scale(1.01);
+}
+
+@media (max-width: 945px) {
+  #attendance-table{
+    margin-top: 24rem;
+  }
+}
+@media (max-width: 793px) {
+  #attendance-table{
+    margin-top: 28rem;
+  }
+}
+@media (max-width: 793px) {
+  #attendance-table{
+    margin-top: 32rem;
+  }
+}
+@media (max-width: 570px) {
+  #attendance-table{
+    margin-top: 37rem;
+  }
 }
 
 @media (max-width: 560px) {
