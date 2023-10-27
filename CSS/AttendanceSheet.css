@@ -19,7 +19,7 @@
 }
 
 #sheetInfo {
-  position: fixed;
+  position: sticky;
   display: flex;
   background-color: #eef9ff;
   width: 100%;
@@ -37,17 +37,51 @@
   text-align: left;
   flex: 2; /* CourseInfo takes 40% of the available width */
   padding: 0 20px;
-  border-right: 1px solid #ccc; /* Add a vertical separator between sections */
+  border-right: 1.5px solid #00125c76; /* Add a vertical separator between sections */
 }
 
 .belowInfo {
-  display: block;
+  display: flex;
+  width: 100%;
   text-align: left;
   padding-left: 20px; /* Add some left padding for separation */
   overflow-y: hidden; /* Add a scrollbar if the content overflows */
+  overflow-x: auto; /* Add a scrollbar if the content overflows */
   flex: 3; /* BelowInfo takes 60% of the available width */
   padding: 0 20px;
   flex-direction: column;
+}
+
+.above-attendance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#emailBtn {
+  left: 1;
+  display: block;
+  min-width: 20rem;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  margin-bottom: .5rem;
+  background-color: #000144;
+  border: #000000;
+  color: #ffffff;
+  padding: .8rem 4.5rem;
+  text-decoration: double;
+  border-radius: 2.5rem;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
+}
+
+#emailBtn:hover {
+  border-width: .1rem;
+  background-color: #ff0000;
+  color: #ffffff;
+  transform: scale(1.01);
 }
 
 #courseCode {
@@ -73,41 +107,39 @@
 
 .student-list {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.student-row {
-  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 10px;
+  margin-top: 10px; /* Adjust the margin as needed */
 }
 
 .student-id {
+  text-align: center;
   background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 7px 14px;
-  font-size: 18px;
+  min-width: 12rem;
+  font-size: 16px;
   font-weight: 600;
   color: #000000;
-  margin-right: 15px;
+  margin-right: 10px;
+  margin-top: 10px;
+  box-shadow: #b4b8ff 1.6px 1px 1px; 
 }
 
 .student-id:hover{
-  background-color: #ffd0d08b;
+  background-color: #d9d9d98b;
 }
 
 #belowAttHeading{
-  font-size: 20px;
-  padding-bottom: 10px;
+  flex: 1;
+  font-size: 28px;
   font-weight: 600;
-  color: #1f0000;
+  color: #350000;
 }
 
 #attendance-table {
-    margin-top: 20rem;
+    margin-top: 3.5rem;
     width: auto;
     border: #000000 0.2rem solid;
     border-collapse: collapse;
@@ -242,7 +274,7 @@ a {
   line-height: 5rem;
   background-color: #0c18c3e7;
   justify-content: center;
-  z-index: 2;
+  z-index: 100;
 }
 .circular--square { 
   border-top-left-radius: 50% ; 
@@ -287,56 +319,34 @@ a {
   transform: scale(1.02);
 }
 
-
-#emailBtn {
-  display: block;
-  min-width: 20rem;
-  margin-top: 1rem;
-  margin-left: 3rem;
-  margin-bottom: .5rem;
-  background-color: #000144;
-  border: #000000;
-  color: #ffffff;
-  padding: .8rem 4.5rem;
-  text-decoration: double;
-  border-radius: 2.5rem;
-  cursor: pointer;
-  font-size:large;
-  font-weight: bold;
-  box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
-}
-
-#emailBtn:hover {
-  border-width: .1rem;
-  background-color: #ff0000;
-  color: #ffffff;
-  transform: scale(1.01);
-}
-
-@media (max-width: 945px) {
-  #attendance-table{
-    margin-top: 24rem;
+@media (max-width: 1000px) {
+  #belowAttHeading{
+    font-size: 24px;
+  }
+  .cInfo {
+    font-size: 1.6rem;
   }
 }
-@media (max-width: 793px) {
-  #attendance-table{
-    margin-top: 28rem;
+
+@media (max-width: 760px) {
+  #belowAttHeading{
+    font-size: 22px;
   }
-}
-@media (max-width: 793px) {
-  #attendance-table{
-    margin-top: 32rem;
-  }
-}
-@media (max-width: 570px) {
-  #attendance-table{
-    margin-top: 37rem;
+  .cInfo {
+    font-size: 1.4rem;
   }
 }
 
 @media (max-width: 560px) {
   .nav-text {
     font-size: 26px;
+  }
+  #belowAttHeading{
+    font-size: 18px;
+  }
+  .cInfo {
+    font-size: 1.3rem;
+    font-weight: 500;
   }
 }
 

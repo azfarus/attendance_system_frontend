@@ -29,20 +29,19 @@
                         <div class="courseInfo">
                             <h1 id="courseCode">Course Code</h1>
                             <h1 id="courseName">Course Name</h1>
-                            <p class="cInfo">Total Number of Students : <span id="count">Count</span></p>
+                            <p class="cInfo">Total Students : <span id="count">Count</span></p>
                             <p class="cInfo">Course Attendance : <span id="percentage">Percentage</span></p>
                         </div>
                         <div class="belowInfo">
-                            <h1 id="belowAttHeading">Students With Below Attendance</h1>
+                            <div class="above-attendance">
+                                <h1 id="belowAttHeading">Students With Below Attendance</h1>
+                                <button type="submit" id="emailBtn" onclick="emailBtnfunc();">Send Mail</button>
+                            </div>
                             <div class="student-list" id="studentList">
                                 <!-- Student IDs with low attendance will be dynamically added here using JavaScript -->
                             </div>
-                            <div>
-                                <center>
-                                    <button type="submit" id="emailBtn" onclick="">Send Mail</button>
-                                </center>
-                            </div>
                         </div>
+                        
                     </div>  
                     <div>
                         <center>

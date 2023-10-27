@@ -151,35 +151,43 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     // Array of student IDs
-const studentIDs = [200041122, 200041125, 200041143, 200041101, 200041138];
+    const studentIDs = [200041125, 200041143, 200041101, 200041138, 200041118, 200041128, 200041159, 200041168, 200041118, 200041178, 200041158, 200041169];
+    //const studentIDs = []; // This is your empty array.
 
 // Function to populate student IDs
 function populateStudentIDs(studentIDs) {
     const studentList = document.getElementById("studentList");
-
-    // Group the student IDs into rows of 5
-    for (let i = 0; i < studentIDs.length; i += 5) {
-        const row = document.createElement("div");
-        row.className = "student-row";
-
-    // Create individual student ID elements
-    for (let j = i; j < i + 5 && j < studentIDs.length; j++) {
-        const studentID = document.createElement("div");
-        studentID.className = "student-id";
-        studentID.textContent = studentIDs[j];
-
-        row.appendChild(studentID);
-    }
-
-    studentList.appendChild(row);
+    
+    // Check if the studentIDs array is empty.
+    if (studentIDs == null || studentIDs.length === 0) {
+        EmailBtn = document.getElementById("emailBtn");
+        EmailBtn.style.backgroundColor = "#cecece8b";
+        EmailBtn.style.cursor = "not-allowed";
+        EmailBtn.style.color = "#0000008b";
+        EmailBtn.style.transform = "scale(1.0)";
+        EmailBtn.textContent = "No students";
+        EmailBtn.disabled = true;
+    } else {
+        // Iterate through the student IDs
+        for (let i = 0; i < studentIDs.length; i++) {
+            // Create individual student ID elements
+            const studentID = document.createElement("div");
+            studentID.className = "student-id";
+            studentID.textContent = studentIDs[i];
+    
+            studentList.appendChild(studentID);
+        }
     }
 }
 
-// Call the populateStudentIDs function with the array
-populateStudentIDs(studentIDs);
 
-    
+// Call the function to populate student IDs
+populateStudentIDs(studentIDs);
 });
+
+function emailBtnfunc() {
+
+}
 
 function sheetSubmitBtn() {
     window.location.href = "teacher_dash.html";
