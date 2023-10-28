@@ -28,35 +28,52 @@
                         <input type="file" id="profilePictureInput" style="display: none;" accept=".jpg, .jpeg, .png, .gif">
                         <br><br>
                     </center>
-                    <h2 id="t_name">Asif Abrar</h2>
-                    <h2 id="t_id">200041106</h2>
+                    <h2 id="t_name">Teacher Name</h2>
+                    <h2 id="t_id">Teacher ID</h2>
                     <h2 id="t_mail">mail@gmail.com</h2>
                     <br>
-                    <ul></ul>
+                    <ul>
+                        <li class="active" data-target="#courseListSection">COURSE LIST</li>
+                        <li data-target="#takeCourseSection">TAKE COURSE</li>
+                    </ul>
                 </div>
                 <div class="main">
-                    <div class="section active">
+                    <div class="section active" id="courseListSection">
                         <h1 class="headingText">Course List : </h1>
                         <div class="course-blocks">
                             <!-- the course blocks are shown here -->
                         </div>
                     </div>
+                    <div class="section" id="takeCourseSection">
+                        <h1>ASSIGN COURSE</h1>
+                        <form class="form_ctrl" id="assignTeacherForm">
+
+                            <label for="dept_teacher">Department:</label>
+                            <select id="dept_teacher" name="dept_teacher">
+                                <option value disabled selected>Select an option</option>
+                            </select>
+
+                            <label for="courses_teacher">Courses:</label>
+                            <select id="courses_teacher" name="courses_teacher">
+                                <option value disabled selected>Select
+                                    Department First</option>
+                            </select>
+
+                            
+                            <label for="section_teacher">Section:</label>
+                            <select id="section_teacher" name="section_teacher" required>
+                                <option value="" disabled selected>Select Section</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                            </select>
+
+                            <button type="submit" id="assignCourseButton">Assign Course</button>
+                        </form>
+                    </div>
                 </div>
         </div>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Get all course blocks by class name
-                var courseBlocks = document.querySelectorAll(".course");
-        
-                // Add click event listener to each course block
-                courseBlocks.forEach(function (block) {
-                    block.addEventListener("click", function () {
-                        // Redirect all course blocks to "Attendance.html"
-                        window.location.href = "TakeAttendance.html";
-                    });
-                });
-            });
-        </script>        
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="./JS/teacher_dash.js"></script>

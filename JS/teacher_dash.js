@@ -1,7 +1,25 @@
 $(document).ready(function () {
+
+const sidebarItems = document.querySelectorAll(".sidebar li");
+const sections = document.querySelectorAll(".section");
+
+sidebarItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    // Remove active class from all sidebar items
+    sidebarItems.forEach((item) => item.classList.remove("active"));
+    // Add active class to clicked item
+    item.classList.add("active");
+    const target = item.getAttribute("data-target");
+    // Hide all sections
+    sections.forEach((section) => section.classList.remove("active"));
+    // Show target section
+    document.querySelector(target).classList.add("active");
+  });
+});
+
   // Get session data and hash from local storage
-  const sessiondata = localStorage.getItem("mysession");
-  const hashdata = localStorage.getItem("myhash");
+  sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
 
   // Function to check if the user is authenticated
   function checkAuthentication() {
@@ -197,4 +215,127 @@ $(document).ready(function () {
 
   // Check user authentication on page load
   checkAuthentication();
+
+
+  $("#assignTeacherForm").submit(function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get the form values
+    var id_t = getSessionTeacherId();
+    var dept_t = $("#dept_teacher").val();
+    var course_t = $("#courses_teacher").val();
+    var section_t = $("#section_teacher").val();
+    
+    
+    // Create a data object with the parameters
+    var data = {
+      department: dept_t,
+      courseCode: course_t,
+      teacherid :id_t,
+      section : section_t
+    };
+
+    console.log(data);
+    sessiondata = localStorage.getItem("mysession");
+    hashdata = localStorage.getItem("myhash");
+    // Make the AJAX request to add teacher
+    $.ajax({
+      url: "http://localhost:8081/teacher/course-teacher-assign", // Replace with your backend API endpoint
+      method: "POST",
+      data: jQuery.param(data),
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      headers: {
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
+      },
+      success: function (response) {
+        // Handle the successful response here
+        alert("Course assigned successfully");
+        console.log("Course assigned successfully ", response);
+      },
+      error: function (error) {
+        // Handle any errors here
+        console.error("Error registering course:", error.responseText);
+      },
+    });
+  });
+  populateDepartmentDropdown();
+  // Add an event listener to the department dropdown
+  $("#dept_teacher").change(function () {
+    var selectedDept = $(this).val();
+    // Call the function to populate courses based on the selected department
+    populateCoursesDropdown(selectedDept);
+  });
 });
+
+function populateDepartmentDropdown() {
+
+  const sessiondata = localStorage.getItem("mysession");
+  const hashdata = localStorage.getItem("myhash");
+
+  $.ajax({
+    url: "http://localhost:8081/teacher/departments",
+    method: "GET",
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    success: function (data) {
+      // Populate the <select> with dynamic options
+      var selectElement = $("#dept_teacher");
+      // Iterate through the fetched data and create <option> elements
+      for (var i = 0; i < data.length; i++) {
+        var department = data[i];
+        selectElement.append($('<option>', {
+          value: department,
+          text: department
+        }));
+      }
+    },
+    error: function (error) {
+      // Handle errors
+      console.error("Error fetching departments:", error);
+    }
+  });
+}
+
+function populateCoursesDropdown(dept) {
+
+  const sessiondata = localStorage.getItem("mysession");
+  const hashdata = localStorage.getItem("myhash");
+
+  $.ajax({
+    url: "http://localhost:8081/course/get-course-by-dept",
+    method: "GET",
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    data: {
+      department: dept
+    },
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    success: function (data) {
+      console.log(data);
+      var selectElement = $("#courses_teacher");
+
+      // Clear previous options
+      selectElement.empty();
+
+      // Iterate through the fetched data and create <option> elements
+      for (var i = 0; i < data.length; i++) {
+        var course = data[i];
+        selectElement.append($('<option>', {
+          value: course,
+          text: course
+        }));
+      }
+    },
+    error: function (error) {
+      console.error("Error fetching courses:", error);
+    }
+  });
+}
