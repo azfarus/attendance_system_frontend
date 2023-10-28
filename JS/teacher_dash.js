@@ -18,8 +18,8 @@ sidebarItems.forEach((item) => {
 });
 
   // Get session data and hash from local storage
-  const sessiondata = localStorage.getItem("mysession");
-  const hashdata = localStorage.getItem("myhash");
+  sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
 
   // Function to check if the user is authenticated
   function checkAuthentication() {
@@ -219,7 +219,7 @@ sidebarItems.forEach((item) => {
 
   $("#assignTeacherForm").submit(function (event) {
     event.preventDefault(); // Prevent the default form submission
-    
+
     // Get the form values
     var id_t = getSessionTeacherId();
     var dept_t = $("#dept_teacher").val();
@@ -234,10 +234,10 @@ sidebarItems.forEach((item) => {
       teacherid :id_t,
       section : section_t
     };
-    
+
+    console.log(data);
     sessiondata = localStorage.getItem("mysession");
     hashdata = localStorage.getItem("myhash");
-    
     // Make the AJAX request to add teacher
     $.ajax({
       url: "http://localhost:8081/teacher/course-teacher-assign", // Replace with your backend API endpoint
