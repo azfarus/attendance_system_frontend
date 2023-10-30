@@ -188,7 +188,24 @@ populateStudentIDs(studentIDs);
 });
 
 function emailBtnfunc() {
-
+    sessiondata = localStorage.getItem("mysession");
+    hashdata = localStorage.getItem("myhash");
+    $.ajax({
+        type: "POST",
+        url: "/email/sendWarningEmails",
+        headers: {
+            'mysession': sessiondata,
+            'Authorization': 'Basic ' + hashdata
+        },
+        dataType: "json",
+        success: function(response) {
+            alert("Warning emails sent successfully.");
+        },
+        error: function(xhr, status, error) {
+            console.error("Error:", error);
+            alert("Error sending warning emails.");
+        }
+    });
 }
 
 function sheetSubmitBtn() {
