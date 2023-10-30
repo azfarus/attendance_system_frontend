@@ -152,6 +152,27 @@ function displayAttendanceData() {
     document.getElementById("sheetSubmitBtn").addEventListener("click", submitAttendanceData);
 }
 
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const beepFrequency = 500; // Frequency of the beep sound in hertz
+const beepDuration = 100; // Duration of the beep sound in milliseconds
+const beepVolume = 1; // Maximum volume (1.0 is maximum, 0.0 is muted)
+
+function playBeepSound() {
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(beepFrequency, audioContext.currentTime);
+
+    gainNode.gain.setValueAtTime(beepVolume, audioContext.currentTime);
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + beepDuration / 1000);
+}
+
 document.getElementById('connectButton').addEventListener('click', async () => {
     try {
         const port = await navigator.serial.requestPort();
@@ -178,6 +199,7 @@ document.getElementById('connectButton').addEventListener('click', async () => {
                         for (let i = 1; i < rows.length; i++) {
                             const studentId = rows[i].cells[0].textContent;
                             if (parseInt(studentId) == parsedId) {
+                                playBeepSound();
                                 rows[i].cells[2].querySelector('div').textContent = 'P';
                                 rows[i].cells[2].querySelector('div').classList.remove('A');
                                 rows[i].cells[2].querySelector('div').classList.add('P');
