@@ -140,11 +140,19 @@ sidebarItems.forEach((item) => {
 
     const viewSheetButton = createButton("View Sheet", course.hid, redirectToSheet);
     const takeAttendanceButton = createButton("Take Attendance", course.hid, redirectToAttendance);
+    const autoplay = document.createElement("a");
+    autoplay.href = "autoAtt.html?hid=" + course.hid;
+    
+    const image = document.createElement("img");
+    image.src = "./images/play.webp";
+    image.className = "autoplay";
+    autoplay.appendChild(image);
 
     courseBlock.appendChild(courseCode);
     courseBlock.appendChild(courseName);
     courseBlock.appendChild(viewSheetButton);
     courseBlock.appendChild(takeAttendanceButton);
+    courseBlock.appendChild(autoplay);
 
     return courseBlock;
   }

@@ -159,15 +159,41 @@ button:hover {
 button {
   text-align: center;
   position: relative;
-  margin: 1rem;
-  width: 16rem;
-  padding: .5rem 1rem;
+  margin: 0.8rem 1rem;
+  width: 19.2rem;
+  padding: .6rem 1rem;
   border-radius: 1rem;
   border: #ddd;
   background-color: #befdff;
   color: #000;
   cursor: pointer;
   box-shadow: 0.5rem 0.6rem 0.8rem rgba(0, 0, 0, 0.268);
+}
+
+button ~ button{
+  text-align: center;
+  position: relative;
+  margin: 0.8rem 0.5rem;
+  width: 15.5rem;
+  padding: .6rem 1rem;
+  border-radius: 1rem;
+  border: #ddd;
+  background-color: #befdff;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0.5rem 0.6rem 0.8rem rgba(0, 0, 0, 0.268);
+}
+
+.autoplay{
+  height: 34px;
+  width: 34px;
+  border-radius: 1.8rem;
+  margin-bottom: .2rem;
+}
+
+.autoplay:hover{
+  background-color: #ffff00;
+  scale: 1.1;
 }
 
 #logout_btn {
