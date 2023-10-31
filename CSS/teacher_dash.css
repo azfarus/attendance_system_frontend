@@ -187,8 +187,9 @@ button ~ button{
 .autoplay{
   height: 34px;
   width: 34px;
-  border-radius: 1.8rem;
+  border-radius: 2rem;
   margin-bottom: .2rem;
+  box-shadow: .01rem .01rem 1rem rgb(200, 244, 252);
 }
 
 .autoplay:hover{
@@ -375,6 +376,8 @@ a {
 .course {
   width: calc(33.33% - 20px); /* Each row holds 3 blocks with some spacing */
   padding: 2rem;
+  min-width: 25rem;
+  max-width: 41rem;
   margin: 1.5rem .8rem;
   border-radius: 2.2rem;
   background-color: #060053; /* Blue background */
@@ -408,13 +411,13 @@ a {
   font-weight: bold;
 }
 
-@media (max-width: 1044px) {
+@media (max-width: 1147px) {
   .course {
     width: calc(50% - 20px);
   }
 }
 
-@media (max-width: 821px) {
+@media (max-width: 880px) {
   .course {
     width: calc(100%);
   }
