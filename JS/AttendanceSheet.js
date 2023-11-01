@@ -156,9 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // Array of student IDs
 
-  
-    
-
 // Function to populate student IDs
 
 

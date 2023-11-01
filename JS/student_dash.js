@@ -35,35 +35,6 @@ sidebarItems.forEach((item) => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    var ctx = document.getElementById("myChart").getContext("2d");
-  
-    // Define your chart data
-    var chartData = {
-      labels: ["CSE 4107", "EEE 4181", "CSE 4105", "HUM 4147", "HUM 4145"],
-      datasets: [
-        {
-          label: "Attendance Chart",
-          data: [10, 20, 15, 30, 25],
-          backgroundColor: "rgba(75, 192, 192, 0.2)", // Fill color
-          borderColor: "rgba(75, 192, 192, 1)", // Border color
-          borderWidth: 2,
-        },
-      ],
-    };
-  
-    // Create the chart
-    var myChart = new Chart(ctx, {
-      type: 'line',
-      data: chartData,
-      options: {
-      responsive: true,
-      maintainAspectRatio: false, // Set to false to allow the chart to adjust to the container size
-      },
-    });
-    
-  });
-
   // Function to get the Student's ID from the session
 function getSessionStudentId() {
   var Studentid = null;
@@ -226,4 +197,133 @@ $('#updateStudentForm').submit(function(event) {
 // Call the function to fetch Student's data when the page loads
 $(document).ready(function () {
   fetchStudentData();
+
+sessiondata = localStorage.getItem("mysession");
+hashdata = localStorage.getItem("myhash");
+const apiUrl = "http://localhost:8081/student/";
+
+// Step 1: Fetch all course information
+$.ajax({
+  url: apiUrl + "courses_info",
+  type: "GET",
+  headers: {
+    'mysession': sessiondata,
+    'Authorization': 'Basic ' + hashdata
+  },
+  dataType: "json",
+  success: function (allCourses) {
+    // Handle the response data here
+    console.log("All Courses Data:", allCourses);
+
+    studentId = getSessionStudentId(); // Replace with the actual student ID
+    const enrolledCourses = [];
+    const getAttendancePromises = [];
+
+    // Step 2: Fetch the courses a student is enrolled in
+    $.ajax({
+      url: apiUrl + "courses/" + studentId,
+      type: "GET",
+      headers: {
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
+      },
+      dataType: "json",
+      success: function (studentCourses) {
+        // Handle the response data here
+        console.log("Student Courses Data:", studentCourses);
+
+        // Compare and find matching courses
+        for (const course of allCourses) {
+          if (studentCourses.includes(course.hid)) {
+            const promise = getAttendancePercentage(studentId, course.hid);
+            getAttendancePromises.push(promise);
+
+            enrolledCourses.push({
+              hid: course.hid,
+              department: course.department,
+              courseid: course.courseid,
+            });
+          }
+        }
+
+        Promise.all(getAttendancePromises)
+      .then(attendancePercentages => {
+        // Extract labels and data from enrolledCourses
+        const labels = enrolledCourses.map(course => `${course.department} ${course.courseid}`);
+        const data = attendancePercentages.map(percentage => parseFloat(percentage));
+        
+        // Define your chart data
+        var chartData = {
+          labels: labels,
+          datasets: [
+            {
+              label: "Attendance Perecentage",
+              data: data,
+              backgroundColor: "rgba(75, 192, 192, 0.2)", // Fill color
+              borderColor: "rgba(75, 192, 192, 1)", // Border color
+              borderWidth: 2,
+            },
+          ],
+        };
+
+        var ctx = document.getElementById("myChart").getContext("2d");
+
+        // Create the chart
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: chartData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                stepSize: 10, // Set the y-axis step size
+                suggestedMax: 100, // Set the maximum value for the y-axis
+                beginAtZero: false, // Do not start the y-axis at zero
+              },
+            },
+          },
+        });
+
+        console.log("Enrolled Courses:", enrolledCourses);
+      })
+      .catch(error => {
+        console.error("Error fetching attendance percentages:", error);
+      });
+      },
+    });
+  },
+  error: function (error) {
+    console.error("Error fetching all courses:", error);
+  },
 });
+
+});
+
+
+function getAttendancePercentage(studentId, hid) {
+  const sessiondata = localStorage.getItem("mysession");
+  const hashdata = localStorage.getItem("myhash");
+
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: `http://localhost:8081/student/get-percentage/${hid}/${studentId}`,
+      type: "GET",
+      headers: {
+        mysession: sessiondata,
+        Authorization: 'Basic ' + hashdata,
+      },
+      dataType: "json",
+      success: function (data) {
+        if (data < 0) {
+          data = 0;
+        }
+        resolve((data * 100).toFixed(2)); // Round to two decimal places
+      }
+      ,
+      error: function (error) {
+        reject(error);
+      },
+    });
+  });
+}
