@@ -281,7 +281,7 @@ $.ajax({
               y: {
                 stepSize: 10, // Set the y-axis step size
                 suggestedMax: 100, // Set the maximum value for the y-axis
-                beginAtZero: false, // Do not start the y-axis at zero
+                beginAtZero: true, // Do not start the y-axis at zero
               },
             },
           },

@@ -31,6 +31,26 @@ $.ajax({
     }
 });
 
+allCoursesList = {};
+
+$.ajax({
+    url: "http://localhost:8081/student/courses_info",
+    type: "GET",
+    headers: {
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
+    },
+    dataType: "json",
+    success: function (allCourses) {
+      // Handle the response data here
+        allCoursesList = allCourses;
+        console.log("All Courses Data:", allCoursesList);
+    },
+    error: function (error) {
+        console.error("Error fetching COURSES:", error);
+    }
+});
+
 
 document.getElementById('dropbtn3').textContent = "Offered courses";
 const deptdrop = document.getElementById("department-dropdown");
@@ -190,7 +210,13 @@ function getSessionStudentId() {
                     const selectedItemsDiv = document.getElementById('selected-items');
                     const department = document.getElementById('dropbtn').textContent;
                     const offeredCourses = document.getElementById('dropbtn3').textContent;
-                    const courseInfo = `${department} ${offeredCourses}`;
+                    var courseInfo = `${department} ${offeredCourses}`;
+                    for (const course of allCoursesList) {
+                        if (course.department == department && course.courseid == offeredCourses) {
+                            courseInfo = `${courseInfo}   :   ${course.courseName}`;
+                            break; // Exit the loop once a match is found
+                        }
+                    }
             
                     const selectedItem = document.createElement('div');
                     selectedItem.className = 'selected-item';
