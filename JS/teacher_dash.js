@@ -1,3 +1,5 @@
+hostaddr=localStorage.getItem('host');
+
 $(document).ready(function () {
 
 const sidebarItems = document.querySelectorAll(".sidebar li");
@@ -24,7 +26,7 @@ sidebarItems.forEach((item) => {
   // Function to check if the user is authenticated
   function checkAuthentication() {
     $.ajax({
-      url: "http://localhost:8081/session/get-session-data",
+      url: "http://"+hostaddr+":8081/session/get-session-data",
       method: "GET",
       headers: {
         'mysession': sessiondata,
@@ -46,7 +48,7 @@ sidebarItems.forEach((item) => {
     let teacherId = null;
 
     $.ajax({
-      url: "http://localhost:8081/session/get-session-data",
+      url: "http://"+hostaddr+":8081/session/get-session-data",
       method: "GET",
       async: false,
       headers: {
@@ -68,10 +70,10 @@ sidebarItems.forEach((item) => {
   function fetchTeacherData() {
     const teacherId = getSessionTeacherId();
     const profilePicture = document.getElementById("profilePicture");
-    profilePicture.src = "http://localhost:8081/teacher/get-photo/" + teacherId;
+    profilePicture.src = "http://"+hostaddr+":8081/teacher/get-photo/" + teacherId;
 
     $.ajax({
-      url: "http://localhost:8081/teacher/info",
+      url: "http://"+hostaddr+":8081/teacher/info",
       method: "GET",
       headers: {
         'mysession': sessiondata,
@@ -89,7 +91,7 @@ sidebarItems.forEach((item) => {
     });
 
     $.ajax({
-      url: "http://localhost:8081/teacher/sheets",
+      url: "http://"+hostaddr+":8081/teacher/sheets",
       method: "GET",
       headers: {
         'mysession': sessiondata,
@@ -179,7 +181,7 @@ sidebarItems.forEach((item) => {
     if (selectedFile) {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      const uploadUrl = `http://localhost:8081/teacher/upload-photo/${getSessionTeacherId()}`;
+      const uploadUrl = `http://${hostaddr}:8081/teacher/upload-photo/${getSessionTeacherId()}`;
 
       $.ajax({
         url: uploadUrl,
@@ -248,7 +250,7 @@ sidebarItems.forEach((item) => {
     hashdata = localStorage.getItem("myhash");
     // Make the AJAX request to add teacher
     $.ajax({
-      url: "http://localhost:8081/teacher/course-teacher-assign", // Replace with your backend API endpoint
+      url: "http://"+hostaddr+":8081/teacher/course-teacher-assign", // Replace with your backend API endpoint
       method: "POST",
       data: jQuery.param(data),
       contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -282,7 +284,7 @@ function populateDepartmentDropdown() {
   const hashdata = localStorage.getItem("myhash");
 
   $.ajax({
-    url: "http://localhost:8081/teacher/departments",
+    url: "http://"+hostaddr+":8081/teacher/departments",
     method: "GET",
     headers: {
       'mysession': sessiondata,
@@ -313,7 +315,7 @@ function populateCoursesDropdown(dept) {
   const hashdata = localStorage.getItem("myhash");
 
   $.ajax({
-    url: "http://localhost:8081/course/get-course-by-dept",
+    url: "http://"+hostaddr+":8081/course/get-course-by-dept",
     method: "GET",
     headers: {
       'mysession': sessiondata,

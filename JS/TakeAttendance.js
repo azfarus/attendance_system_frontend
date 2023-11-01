@@ -1,4 +1,8 @@
 // AttendanceSheet.js
+
+hostaddr=localStorage.getItem('host');
+
+
 sessiondata = localStorage.getItem("mysession");
 hashdata = localStorage.getItem("myhash");
 
@@ -17,7 +21,7 @@ function getSessionTeacherId() {
     hashdata = localStorage.getItem("myhash");
     // Make an AJAX GET request to fetch the teacher's ID from the session
     $.ajax({
-        url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+        url: "http://"+hostaddr+":8081/session/get-session-data", // Replace with your backend API endpoint
         method: "GET",
         async: false, // Synchronous request to wait for the response
         headers: {
@@ -38,7 +42,7 @@ var tid = getSessionTeacherId();
 console.log(tid);
 // Make an AJAX request to fetch the teacher's data
 $.ajax({
-    url: "http://localhost:8081/teacher/sheets", // Replace with your backend API endpoint
+    url: "http://"+hostaddr+":8081/teacher/sheets", // Replace with your backend API endpoint
     method: "GET",
     async: false, // Synchronous request to wait for the response
     headers: {
@@ -74,7 +78,7 @@ $.ajax({
 
 
 $.ajax({
-    url: 'http://localhost:8081/attendance/get-students',
+    url: 'http://'+hostaddr+':8081/attendance/get-students',
     method: 'GET',
     dataType: 'json',
     headers: {
@@ -115,7 +119,7 @@ function displayAttendanceData() {
 
         const imgCell = row.insertCell(2);
         const img = document.createElement("img");
-        img.src = "http://localhost:8081/student/get-photo/" + studentId;
+        img.src = "http://"+hostaddr+":8081/student/get-photo/" + studentId;
         img.classList.add("student-image");
         imgCell.appendChild(img);
 
@@ -148,7 +152,7 @@ function displayAttendanceData() {
     // Function to submit attendance data
     function submitAttendanceData() {
         $.ajax({
-            url: 'http://localhost:8081/attendance/submit-attendance/'+hid, // Replace with your API endpoint
+            url: 'http://'+hostaddr+':8081/attendance/submit-attendance/'+hid, // Replace with your API endpoint
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(attendanceData),

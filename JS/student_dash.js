@@ -1,8 +1,10 @@
+hostaddr=localStorage.getItem('host');
+
 $(document).ready(function () {
   sessiondata = localStorage.getItem("mysession");
   hashdata = localStorage.getItem("myhash");
   $.ajax({
-    url: "http://localhost:8081/session/get-session-data",
+    url: "http://"+hostaddr+":8081/session/get-session-data",
     method: "GET",
     headers: {
       'mysession': sessiondata,
@@ -43,7 +45,7 @@ function getSessionStudentId() {
   hashdata = localStorage.getItem("myhash");
   // Make an AJAX GET request to fetch the Student's ID from the session
   $.ajax({
-    url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+    url: "http://"+hostaddr+":8081/session/get-session-data", // Replace with your backend API endpoint
     method: "GET",
     async: false, // Synchronous request to wait for the response
     headers: {
@@ -71,7 +73,7 @@ function fetchStudentData() {
   sessiondata = localStorage.getItem("mysession");
   hashdata = localStorage.getItem("myhash");
   $.ajax({
-    url: "http://localhost:8081/student/info", // Replace with your backend API endpoint
+    url: "http://"+hostaddr+":8081/student/info", // Replace with your backend API endpoint
     method: "GET",
     headers: {
       'mysession': sessiondata,
@@ -96,7 +98,7 @@ function fetchStudentData() {
 const studentId = sid;
 
 $.ajax({
-    url: `http://localhost:8081/student/get-student-data/${studentId}`,
+    url: `http://`+hostaddr+`:8081/student/get-student-data/${studentId}`,
     method: "GET",
     headers: {
       'mysession': sessiondata,
@@ -130,7 +132,7 @@ function populateStudentDashboard(StudentData) {
   sessiondata = localStorage.getItem("mysession");
   hashdata = localStorage.getItem("myhash");
       const profilePicture = document.getElementById('profilePicture');
-      profilePicture.src = "http://localhost:8081/student/get-photo/" + StudentData.id;
+      profilePicture.src = "http://"+hostaddr+":8081/student/get-photo/" + StudentData.id;
 }
 
 
@@ -171,7 +173,7 @@ $('#updateStudentForm').submit(function(event) {
 
   // Make an AJAX POST request
   $.ajax({
-      url: 'http://localhost:8081/student/update-data/'+sid, // Replace with your backend API endpoint
+      url: 'http://'+hostaddr+':8081/student/update-data/'+sid, // Replace with your backend API endpoint
       type: 'POST',
       headers: {
         'mysession': sessiondata,
@@ -200,7 +202,7 @@ $(document).ready(function () {
 
 sessiondata = localStorage.getItem("mysession");
 hashdata = localStorage.getItem("myhash");
-const apiUrl = "http://localhost:8081/student/";
+const apiUrl = "http://"+hostaddr+":8081/student/";
 
 // Step 1: Fetch all course information
 $.ajax({
@@ -307,7 +309,7 @@ function getAttendancePercentage(studentId, hid) {
 
   return new Promise((resolve, reject) => {
     $.ajax({
-      url: `http://localhost:8081/student/get-percentage/${hid}/${studentId}`,
+      url: `http://`+hostaddr+`:8081/student/get-percentage/${hid}/${studentId}`,
       type: "GET",
       headers: {
         mysession: sessiondata,

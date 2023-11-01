@@ -1,3 +1,10 @@
+
+
+
+
+hostaddr="localhost";
+localStorage.setItem('host', 'localhost');
+
 $('#loginButton').click(function() {
     const userType = $('#userType').val();
     const id = $('#email').val();
@@ -14,7 +21,7 @@ $('#loginButton').click(function() {
     let hash = btoa(id + ":" + password);
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:8081/login/'+userType,
+        url: 'http://'+hostaddr+':8081/login/'+userType,
         contentType: 'application/json',
         data: JSON.stringify(requestBody),
         headers:{

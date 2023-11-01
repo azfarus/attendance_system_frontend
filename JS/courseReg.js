@@ -1,9 +1,12 @@
 
 // Fetch department data from the backend
+
+hostaddr=localStorage.getItem('host')
+
 sessiondata = localStorage.getItem("mysession");
 hashdata = localStorage.getItem("myhash");
 $.ajax({
-  url: "http://localhost:8081/student/departments", // Replace with your backend API endpoint for departments
+  url: "http://"+hostaddr+":8081/student/departments", // Replace with your backend API endpoint for departments
   method: "GET",
     headers: {
       'mysession': sessiondata,
@@ -43,7 +46,7 @@ deptdrop.addEventListener('click', function () {
 
     // Fetch course data from the backend based on the selected department
     $.ajax({
-        url: "http://localhost:8081/course/get-course-by-dept",
+        url: "http://"+hostaddr+":8081/course/get-course-by-dept",
         method: "GET",
         headers: {
           'mysession': sessiondata,
@@ -80,7 +83,7 @@ function getSessionStudentId() {
     hashdata = localStorage.getItem("myhash");
     // Make an AJAX GET request to fetch the Student's ID from the session
     $.ajax({
-      url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+      url: "http://"+hostaddr+":8081/session/get-session-data", // Replace with your backend API endpoint
       method: "GET",
       async: false, // Synchronous request to wait for the response
       headers: {
@@ -130,7 +133,7 @@ function getSessionStudentId() {
                 sessiondata = localStorage.getItem("mysession");
                 hashdata = localStorage.getItem("myhash");
                 $.ajax({
-                    url: "http://localhost:8081/course/register", // Replace with your backend API endpoint for course registration
+                    url: "http://"+hostaddr+":8081/course/register", // Replace with your backend API endpoint for course registration
                     method: "POST",
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     headers: {

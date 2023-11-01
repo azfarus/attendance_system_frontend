@@ -1,9 +1,13 @@
+hostaddr=localStorage.getItem('host')
+
 //get session
+
+
 $(document).ready(function () {
   sessiondata = localStorage.getItem("mysession");
   hashdata = localStorage.getItem("myhash");
   $.ajax({
-    url: "http://localhost:8081/session/get-session-data",
+    url: "http://"+hostaddr+":8081/session/get-session-data",
     method: "GET",
     headers: {
       'mysession': sessiondata,
@@ -60,7 +64,7 @@ $("#insertTeacherForm").submit(function (event) {
   
   // Make the AJAX request to add teacher
   $.ajax({
-    url: "http://localhost:8081/admin/teacher", // Replace with your backend API endpoint
+    url: "http://"+hostaddr+":8081/admin/teacher", // Replace with your backend API endpoint
     method: "POST",
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -106,7 +110,7 @@ $("#assignTeacherForm").submit(function (event) {
   
   // Make the AJAX request to add teacher
   $.ajax({
-    url: "http://localhost:8081/admin/course-teacher-assign", // Replace with your backend API endpoint
+    url: "http://"+hostaddr+":8081/admin/course-teacher-assign", // Replace with your backend API endpoint
     method: "POST",
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -138,7 +142,7 @@ $('#TeacherCSVForm').submit(function (event) {
   formData.append('type', 2);
   $.ajax({
       type: 'POST',
-      url: 'http://localhost:8081/admin/upload-csv', // Replace with your backend API endpoint
+      url: 'http://'+hostaddr+':8081/admin/upload-csv', // Replace with your backend API endpoint
       data: formData,
       headers: {
         'mysession': sessiondata,
@@ -186,7 +190,7 @@ $("#insertCourseForm").submit(function (event) {
   
   // Make the AJAX request to add course
   $.ajax({
-    url: "http://localhost:8081/admin/course",
+    url: "http://"+hostaddr+":8081/admin/course",
     method: "POST",
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -219,7 +223,7 @@ $('#CourseCSVForm').submit(function (event) {
   formData.append('type', 3);
   $.ajax({
       type: 'POST',
-      url: 'http://localhost:8081/admin/upload-csv', // Replace with your backend API endpoint
+      url: 'http://'+hostaddr+':8081/admin/upload-csv', // Replace with your backend API endpoint
       data: formData,
       headers: {
         'mysession': sessiondata,
@@ -268,7 +272,7 @@ $("#insertStudentForm").submit(function (event) {
   hashdata = localStorage.getItem("myhash");
   // Make the AJAX request to add student
   $.ajax({
-    url: "http://localhost:8081/admin/student", // Replace with your backend API endpoint
+    url: "http://"+hostaddr+":8081/admin/student", // Replace with your backend API endpoint
     method: "POST",
     data: jQuery.param(data),
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -301,7 +305,7 @@ $('#StudentCSVForm').submit(function (event) {
     formData.append('type', 1);
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:8081/admin/upload-csv', // Replace with your backend API endpoint
+        url: 'http://'+hostaddr+':8081/admin/upload-csv', // Replace with your backend API endpoint
         data: formData,
         headers: {
           'mysession': sessiondata,
@@ -328,7 +332,7 @@ hashdata = localStorage.getItem("myhash");
 // Function to populate the department dropdown
 function populateDepartmentDropdown() {
   $.ajax({
-    url: "http://localhost:8081/admin/departments",
+    url: "http://"+hostaddr+":8081/admin/departments",
     method: "GET",
     headers: {
       'mysession': sessiondata,

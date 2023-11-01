@@ -1,4 +1,5 @@
 // attendance.js
+hostaddr=localStorage.getItem('host')
 
 var dataFromBackend = {
     "200041122": ["Radib Bin Kabir","P", "A", "L","P","P","P","P","P","P","P","P","P","P"],
@@ -40,7 +41,7 @@ function getSessionTeacherId() {
     hashdata = localStorage.getItem("myhash");
     // Make an AJAX GET request to fetch the teacher's ID from the session
     $.ajax({
-        url: "http://localhost:8081/session/get-session-data", // Replace with your backend API endpoint
+        url: "http://"+hostaddr+":8081/session/get-session-data", // Replace with your backend API endpoint
         method: "GET",
         async: false, // Synchronous request to wait for the response
         headers: {
@@ -61,7 +62,7 @@ var tid = getSessionTeacherId();
 console.log(tid);
 // Make an AJAX request to fetch the teacher's data
 $.ajax({
-    url: "http://localhost:8081/teacher/sheets", // Replace with your backend API endpoint
+    url: "http://"+hostaddr+":8081/teacher/sheets", // Replace with your backend API endpoint
     method: "GET",
     async: false, // Synchronous request to wait for the response
     headers: {
@@ -133,7 +134,7 @@ var studentIDs = [];
 
 document.addEventListener("DOMContentLoaded", function () {
     $.ajax({
-        url: "http://localhost:8081/attendance/prev-attendance/"+hid, // Replace with your backend API endpoint
+        url: "http://"+hostaddr+":8081/attendance/prev-attendance/"+hid, // Replace with your backend API endpoint
         method: "GET",
         async: false, // Synchronous request to wait for the response
         headers: {
@@ -164,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
         hashdata = localStorage.getItem("myhash");
         $.ajax({
             type: "GET",
-            url: "http://localhost:8081/attendance/get-defaulters/"+hid,
+            url: "http://"+hostaddr+":8081/attendance/get-defaulters/"+hid,
             headers: {
                 'mysession': sessiondata,
                 'Authorization': 'Basic ' + hashdata
@@ -216,7 +217,7 @@ function emailBtnfunc() {
     hashdata = localStorage.getItem("myhash");
     $.ajax({
         type: "POST",
-        url: "http://localhost:8081/attendance/send-warning",
+        url: "http://"+hostaddr+":8081/attendance/send-warning",
         headers: {
             'mysession': sessiondata,
             'Authorization': 'Basic ' + hashdata,
