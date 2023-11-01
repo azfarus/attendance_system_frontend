@@ -144,7 +144,7 @@ sidebarItems.forEach((item) => {
     autoplay.href = "autoAtt.html?hid=" + course.hid;
     
     const image = document.createElement("img");
-    image.src = "./images/play.webp";
+    image.src = "../images/play.webp";
     image.className = "autoplay";
     autoplay.appendChild(image);
 
