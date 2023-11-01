@@ -129,6 +129,8 @@ function loadPrevAttendance() {
     });
 }
 
+var studentIDs = [];
+
 document.addEventListener("DOMContentLoaded", function () {
     $.ajax({
         url: "http://localhost:8081/attendance/prev-attendance/"+hid, // Replace with your backend API endpoint
@@ -153,38 +155,63 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     // Array of student IDs
-    const studentIDs = [200041125, 200041143, 200041101, 200041138, 200041118, 200041128, 200041159, 200041168, 200041118, 200041178, 200041158, 200041169];
-    //const studentIDs = []; // This is your empty array.
+
+  
+    
 
 // Function to populate student IDs
-function populateStudentIDs(studentIDs) {
-    const studentList = document.getElementById("studentList");
-    
-    // Check if the studentIDs array is empty.
-    if (studentIDs == null || studentIDs.length === 0) {
-        EmailBtn = document.getElementById("emailBtn");
-        EmailBtn.style.backgroundColor = "#cecece8b";
-        EmailBtn.style.cursor = "not-allowed";
-        EmailBtn.style.color = "#0000008b";
-        EmailBtn.style.transform = "scale(1.0)";
-        EmailBtn.textContent = "No students";
-        EmailBtn.disabled = true;
-    } else {
-        // Iterate through the student IDs
-        for (let i = 0; i < studentIDs.length; i++) {
-            // Create individual student ID elements
-            const studentID = document.createElement("div");
-            studentID.className = "student-id";
-            studentID.textContent = studentIDs[i];
-    
-            studentList.appendChild(studentID);
+
+
+    function fetchStudentIds(){
+        sessiondata = localStorage.getItem("mysession");
+        hashdata = localStorage.getItem("myhash");
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8081/attendance/get-defaulters/"+hid,
+            headers: {
+                'mysession': sessiondata,
+                'Authorization': 'Basic ' + hashdata
+            },
+            success: function(response) {
+                studentIDs=[];
+                studentIDs = response;
+                populateStudentIDs()
+                //alert("got the defaulters.");
+            },
+            error: function(xhr, status, error) {
+                console.error("Error:", error);
+                alert("Error sending warning emails.");
+            }
+        });
+    }
+
+
+    function populateStudentIDs() {
+        const studentList = document.getElementById("studentList");
+        
+        // Check if the studentIDs array is empty.
+        if (studentIDs == null || studentIDs.length === 0) {
+            EmailBtn = document.getElementById("emailBtn");
+            EmailBtn.style.backgroundColor = "#cecece8b";
+            EmailBtn.style.cursor = "not-allowed";
+            EmailBtn.style.color = "#0000008b";
+            EmailBtn.style.transform = "scale(1.0)";
+            EmailBtn.textContent = "No students";
+            EmailBtn.disabled = true;
+        } else {
+            // Iterate through the student IDs
+            for (let i = 0; i < studentIDs.length; i++) {
+                // Create individual student ID elements
+                const studentID = document.createElement("div");
+                studentID.className = "student-id";
+                studentID.textContent = studentIDs[i];
+        
+                studentList.appendChild(studentID);
+            }
         }
     }
-}
 
-
-// Call the function to populate student IDs
-populateStudentIDs(studentIDs);
+    fetchStudentIds();
 });
 
 function emailBtnfunc() {
@@ -192,12 +219,14 @@ function emailBtnfunc() {
     hashdata = localStorage.getItem("myhash");
     $.ajax({
         type: "POST",
-        url: "/email/sendWarningEmails",
+        url: "http://localhost:8081/attendance/send-warning",
         headers: {
             'mysession': sessiondata,
-            'Authorization': 'Basic ' + hashdata
+            'Authorization': 'Basic ' + hashdata,
+            'Content-Type':'application/json'
         },
-        dataType: "json",
+        
+        data: JSON.stringify(studentIDs),
         success: function(response) {
             alert("Warning emails sent successfully.");
         },
