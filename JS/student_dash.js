@@ -270,7 +270,7 @@ $.ajax({
 
         // Create the chart
         var myChart = new Chart(ctx, {
-          type: 'bar',
+          type: 'line',
           data: chartData,
           options: {
             responsive: true,
