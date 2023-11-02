@@ -214,8 +214,6 @@ $.ajax({
   },
   dataType: "json",
   success: function (allCourses) {
-    // Handle the response data here
-    console.log("All Courses Data:", allCourses);
 
     studentId = getSessionStudentId(); // Replace with the actual student ID
     const enrolledCourses = [];
@@ -253,6 +251,7 @@ $.ajax({
         // Extract labels and data from enrolledCourses
         const labels = enrolledCourses.map(course => `${course.department} ${course.courseid}`);
         const data = attendancePercentages.map(percentage => parseFloat(percentage));
+        console.log("Attendance Percentages:", data);
         
         // Define your chart data
         var chartData = {

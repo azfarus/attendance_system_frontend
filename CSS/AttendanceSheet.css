@@ -139,6 +139,7 @@
 }
 
 #attendance-table {
+    padding: 2rem;
     margin-top: 3.5rem;
     width: auto;
     border: #000000 0.2rem solid;
