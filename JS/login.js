@@ -2,8 +2,8 @@
 
 
 
-hostaddr="localhost";
-localStorage.setItem('host', 'localhost');
+hostaddr="192.168.1.66";
+localStorage.setItem('host', hostaddr);
 
 $('#loginButton').click(function() {
     const userType = $('#userType').val();

@@ -34,7 +34,7 @@ $.ajax({
 allCoursesList = {};
 
 $.ajax({
-    url: "http://localhost:8081/student/courses_info",
+    url: "http://"+hostaddr+":8081/student/courses_info",
     type: "GET",
     headers: {
         'mysession': sessiondata,
