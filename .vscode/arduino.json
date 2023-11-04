@@ -1,4 +1,5 @@
 {
     "board": "arduino:avr:uno",
-    "port": "COM4"
+    "port": "COM4",
+    "sketch": "necessaryfiles\\necessaryfiles.ino"
 }
