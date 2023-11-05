@@ -217,7 +217,7 @@ function emailBtnfunc() {
     hashdata = localStorage.getItem("myhash");
     $.ajax({
         type: "POST",
-        url: "http://"+hostaddr+":8081/attendance/send-warning",
+        url: "http://"+hostaddr+":8081/attendance/send-warning/"+hid,
         headers: {
             'mysession': sessiondata,
             'Authorization': 'Basic ' + hashdata,
