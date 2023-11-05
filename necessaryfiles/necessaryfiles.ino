@@ -3,7 +3,7 @@
 
 #define SS_PIN 10
 #define RST_PIN 9
-
+ 
 MFRC522 rfid(SS_PIN, RST_PIN); // Instance of the class
 
 MFRC522::MIFARE_Key key; 
@@ -14,7 +14,7 @@ unsigned long ID;  // convert 3 byte to ulong
 
 void setup() { 
 
-  pinMode(LED_BUILTIN , HIGH);
+    pinMode(LED_BUILTIN , HIGH);
   Serial.begin(115200);
   SPI.begin(); // Init SPI bus
   rfid.PCD_Init(); // Init MFRC522 
@@ -71,6 +71,9 @@ void loop() {
     //  Serial.print (buffer[0]);
     //  Serial.print (":");
     //  Serial.println (buffer[1]);
+     
+    
+    
     //Serial.println ("done");
     // Halt PICC
     rfid.PICC_HaltA();
