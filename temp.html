@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./CSS/temp.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+            <title>Attendance Sheet</title>
+        </head>
+        <body>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <div id="toggleImages" class="toggle-icon">
+                            <i class="fa-solid fa-image-portrait" style="color: #ff7b00;"></i>
+                        </div>
+                    </li>
+                    <li>
+                        &nbsp;
+                    </li>
+                    <li class="text-center"><h2 class="nav-text text-center pl-5 ml-5 mb-3 display-4 text-light"><b>ATTENDANCE SHEET</b></h2></li>
+                    <li class="text-right">
+                        <div class="logout-container">
+                            <a class="mr-5" id="logoutButton" href="teacher_dash.html">
+                                <img class="mb-3" src="./images/back.jpg"
+                                alt="Logout">
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="p_container">
+                <div class="main">
+                    <center>
+                        <div id="sheetInfo">
+                            <h1 id="courseCode">code</h1>
+                            <h1 id="courseName">name</h1>
+                            <h1 id="courseDate">date</h1>
+                        </div>
+                        <table id="attendance-table">
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Photo</th>
+                                <th>Today</th>
+                            </tr>
+                            <tr>
+                                <td>200041101</td>
+                                <td>John Denver Rodrigues</td>
+                                <td><img src="./images/pfp1.jpg" class="student-image"></td>
+                                <td><button class="P" value="200041101">P</button></td>
+                            </tr>
+                            <tr>
+                                <td>200041102</td>
+                                <td>John Asif</td>
+                                <td><img src="./images/pfp2.jpg" class="student-image"></td>
+                                <td><button class="A" value="200041102">A</button></td>
+                            </tr>
+                            <tr>
+                                <td>200041103</td>
+                                <td>John Abrar</td>
+                                <td><img src="./images/pfp3.jpg" class="student-image"></td>
+                                <td><button class="P" value="200041103">P</button></td>
+                            </tr>
+                            <tr>
+                                <td>200041104</td>
+                                <td>John Doe</td>
+                                <td><img src="./images/pfp4.jpg" class="student-image"></td>
+                                <td><button class="L" value="200041104">L</button></td>
+                            </tr>
+                        </table>
+                    </center>
+                </div>
+            </div>
+            <center>
+                <button type="submit" id="sheetSubmitBtn" onclick="sheetSubmitBtn();">Submit Sheet</button>
+            </center>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./JS/temp.js"></script>
+    </body>
+    </html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./CSS/courseReg.css">
+</head>
+    <body>
+        <div>
+            <ul class="nav navbar-nav">
+                <li>&nbsp;</li>
+                <li class="text-center"><h2 class="text-center pl-5 ml-5 mb-3 display-4 text-light"><b>STUDENT DASHBOARD</b></h2></li>
+                <li class="text-right"><div class="logout-container">
+                    <a class="mr-5" id="logoutButton" href="student_dash.html">
+                        <img class="mb-3" src="./images/back.jpg" alt="back">
+                    </a>
+            </div></li>
+            </ul>
+        </div>
+        <div class="container_main">
+            <div class="p_container">
+                <div class="sidebar">
+                    <img class="circular--square" src = "images/pp.jpg" style="width:260px;height:260px;"><br>
+                    <ul><br>
+                        <li id="s_name">Asif Abrar</li>
+                        <li id="s_id">200041106</li>
+                        <li id="s_mail">mail@gmail.com</li>
+                    </ul>
+                    <center>
+                        <button type="submit" id="courseRegBtn" onclick="btn();">Register</button>
+                    </center>
+                </div>
+                <div class="main">
+                    <div class="cReg">
+                        <h1>Course Registration</h1> <br><hr>
+                        <nav>
+                            <div class="drop text-center">
+
+                                <ul class=" dropul text-center">
+                                    <li>
+                                        <div class="dropdown">
+                                            <button id="dropbtn">Department</button>
+                                            <div class="dropdown-content" id="department-dropdown">
+                                                <!-- Options will be populated here -->
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- <li>
+                                        <div class="dropdown">
+                                            <button id="dropbtn2">Semester</button>
+                                            <div class="dropdown-content" id="semester-dropdown">
+                                                Options will be populated here
+                                                <a>1</a>
+                                                <a>2</a>
+                                                <a>3</a>
+                                                <a>4</a>
+                                                <a>5</a>
+                                                <a>6</a>
+                                                <a>7</a>
+                                                <a>8</a>
+                                            </div>
+                                        </div>
+                                    </li> -->
+                                    <li>
+                                        <div class="dropdown">
+                                            <button id="dropbtn3">Offered Courses</button>
+                                            <div class="dropdown-content" id="courses-dropdown">
+                                                <!-- Options will be populated here -->
+                                            </div>
+                                            <button id="select-button" onclick = "selectItem('dropbtn1')">Select</button>
+                                        </div>
+                                    </li>                                    
+                            </ul>
+                        </div>
+                        </nav>
+                    </div>
+                    <div class="hh"><h1>Registered Courses:</h1> <br><hr></div>
+                    <div class="list-container" id="selected-items">
+                        <!-- Selected items will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <!-- <script src="./JS/admin.js"></script> -->
+        <script src = "./JS/courseReg.js"></script>
+    </body>
+</html>

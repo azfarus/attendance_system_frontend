@@ -2,7 +2,8 @@
 
 
 
-hostaddr="localhost";
+//hostaddr="localhost";
+hostaddr="192.168.1.66";
 localStorage.setItem('host', hostaddr);
 
 $('#loginButton').click(function() {
