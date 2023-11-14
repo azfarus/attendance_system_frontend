@@ -1,11 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
-/* Add a background image to the container element */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     transition: 0.25s all ease;
+    font-family:Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .p_container {
@@ -14,7 +12,6 @@
   width: 100%;
   overflow-x:auto;
   font-size: 1.5rem;
-  font-family: "Poppins", sans-serif;
 }
 
 #sheetInfo {
@@ -48,20 +45,13 @@
   margin: 8px 0;
 }
 
-#attendance-table {
-    width: auto;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow-x: auto; /* Enable horizontal scrolling */
-}
-
 
 #attendance-table th, #attendance-table td {
     border: 1px solid #000000;
     padding: 8px;
     text-align: center;
     min-width: 90px; /* Set a fixed width for table cells */
+    font-size: 20px;
 }
 
 #attendance-table th{
@@ -73,7 +63,6 @@
     position: sticky;
     left: 0;
     color: rgb(255, 253, 238);
-    font-size: large;
     z-index: 1;
 }
 
@@ -82,29 +71,28 @@
     min-width: 22rem;
     position: sticky;
     left: 0;
-    background-color: #ff9900;
+    background-color: #afe7ffd6;
     color: rgb(0, 0, 0);
-    font-size: large;
     z-index: 1;
     transition: background-color 0.3s ease-in-out;
 }
 
 #attendance-table tr:hover td:first-child {
-  background-color: rgb(255, 213, 0);
+  background-color: rgb(116, 209, 255);
 }
 
 
 #attendance-table th:last-child{
     min-width: 15rem;
     color: white;
-    font-size: large;
+    font-size: 20px;
     z-index: 1;
 }
 
 #attendance-table td:last-child {
     font-weight: bold;
     min-width: 15rem;
-    font-size: large;
+    font-size: 20px;
     z-index: 1;
 }
 
@@ -112,7 +100,7 @@
     min-width: 38rem;
     left: 0;
     color: white;
-    font-size: large;
+    font-size: 2rem;
     z-index: 1;
 }
 
@@ -121,7 +109,7 @@
     min-width: 24rem;
     left: 0;
     color: rgb(0, 0, 0);
-    font-size: large;
+    font-size: 2rem;
     z-index: 1;
 }
 
@@ -132,25 +120,26 @@
 }
 
 #attendance-table tr:nth-child(odd) {
-    background-color: #fffff1;
+    background-color: #f6fcff;
 }
 
 #attendance-table tr:hover {
-    background-color: #ebffe2;
+    background-color: rgba(248, 255, 200, 0.359);
 }
 
 button {
-  min-width: 5.8rem;
-  padding: 7px 10px;
-  border: #000000 solid 2px;
-  cursor: pointer;
-}
+    min-width: 5.8rem;
+    padding: 7px 10px;
+    border: #000000 solid 2px;
+    cursor: pointer;
+  }
+  
 
 div.P {
   background-color: rgba(0, 255, 0, 0.916);
   color: rgb(0, 0, 0);
   font-size: 20px;
-  border-radius: 1.6rem;
+  border-radius: 1rem;
   font-weight: bold;
   height: 30px;
   width: 30px;
@@ -165,7 +154,7 @@ div.A {
   background-color: rgba(255, 0, 0, 0.748);
   color: white;
   font-size: 20px;
-  border-radius: 1.6rem;
+  border-radius: 1rem;
   font-weight: bold;
   height: 30px;
   width: 30px;
@@ -209,7 +198,6 @@ button:hover {
 
 html {
   font-size: 10px;
-  font-family: "Josefin Sans", sans-serif;
   min-width: 65rem;
 }
 
@@ -298,8 +286,9 @@ a {
     background-color: #ffe92878;
     padding: 10px;
     border-radius: 13px;
-    font-family:monospace;
-    font-size: 22px;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 20px;
     text-align: center;
     margin-bottom: 1.5rem;
     box-shadow: 3px 4px 1px rgb(202, 158, 255);

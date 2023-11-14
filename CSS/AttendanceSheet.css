@@ -1,11 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
-/* Add a background image to the container element */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     transition: 0.25s all ease;
+    font-family:Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .p_container {
@@ -15,7 +13,6 @@
   overflow-x:auto;
   overflow-y:auto;
   font-size: 1.5rem;
-  font-family: "Poppins", sans-serif;
 }
 
 #sheetInfo {
@@ -167,10 +164,12 @@
     min-width: 90px; /* Set a fixed width for table cells */
     font-size: large;
   }
+  
   #attendance-table th{
-  min-width: 12rem;
-  border-left: #000f7d 0.2rem solid;
-  border-right: #00158a 0.2rem solid;
+    min-width: 11rem;
+    font-size: large;
+    border-left: #000f7d 0.2rem solid;
+    border-right: #00158a 0.2rem solid;
 }
 
 #attendance-table th:first-child{
@@ -187,7 +186,7 @@
   min-width: 20rem;
   position: sticky;
   left: 0;
-  background-color: #ffaf36;
+  background-color: #e2f3ff;
   color: rgb(0, 0, 0);
   font-size: large;
   z-index: 1;
@@ -195,7 +194,7 @@
 }
 
 #attendance-table tr:hover td:first-child {
-background-color: rgb(255, 225, 77);
+background-color: rgb(116, 209, 255);
 }
 
 #attendance-table th:nth-child(2) {
@@ -225,7 +224,7 @@ background-color: rgb(255, 225, 77);
 }
 
 #attendance-table tr:hover {
-    background-color: #ebffe2;
+    background-color: rgba(248, 255, 200, 0.359);
 }
 
 /* Define the main content area and set its properties */
