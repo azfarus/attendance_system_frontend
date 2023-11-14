@@ -133,21 +133,32 @@
 
 #belowAttHeading{
   flex: 1;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
   color: #350000;
 }
 
-#attendance-table {
-    padding: 2rem;
-    margin-top: 3.5rem;
-    width: auto;
-    border: #000000 0.2rem solid;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow-x: auto; /* Enable horizontal scrolling */
+#table-container {
+  text-align: center;
+  max-width: 99%; /* Set a maximum width for the table container */
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+  overflow-y: auto; /* Enable horizontal scrolling if needed */
+  margin: 0 auto; /* Center the container horizontally */
 }
+
+#attendance-table {
+  padding: 2rem;
+  margin: 3.5rem auto;
+  width: 100%; /* Set the table width to 100% */
+  max-width: 100%; /* Ensure the table doesn't exceed the parent container */
+  border: #000000 0.2rem solid;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: auto; /* Enable horizontal scrolling */
+}
+
 
 #attendance-table th, #attendance-table td {
     border: 2px solid #100000;
@@ -155,8 +166,9 @@
     text-align: center;
     min-width: 90px; /* Set a fixed width for table cells */
     font-size: large;
-}
-#attendance-table th{
+  }
+  #attendance-table th{
+  min-width: 12rem;
   border-left: #000f7d 0.2rem solid;
   border-right: #00158a 0.2rem solid;
 }
@@ -172,10 +184,10 @@
 
 #attendance-table td:first-child {
   font-weight: bold;
-  min-width: 22rem;
+  min-width: 20rem;
   position: sticky;
   left: 0;
-  background-color: #ffa319d6;
+  background-color: #ffaf36;
   color: rgb(0, 0, 0);
   font-size: large;
   z-index: 1;
@@ -187,7 +199,6 @@ background-color: rgb(255, 225, 77);
 }
 
 #attendance-table th:nth-child(2) {
-  min-width: 33rem;
   left: 0;
   color: white;
   font-size: large;
@@ -196,7 +207,7 @@ background-color: rgb(255, 225, 77);
 
 #attendance-table td:nth-child(2) {
   font-weight:400;
-  min-width: 24rem;
+  min-width: 30rem;
   left: 0;
   color: rgb(0, 0, 0);
   font-size: large;
