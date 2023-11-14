@@ -51,7 +51,7 @@
 .student-image{
   height: 10rem;
   width: 10rem;
-  border-radius: 50%;
+  border-radius: 5%;
   margin: 0.5rem;
   border: .5rem solid #000000;
   transition: border-width 0.3s ease-in-out;
@@ -120,7 +120,7 @@
     min-width: 22rem;
     position: sticky;
     left: 0;
-    background-color: #ff9900;
+    background-color: #ffa319d6;
     color: rgb(0, 0, 0);
     font-size: large;
     z-index: 1;
@@ -128,7 +128,7 @@
 }
 
 #attendance-table tr:hover td:first-child {
-  background-color: rgb(255, 213, 0);
+  background-color: rgb(255, 225, 77);
 }
 
 
@@ -271,12 +271,7 @@ a {
   justify-content: center;
   z-index: 2;
 }
-.circular--square { 
-  border-top-left-radius: 50% ; 
-  border-top-right-radius: 50%; 
-  border-bottom-right-radius: 50%; 
-  border-bottom-left-radius:50%;
-  margin-left: 3%;}
+
 
 .logout-container a {
   position: relative;

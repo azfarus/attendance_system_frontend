@@ -175,7 +175,7 @@
   min-width: 22rem;
   position: sticky;
   left: 0;
-  background-color: #ff9900;
+  background-color: #ffa319d6;
   color: rgb(0, 0, 0);
   font-size: large;
   z-index: 1;
@@ -183,7 +183,7 @@
 }
 
 #attendance-table tr:hover td:first-child {
-background-color: rgb(255, 213, 0);
+background-color: rgb(255, 225, 77);
 }
 
 #attendance-table th:nth-child(2) {

@@ -121,10 +121,10 @@ function loadPrevAttendance() {
                 cell.textContent = attendanceData[i];
                 cell.style.fontWeight = "600";
                 if(attendanceData[i]=="A"){
-                    cell.style.backgroundColor = "#ff1e479e";
+                    cell.style.backgroundColor = "rgba(255, 0, 0, 0.224)";
                 }
                 else if(attendanceData[i]=="L"){
-                    cell.style.backgroundColor = "#fbff1ea9";
+                    cell.style.backgroundColor = "rgba(255, 238, 0, 0.384)";
                 }
             }
     });
