@@ -74,35 +74,53 @@ $.ajax({
 });
 
 
+const attendanceData = {};
 
-$.ajax({
-    url: 'http://'+hostaddr+':8081/attendance/get-students',
-    method: 'GET',
-    dataType: 'json',
-    headers: {
-        'mysession': sessiondata,
-        'Authorization': 'Basic ' + hashdata
-    },
-    data: {
-        hid: hid
-    },
-    success: function (data) {
-      console.log(data);
-      dataFromBackend = data; // Populate dataFromBackend with the fetched data
-      displayAttendanceData(); // Call a function to display data after it's fetched
-    },
-    error: function (error) {
-      // Handle any errors
-      console.error('Error fetching data:', error);
-    }
-});
+
+refreshAttendanceList();
+
+document.getElementById("attDate").addEventListener("change" , refreshAttendanceList); 
+
+
+function refreshAttendanceList(){
+    
+    const attendanceDate = document.getElementById("attDate").value;
+    $.ajax({
+        url: 'http://'+hostaddr+':8081/attendance/get-students',
+        method: 'GET',
+        dataType: 'json',
+        headers: {
+            'mysession': sessiondata,
+            'Authorization': 'Basic ' + hashdata
+        },
+        data: {
+            hid: hid,
+            attendanceDate:attendanceDate
+        },
+        success: function (data) {
+          console.log(data);
+          dataFromBackend = data; // Populate dataFromBackend with the fetched data
+          console.log(data);
+          displayAttendanceData(); // Call a function to display data after it's fetched
+        },
+        error: function (error) {
+          // Handle any errors
+          console.error('Error fetching data:', error);
+        }
+    });
+}
 
 function displayAttendanceData() {
     const table = document.getElementById("attendance-table");
+    var rowcount = table.rows.length;
+
+    for (var i = rowcount - 1; i > 0; i--) {
+        table.deleteRow(i);
+    }
 
     students = Object.keys(dataFromBackend);
 
-    const attendanceData = {}; // Initialize an object to store attendance data
+     // Initialize an object to store attendance data
 
     students.forEach((studentId) => {
         const row = table.insertRow();
@@ -110,7 +128,8 @@ function displayAttendanceData() {
         // Display Student ID in the first column
         row.insertCell(0).textContent = studentId;
 
-        const studentName = dataFromBackend[studentId];
+        const studentName = dataFromBackend[studentId].name;
+        const atd_status=dataFromBackend[studentId].status
 
         // Display Student Name in the second column
         row.insertCell(1).textContent = studentName;
@@ -124,56 +143,58 @@ function displayAttendanceData() {
         // Create the third column with a single button for P, A, L
         const attendanceCell = row.insertCell(3);
         const button = document.createElement("button");
-        button.textContent = "P"; // Set the initial value to "P"
-        button.classList.add("P");
+        button.textContent = atd_status; // Set the initial value to "P"
+        button.classList.add(atd_status);
         button.value = studentId;
         button.addEventListener("click", toggleAttendance);
         attendanceCell.appendChild(button);
 
         // Initialize the attendance data object with "P" for each student
-        attendanceData[studentId] = "P";
+        attendanceData[studentId] = atd_status;
     });
 
-    function toggleAttendance(event) {
-        const button = event.target;
-        const attendanceStates = ["P", "A", "L"];
-        let currentIndex = attendanceStates.indexOf(button.textContent);
-        button.classList.remove(attendanceStates[currentIndex]);
-        currentIndex = (currentIndex + 1) % attendanceStates.length;
-        button.textContent = attendanceStates[currentIndex];
-        button.classList.add(attendanceStates[currentIndex]);
-        // Update the attendance data object with the new status
-        const studentId = button.value;
-        attendanceData[studentId] = attendanceStates[currentIndex];
-    }
-
-    // Function to submit attendance data
-    function submitAttendanceData() {
-        const attendanceDate = document.getElementById("attDate").value;
-    
-        $.ajax({
-            url: 'http://' + hostaddr + ':8081/attendance/submit-attendance/' + hid + '?attendanceDate=' + attendanceDate,
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(attendanceData),
-            headers: {
-                'mysession': sessiondata,
-                'Authorization': 'Basic ' + hashdata
-            },
-            success: function (response) {
-                console.log(attendanceData);
-                alert('Attendance Taken Successfully:', response);
-                window.location.href = "teacher_dash.html";
-            },
-            error: function (error) {
-                console.error('Error submitting attendance data:', error);
-            }
-        });
-    }
-    
-    // Attach a click event handler to a submit button
-    document.getElementById("sheetSubmitBtn").addEventListener("click", submitAttendanceData);
 }
+
+
+function toggleAttendance(event) {
+    const button = event.target;
+    const attendanceStates = ["P", "A", "L"];
+    let currentIndex = attendanceStates.indexOf(button.textContent);
+    button.classList.remove(attendanceStates[currentIndex]);
+    currentIndex = (currentIndex + 1) % attendanceStates.length;
+    button.textContent = attendanceStates[currentIndex];
+    button.classList.add(attendanceStates[currentIndex]);
+    // Update the attendance data object with the new status
+    const studentId = button.value;
+    attendanceData[studentId] = attendanceStates[currentIndex];
+}
+
+// Function to submit attendance data
+function submitAttendanceData() {
+    const attendanceDate = document.getElementById("attDate").value;
+
+    $.ajax({
+        url: 'http://' + hostaddr + ':8081/attendance/submit-attendance/' + hid + '?attendanceDate=' + attendanceDate,
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(attendanceData),
+        headers: {
+            'mysession': sessiondata,
+            'Authorization': 'Basic ' + hashdata
+        },
+        success: function (response) {
+            console.log(attendanceData);
+            alert('Attendance Taken Successfully:', response);
+            window.location.href = "teacher_dash.html";
+        },
+        error: function (error) {
+            console.error('Error submitting attendance data:', error);
+        }
+    });
+}
+
+// Attach a click event handler to a submit button
+document.getElementById("sheetSubmitBtn").addEventListener("click", submitAttendanceData);
 
 const toggleImagesButton = document.getElementById('toggleImages');
 let imagesVisible = false;
