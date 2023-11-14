@@ -90,7 +90,14 @@ $.ajax({
     },
 });
 
+document.getElementById("att_percentage").addEventListener("change",()=>{
+    document.getElementById("studentList").innerHTML="";
+    const percentage_input = document.getElementById("att_percentage").value;
 
+    if(percentage_input > 100 || percentage_input < 0) alert("Invalid Percentage");
+    else fetchStudentIds(percentage_input);
+
+});
 
 function loadPrevAttendance() {
     const table = document.getElementById("attendance-table");
@@ -155,62 +162,84 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
     
-    // Array of student IDs
+    document.getElementById("studentList").innerHTML="";
+    fetchStudentIds(85);
+});
 
-// Function to populate student IDs
+function populateStudentIDs() {
+    const studentList = document.getElementById("studentList");
+    const EmailBtn = document.getElementById("emailBtn");
 
-
-    function fetchStudentIds(){
-        sessiondata = localStorage.getItem("mysession");
-        hashdata = localStorage.getItem("myhash");
-        $.ajax({
-            type: "GET",
-            url: "http://"+hostaddr+":8081/attendance/get-defaulters/"+hid,
-            headers: {
-                'mysession': sessiondata,
-                'Authorization': 'Basic ' + hashdata
-            },
-            success: function(response) {
-                studentIDs=[];
-                studentIDs = response;
-                populateStudentIDs()
-                //alert("got the defaulters.");
-            },
-            error: function(xhr, status, error) {
-                console.error("Error:", error);
-                alert("Error sending warning emails.");
-            }
-        });
+    // Store the original button styles only if they haven't been stored before
+    if (!EmailBtn.originalStyles) {
+        EmailBtn.originalStyles = {
+            backgroundColor: EmailBtn.style.backgroundColor,
+            cursor: EmailBtn.style.cursor,
+            color: EmailBtn.style.color,
+            transform: EmailBtn.style.transform,
+            textContent: EmailBtn.textContent,
+            disabled: EmailBtn.disabled
+        };
     }
 
+    // Check if the studentIDs array is empty
+    if (studentIDs == null || studentIDs.length === 0) {
+        // Change button styles when no students are present
+        EmailBtn.style.backgroundColor = "#cecece8b";
+        EmailBtn.style.cursor = "not-allowed";
+        EmailBtn.style.color = "#0000008b";
+        EmailBtn.style.transform = "scale(1.0)";
+        EmailBtn.textContent = "No students";
+        EmailBtn.disabled = true;
+    } else {
+        // Revert back to original button styles
+        if (EmailBtn.originalStyles) {
+            EmailBtn.style.backgroundColor = EmailBtn.originalStyles.backgroundColor;
+            EmailBtn.style.cursor = EmailBtn.originalStyles.cursor;
+            EmailBtn.style.color = EmailBtn.originalStyles.color;
+            EmailBtn.style.transform = EmailBtn.originalStyles.transform;
+            EmailBtn.textContent = EmailBtn.originalStyles.textContent;
+            EmailBtn.disabled = EmailBtn.originalStyles.disabled;
+        }
 
-    function populateStudentIDs() {
-        const studentList = document.getElementById("studentList");
-        
-        // Check if the studentIDs array is empty.
-        if (studentIDs == null || studentIDs.length === 0) {
-            EmailBtn = document.getElementById("emailBtn");
-            EmailBtn.style.backgroundColor = "#cecece8b";
-            EmailBtn.style.cursor = "not-allowed";
-            EmailBtn.style.color = "#0000008b";
-            EmailBtn.style.transform = "scale(1.0)";
-            EmailBtn.textContent = "No students";
-            EmailBtn.disabled = true;
-        } else {
-            // Iterate through the student IDs
-            for (let i = 0; i < studentIDs.length; i++) {
-                // Create individual student ID elements
-                const studentID = document.createElement("div");
-                studentID.className = "student-id";
-                studentID.textContent = studentIDs[i];
-        
-                studentList.appendChild(studentID);
-            }
+        for (let i = 0; i < studentIDs.length; i++) {
+            // Create individual student ID elements
+            const studentID = document.createElement("div");
+            studentID.className = "student-id";
+            studentID.textContent = studentIDs[i];
+    
+            studentList.appendChild(studentID);
         }
     }
+}
 
-    fetchStudentIds();
-});
+
+
+function fetchStudentIds(percentage){
+    sessiondata = localStorage.getItem("mysession");
+    hashdata = localStorage.getItem("myhash");
+
+    studentIDs=[];
+
+    $.ajax({
+        type: "GET",
+        url: "http://"+hostaddr+":8081/attendance/get-defaulters/"+hid+"/"+percentage,
+        headers: {
+            'mysession': sessiondata,
+            'Authorization': 'Basic ' + hashdata
+        },
+        success: function(response) {
+            
+            studentIDs = response;
+            populateStudentIDs()
+            //alert("got the defaulters.");
+        },
+        error: function(xhr, status, error) {
+            console.error("Error:", error);
+            alert("Error fetching defaulters");
+        }
+    });
+}
 
 function emailBtnfunc() {
     sessiondata = localStorage.getItem("mysession");

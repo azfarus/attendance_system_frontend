@@ -275,6 +275,7 @@ a {
 }
 .main button {
   font-size: 15px;
+  border-radius: 1rem !important;
 }
 
 .nav {
@@ -308,15 +309,15 @@ a {
 }
 
 #sheetSubmitBtn{
-  min-width: 32rem;
+  min-width: 30rem;
   margin-top: 4rem;
   margin-bottom: 3rem;
   background-color: #000144;
   border: #000000;
   color: #ffffff;
-  padding: 1.1rem 7rem;
+  padding: 0.8rem 5rem;
   text-decoration: double;
-  border-radius: 2.5rem;
+  border-radius: 1rem;
   cursor: pointer;
   font-size:large;
   font-weight: bold;
@@ -328,6 +329,17 @@ a {
   background-color: #1eff35b4;
   color: #000000;
   transform: scale(1.01);
+}
+
+#att_percentage {
+  padding: 4px 8px;
+  font-size: large;
+  border: 2px solid #1c02aa;
+  border-radius: 5px;
+  outline: none;
+  font-family: monospace, Verdana, sans-serif;
+  font-weight: bold;
+  min-width: 5rem;
 }
 
 @media (max-width: 1000px) {

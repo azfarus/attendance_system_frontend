@@ -239,10 +239,10 @@ sidebarItems.forEach((item) => {
     
     // Create a data object with the parameters
     var data = {
-      department: dept_t,
-      courseCode: course_t,
+      
+      hid: course_t,
       teacherid :id_t,
-      section : section_t
+      
     };
 
     console.log(data);
@@ -339,8 +339,8 @@ function populateCoursesDropdown(dept) {
       for (var i = 0; i < data.length; i++) {
         var course = data[i];
         selectElement.append($('<option>', {
-          value: course,
-          text: course
+          value: course.hid,
+          text: course.name
         }));
       }
     },
