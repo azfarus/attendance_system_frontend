@@ -41,13 +41,6 @@
   margin: 5px 0;
 }
 
-#courseDate{
-  font-size: 2rem;
-  font-weight: bold;
-  color: #000000;
-  margin: 8px 0;
-}
-
 .student-image{
   height: 10rem;
   width: 10rem;
@@ -307,6 +300,35 @@ a {
   background-color: #04ea00ac;
   color: #000000;
   transform: scale(1.02);
+}
+
+.date-picker {
+  margin-top: 10px;
+  padding: 5px 14px;
+  font-size: large;
+  border: 2px solid #1c02aa;
+  border-radius: 8px;
+  outline: none;
+  font-family: monospace, Verdana, sans-serif;
+  font-weight: bold;
+  min-width: 18rem;
+}
+
+/* Style for the date picker arrow icon */
+.date-picker::-webkit-calendar-picker-indicator {
+  filter: invert(20%);
+  margin-left: -20px;
+}
+
+/* Hover effect for the date picker */
+.date-picker:hover {
+  border-color: #aa00ff;
+}
+
+/* Focus effect for the date picker */
+.date-picker:focus {
+  border-color: rgb(0, 11, 109);
+  box-shadow: 2px 2px 3px rgba(217, 179, 255, 0.7);
 }
 
 @media (max-width: 560px) {

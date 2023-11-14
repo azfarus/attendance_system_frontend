@@ -55,8 +55,6 @@ $.ajax({
     success: function (teacherCourses) {
 
     const currentDate = new Date();
-    const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    const formattedDate = currentDate.getDate() + ' ' + months[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
 
     console.log(teacherCourses);
     const hidToMatch = hid;
@@ -64,7 +62,7 @@ $.ajax({
         if (course.hid == hidToMatch) {
             document.getElementById('courseCode').textContent = course.department +" "+ course.courseid +" "+course.section;
             document.getElementById('courseName').textContent = course.coursename;
-            document.getElementById("courseDate").textContent = formattedDate;
+            document.getElementById("attDate").value = currentDate.toISOString().slice(0, 10);
                 break;
             }
         }
@@ -151,8 +149,10 @@ function displayAttendanceData() {
 
     // Function to submit attendance data
     function submitAttendanceData() {
+        const attendanceDate = document.getElementById("attDate").value;
+    
         $.ajax({
-            url: 'http://'+hostaddr+':8081/attendance/submit-attendance/'+hid, // Replace with your API endpoint
+            url: 'http://' + hostaddr + ':8081/attendance/submit-attendance/' + hid + '?attendanceDate=' + attendanceDate,
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(attendanceData),
@@ -170,7 +170,7 @@ function displayAttendanceData() {
             }
         });
     }
-
+    
     // Attach a click event handler to a submit button
     document.getElementById("sheetSubmitBtn").addEventListener("click", submitAttendanceData);
 }
