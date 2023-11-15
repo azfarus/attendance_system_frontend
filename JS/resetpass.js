@@ -22,7 +22,7 @@ document.getElementById("resetpass").addEventListener("click" , ()=>{
                 
                 success: function(data) {
                     alert('Password changed successfully. You can now log in.');
-                    window.location.replace('http://'+hostaddr+':8081/login.html');
+                    window.location.replace('http://'+hostaddr+':5501/login.html');
                 },
                 error: function() {
                     alert('Login failed. Please check your credentials.');

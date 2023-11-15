@@ -28,55 +28,5 @@
         </center>
     <script src="./JS/resetpass.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
-    <!-- function resetPassword(event) {
-        event.preventDefault();
-        const newPassword = document.getElementById('newPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-
-        // Display validation message on the page
-        const errorMessage = document.getElementById('errorMessage');
-        errorMessage.innerHTML = '';
-
-        if (newPassword !== confirmPassword) {
-            errorMessage.innerHTML = 'Passwords do not match';
-            return;
-        }
-
-        const token = new URLSearchParams(window.location.search).get('token');
-        fetch('/reset-password', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                token: token,
-                newPassword: newPassword,
-            }),
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(errorData => {
-                    errorMessage.innerHTML = 'Password reset failed: ' + errorData.message;
-                    throw new Error('Password reset failed');
-                });
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Display success message
-            errorMessage.style.color = 'green';  // Change color for success
-            errorMessage.innerHTML = 'Password reset successfully';
-        
-            // Redirect to the login page after a short delay (e.g., 2 seconds)
-            setTimeout(() => {
-                window.location.href = '/login';
-            }, 2000); // 2000 milliseconds (2 seconds)
-        })        
-        .catch(error => {
-            console.error('Password reset error:', error);
-        });
-    }
-</script> --> 
-
     </body>
 </html>
