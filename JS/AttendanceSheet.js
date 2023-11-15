@@ -319,3 +319,83 @@ function reportBtnfunc(attPercentage) {
     link.click();
 }
 
+function registerStudents(studentId) {
+    $.ajax({
+        url: ''//samnun url
+        ,
+        method: 'GET',
+        dataType: 'json',
+        headers: {
+            'mysession': sessiondata,
+            'Authorization': 'Basic ' + hashdata
+        },
+        data: {
+            studentId: studentId,
+            hid: hid,
+        },
+        // success: function (data) {
+        //     console.log(data);
+        //     dataFromBackend = data; // Populate dataFromBackend with the fetched data
+        //     console.log(data);
+        //     displayAttendanceData(); // Call a function to display data after it's fetched
+
+        //     // After the first AJAX call is completed, simulate the clicks on toggleImagesButton
+        //     const toggleImagesButton = document.getElementById('toggleImages');
+        //     toggleImagesButton.dispatchEvent(new Event('click')); // Simulate a click on the toggleImagesButton
+        //     toggleImagesButton.dispatchEvent(new Event('click')); // Simulate a second click
+        // },
+        // error: function (error) {
+        //     // Handle any errors
+        //     console.error('Error fetching data:', error);
+        // }
+    });
+}
+
+function csvSubmit() {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.csv';
+
+    // Trigger a click on the file input to open the file dialog
+    fileInput.click();
+
+    // Handle file selection
+    fileInput.addEventListener('change', handleFileSelect);
+}
+
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    
+    if (file) {
+        // Read the CSV file
+        const reader = new FileReader();
+        
+        reader.onload = function (e) {
+            const csvData = e.target.result;
+
+            // Process CSV data
+            processData(csvData);
+        };
+
+        // Read the file as text
+        reader.readAsText(file);
+    }
+}
+
+function processData(csvData) {
+    // Split CSV data into rows
+    const rows = csvData.split('\n');
+
+    // Loop through each entry in the CSV
+    for (let i = 1; i < rows.length; i++) { // Assuming the first row is header
+        const columns = rows[i].split(',');
+        console.log(columns[0]);
+
+        // Assuming the CSV columns are in the order: studentId, attendanceDate
+        const studentId = columns[0].trim();
+        const attendanceDate = columns[1].trim();
+
+        // Make the API call for each entry
+        registerStudents(studentId, hid);
+    }
+}

@@ -204,13 +204,13 @@ button ~ button{
 .autoplay{
   height: 34px;
   width: 34px;
-  border-radius: 2rem;
+  border-radius: .4rem;
   margin-bottom: .2rem;
-  box-shadow: .05rem .05rem .6rem rgb(200, 244, 252);
+  /* box-shadow: .01rem .01rem .6rem rgb(200, 244, 252); */
 }
 
 .autoplay:hover{
-  background-color: #ffff00;
+  background-color: #ffffff;
   scale: 1.1;
 }
 
@@ -419,6 +419,7 @@ a {
 }
 
 .course-name {
+  color: #e6e6e6 !important;
   font-size: 1.8rem;
   font-weight: 400;
 }
