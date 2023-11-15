@@ -31,23 +31,33 @@
 
 
 .courseInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
-  flex: 2; /* CourseInfo takes 40% of the available width */
+  flex: 3; 
   padding: 0 20px;
-  border-right: 1.5px solid #00125c76; /* Add a vertical separator between sections */
+  border-right: 1.5px solid #00125c76; 
+  overflow-y: hidden; 
+  overflow-x: auto;
 }
 
 .belowInfo {
   display: flex;
   width: 100%;
   text-align: left;
-  padding-left: 20px; /* Add some left padding for separation */
-  overflow-y: hidden; /* Add a scrollbar if the content overflows */
-  overflow-x: auto; /* Add a scrollbar if the content overflows */
-  flex: 3; /* BelowInfo takes 60% of the available width */
+  padding-left: 20px;
+  overflow-y: hidden; 
+  overflow-x: auto; 
+  flex: 4; 
   padding: 0 20px;
   flex-direction: column;
 }
+
+#courseDiv{
+  min-width: 25rem;
+}
+
 
 .above-attendance {
   display: flex;
@@ -101,7 +111,7 @@
 
 #reportBtn:hover {
   border-width: .1rem;
-  background-color: #0039d6;
+  background-color: #00d600;
 }
 
 #courseCode {
@@ -335,27 +345,34 @@ a {
 }
 
 #sheetSubmitBtn, #csvSubmitBtn {
-  min-width: 30rem;
-  margin-top: 4rem;
-  margin-bottom: 3rem;
+  min-width: 18rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   background-color: #000144;
   border: #000000;
   color: #ffffff;
-  padding: 0.8rem 5rem;
+  padding: 0.8rem 1rem;
   text-decoration: double;
   border-radius: 1rem;
   cursor: pointer;
-  font-size:large;
+  font-size:medium;
   font-weight: bold;
   box-shadow: #a1a1a1 0.2rem 0.1rem .5rem;
 }
 
-#sheetSubmitBtn:hover{
+#sheetSubmitBtn:hover, #csvSubmitBtn:hover{
   border-width: .1rem;
   background-color: #ffb700;
   color: #000000;
   transform: scale(1.01);
 }
+
+#btnDiv {
+  text-align: right;
+  width: min-content;
+}
+
+
 
 #att_percentage {
   padding: 5px 2px 2px 11px;

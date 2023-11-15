@@ -32,11 +32,16 @@
             <div class="main">
                 <div class="text-center" id="sheetInfo">
                     <div class="courseInfo">
-                        <h1 id="courseCode">Course Code</h1>
-                        <h1 id="courseName">Course Name</h1>
-                        <p class="cInfo">Total Students : <span id="count">Count</span></p>
-                        <p class="cInfo">Course Attendance : <span
-                                id="percentage">Percentage</span></p>
+                        <div id="courseDiv">
+                            <h1 id="courseCode">Course Code</h1>
+                            <h1 id="courseName">Course Name</h1>
+                            <p class="cInfo">Total Students : <span id="count">Count</span></p>
+                            <p class="cInfo">Course Attendance : <span id="percentage">Percentage</span></p>
+                        </div>
+                        <div id="btnDiv">
+                            <button type="submit" id="sheetSubmitBtn" onclick="sheetSubmitBtn();">Generate Report</button>
+                            <button type="submit" id="csvSubmitBtn" onclick="csvSubmit();">Upload Students</button>
+                        </div>
                     </div>
                     <div class="belowInfo">
                         <div class="above-attendance">
@@ -62,11 +67,6 @@
                 </div>
             </div>
         </div>
-        <center>
-            <button type="submit" id="sheetSubmitBtn"
-                onclick="sheetSubmitBtn();">Generate Report</button>
-            <button type="submit" id="csvSubmitBtn" onclick="csvSubmit();">Upload Students</button>
-        </center>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.4/xlsx.full.min.js"></script>
