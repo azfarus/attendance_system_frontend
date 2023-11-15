@@ -73,5 +73,27 @@ $(document).ready(function () {
 
     $('#resetPasswordButton').click(function () {
         // Your reset password logic here
+        id=document.getElementById("forgotPasswordEmail").value;
+
+        
+        $.ajax({
+            type: 'POST',
+            url: 'http://'+hostaddr+':8081/forgotpass/request-change',
+            contentType: 'application/x-www-form-urlencoded',
+            data: {
+                id:id
+            },
+            
+    
+            
+            success: function(data) {
+                alert('YES YES YES');
+            },
+            error: function() {
+                // Handle login error
+                alert('Login failed. Please check your credentials.');
+            }
+        });
+        
     });
 });

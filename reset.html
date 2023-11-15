@@ -12,7 +12,7 @@
     <body>
         <center>
             <h1>Password Reset</h1>
-            <form id="resetPasswordForm" onsubmit="resetPassword(event)">
+            
                 <label for="newPassword">New Password</label>
                 <input type="password" id="newPassword" name="newPassword"
                     required>
@@ -21,13 +21,14 @@
                 <input type="password" id="confirmPassword"
                     name="confirmPassword" required>
 
-                <button type="submit">Reset Password</button>
-            </form>
+                <button  id="resetpass">Reset Password</button>
+            
             <br>
             <div id="errorMessage" style="color: red;"></div>
         </center>
-<!-- <script>
-    function resetPassword(event) {
+    <script src="./JS/resetpass.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <!-- function resetPassword(event) {
         event.preventDefault();
         const newPassword = document.getElementById('newPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
@@ -75,6 +76,7 @@
             console.error('Password reset error:', error);
         });
     }
-</script> -->
+</script> --> 
+
     </body>
 </html>
