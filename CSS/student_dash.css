@@ -106,7 +106,7 @@ html {
   margin: auto;
   margin-top: 2rem;
   background-color: #ffffff45;
-  border-radius: 2rem;
+  border-radius: 1rem;
   box-shadow: 0.2rem 0.1rem 1rem rgba(0, 0, 0, 0.2);
 }
 
@@ -118,7 +118,7 @@ label {
   font-size: medium;
   padding: 1.5rem;
   margin-bottom: 2rem;
-  border-radius: 2.5rem;
+  border-radius: 1rem;
   border: 1px solid #000000;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
 }
@@ -133,7 +133,7 @@ select {
 
 
 #updateProfileButton:hover {
-  background-color: #fff718d8;
+  background-color: #ffcc24;
   color: #030060;
 }
 
@@ -145,12 +145,12 @@ select {
   margin-right: auto; /* Add margin-right:auto to center horizontally */
   width: 20rem;
   padding: 1rem;
-  border-radius: 2.5rem;
   border: #ddd;
   background-color: #ffa600;
   color: #000;
   cursor: pointer;
-  box-shadow: 0.5rem 0.6rem 0.8rem rgba(0, 0, 0, 0.268);
+  border-radius: 1rem;
+  box-shadow: 0.2rem 0.2rem .1rem rgba(255, 217, 0, 0.772);
 }
 
 .container,
@@ -217,7 +217,7 @@ a {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 50%;
-  border: 2px solid #ffb700;
+  border: 2px solid #001eff;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
   object-fit: cover;
 }
@@ -324,8 +324,8 @@ a {
   .file-input {
     font-size: 1.6rem;
     background: white;
-    border-radius: 5rem;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
     width: 100%;
     cursor: pointer;
     outline: none;

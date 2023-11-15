@@ -1,31 +1,8 @@
 // attendance.js
 hostaddr=localStorage.getItem('host')
 
-var dataFromBackend = {
-    "200041122": ["Radib Bin Kabir","P", "A", "L","P","P","P","P","P","P","P","P","P","P"],
-    "200041101": ["Abu Hena Shadid","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041102": ["Tawsif Dipto","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041103": ["Jarin Hridy","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041104": ["Helo Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041105": ["Rahim Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041106": ["Asif Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041107": ["Desi Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041108": ["Bidesi Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041109": ["Kamrul Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041110": ["Ayman Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041111": ["Karim Abrar","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041142": ["Sami Shajeed","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041113": ["Ehsanul Haque","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041114": ["Tanbir Choudhury","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041144": ["Tanvir Dihan","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041116": ["Iftekhar Ifty","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041126": ["Abdullah","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041139": ["Mosammat Zannatul Samarukh","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041119": ["Samin Yeasir","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041120": ["Arian Inan","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041121": ["Shofiq Kaiser","P", "P", "A","P","P","P","P","P","P","P","P","P","P"],
-    "200041130": ["Samnun Azfar","L", "A", "P","P","P","P","P","P","P","P","P","P","P"]
-};
+var dataFromBackend = {};
+var percentage_input = 85;
 
 // Get the current URL
 var url = new URL(window.location.href);
@@ -92,7 +69,7 @@ $.ajax({
 
 document.getElementById("att_percentage").addEventListener("change",()=>{
     document.getElementById("studentList").innerHTML="";
-    const percentage_input = document.getElementById("att_percentage").value;
+    percentage_input = document.getElementById("att_percentage").value;
 
     if(percentage_input > 100 || percentage_input < 0) alert("Invalid Percentage");
     else fetchStudentIds(percentage_input);
@@ -288,6 +265,53 @@ function sheetSubmitBtn() {
     const link = document.createElement("a");
     link.href = window.URL.createObjectURL(blob);
     const dlink = "attendance-data-" + globalcourse + ".csv";
+    link.download = dlink;
+
+    // Trigger a click event on the download link
+    link.click();
+}
+
+document.getElementById("reportBtn").addEventListener("click", () => reportBtnfunc(percentage_input));
+function reportBtnfunc(attPercentage) {
+    console.log(attPercentage);
+    const table = document.getElementById("attendance-table");
+    const rows = table.querySelectorAll("tr");
+    let csvContent = "";
+
+    // Iterate through table rows and cells to extract data
+    rows.forEach(function (row) {
+        const cols = row.querySelectorAll("td");
+        let rowData = [];
+
+        // Skip header row
+        if (cols.length > 0) {
+            cols.forEach(function (col, index) {
+                // Check if it's the attendance percentage column (index 2)
+                if (index === 2) {
+                    const percentage = parseFloat(col.textContent);
+                    if (percentage < attPercentage) {
+                        // Include Student ID, Student Name, and Attendance Percentage
+                        rowData.push(row.cells[0].textContent);
+                        rowData.push(row.cells[1].textContent);
+                        rowData.push(percentage);
+                    }
+                }
+            });
+
+            // If rowData is not empty, add it to the CSV content
+            if (rowData.length > 0) {
+                csvContent += rowData.join(",") + "\n";
+            }
+        }
+    });
+
+    // Create a Blob with the CSV data
+    const blob = new Blob([csvContent], { type: "text/csv" });
+
+    // Create a download link for the Blob
+    const link = document.createElement("a");
+    link.href = window.URL.createObjectURL(blob);
+    const dlink = "Below-attendance-" + globalcourse + ".csv";
     link.download = dlink;
 
     // Trigger a click event on the download link

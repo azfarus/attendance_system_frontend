@@ -369,7 +369,7 @@ a {
   height: 14rem;
   width: 14rem;
   border-radius: 5%;
-  margin: 1rem;
+  margin: .1rem;
   border: .5rem solid #000000;
   transition: border-width 0.3s ease-in-out;
   object-fit: cover;
@@ -384,7 +384,7 @@ a {
 
 /* Attendance Button Styles */
 .attendance-button {
-  margin-top: 10px;
+  margin-top: 4px;
   padding: 4px 6px !important;
   width: 40%;
 }

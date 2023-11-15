@@ -58,20 +58,20 @@
 #emailBtn {
   left: 1;
   display: block;
-  min-width: 20rem;
+  min-width: 13rem;
   margin-top: 0.5rem;
   margin-left: 1rem;
   margin-bottom: .5rem;
   background-color: #000144;
   border: #000000;
   color: #ffffff;
-  padding: .8rem 4.5rem;
+  padding: .8rem 2.5rem;
   text-decoration: double;
   border-radius: 2.5rem;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
-  box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
+  box-shadow: rgb(255, 213, 185) 0.2rem 0.2rem 0.1rem;
 }
 
 #emailBtn:hover {
@@ -79,6 +79,29 @@
   background-color: #ff0000;
   color: #ffffff;
   transform: scale(1.01);
+}
+
+#reportBtn {
+  left: 1;
+  display: block;
+  min-width: 8rem;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  margin-bottom: .5rem;
+  background-color: #000144;
+  border: #000000;
+  color: #ffffff;
+  padding: .8rem 2.5rem;
+  text-decoration: double;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: rgb(255, 213, 185) 0.2rem 0.2rem 0.1rem;
+}
+
+#reportBtn:hover {
+  border-width: .1rem;
+  background-color: #0039d6;
 }
 
 #courseCode {
@@ -130,6 +153,9 @@
 
 #belowAttHeading{
   flex: 1;
+  max-width: 30rem;
+  margin: 5px;
+  padding: 5px;
   font-size: 24px;
   font-weight: 600;
   color: #350000;
@@ -321,30 +347,41 @@ a {
   cursor: pointer;
   font-size:large;
   font-weight: bold;
-  box-shadow: #a1a1a1 0.2rem 0.1rem 1rem;
+  box-shadow: #a1a1a1 0.2rem 0.1rem .5rem;
 }
 
 #sheetSubmitBtn:hover{
   border-width: .1rem;
-  background-color: #1eff35b4;
+  background-color: #ffb700;
   color: #000000;
   transform: scale(1.01);
 }
 
 #att_percentage {
-  padding: 4px 5px;
+  padding: 5px 2px 2px 11px;
+  margin: 0px 10px 2px;
   font-size: large;
   border: 2px solid #1c02aa;
   border-radius: 5px;
   outline: none;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
-  min-width: 3rem;
+  min-width: 5rem;
+  max-width: 5rem;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* WebKit browsers */
+  margin: 1px; /* Removes default margin */
 }
 
 @media (max-width: 1000px) {
   #belowAttHeading{
-    font-size: 24px;
+    font-size: 20px;
   }
   .cInfo {
     font-size: 1.6rem;
@@ -353,7 +390,7 @@ a {
 
 @media (max-width: 760px) {
   #belowAttHeading{
-    font-size: 22px;
+    font-size: 16px;
   }
   .cInfo {
     font-size: 1.4rem;
@@ -365,7 +402,7 @@ a {
     font-size: 26px;
   }
   #belowAttHeading{
-    font-size: 18px;
+    font-size: 14px;
   }
   .cInfo {
     font-size: 1.3rem;

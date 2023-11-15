@@ -132,7 +132,7 @@ select {
   }
 
   #assignCourseButton:hover {
-    background-color: #fff718d8;
+    background-color: #ffcc24;
     color: #030060;
   }
   
@@ -143,12 +143,12 @@ select {
     width: 20rem;
     margin-top: 1.1rem;
     padding: 1rem;
-    border-radius: 2.5rem;
     border: #ddd;
     background-color: #ffa600;
     color: #000;
     cursor: pointer;
-    box-shadow: 0.5rem 0.6rem 0.8rem rgba(0, 0, 0, 0.268);
+    border-radius: 1rem;
+    box-shadow: 0.2rem 0.2rem .1rem rgba(255, 217, 0, 0.772);
   }
 
 
