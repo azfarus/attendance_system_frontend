@@ -155,6 +155,10 @@ form .btn {
     font-weight: 600;
 }
 
+.form-group{
+  text-align: center;
+}
+
 
 @media (min-width: 768px) {
   .login-left {

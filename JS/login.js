@@ -46,3 +46,32 @@ $('#loginButton').click(function() {
         }
     });
 });
+
+// Add this script to handle the toggle functionality
+$(document).ready(function () {
+    // Show the login form by default
+    $('#loginForm').show();
+    $('#forgotPasswordForm').hide();
+
+    // Toggle to the forgot password form
+    $('#forgotPasswordLink').click(function () {
+        $('#loginForm').hide();
+        $('#forgotPasswordForm').show();
+    });
+
+    // Toggle back to the login form
+    $('#backToLoginLink').click(function () {
+        $('#forgotPasswordForm').hide();
+        $('#loginForm').show();
+    });
+
+    // You can add your login and forgot password logic here
+    // For example, handle the click event of the login button and reset password button
+    $('#loginButton').click(function () {
+        // Your login logic here
+    });
+
+    $('#resetPasswordButton').click(function () {
+        // Your reset password logic here
+    });
+});
