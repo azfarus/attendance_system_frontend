@@ -334,7 +334,7 @@ a {
   vertical-align: middle;
 }
 
-#sheetSubmitBtn{
+#sheetSubmitBtn, #csvSubmitBtn {
   min-width: 30rem;
   margin-top: 4rem;
   margin-bottom: 3rem;
