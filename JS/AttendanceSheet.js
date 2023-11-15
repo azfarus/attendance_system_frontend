@@ -145,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function populateStudentIDs() {
     const studentList = document.getElementById("studentList");
+    studentList.innerHTML = "";
     const EmailBtn = document.getElementById("emailBtn");
 
     // Store the original button styles only if they haven't been stored before
