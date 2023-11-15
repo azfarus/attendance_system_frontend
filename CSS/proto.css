@@ -206,7 +206,9 @@ a {
     z-index: 1;
     color: rgb(44, 195, 233);
 }
-
+b{
+    color:rgb(44, 195, 233);
+}
 .circular--square {
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
