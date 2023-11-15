@@ -35,6 +35,7 @@
                         <li class="active" data-target="#attendanceChartSection">ATTENDANCE CHART</li>
                         <li data-target="#myProfileSection">UPDATE PROFILE</li>
                         <li data-target="#courseRegSection">COURSE REGISTRATION</li>
+                        <li data-target="#RegSection">REGISTERED COURSES</li>
                     </ul>
                 </div>
                 <div class="main">
@@ -111,13 +112,21 @@
                                 </div>
                                 </nav>
                             </div>
-                            <div class="hh"><h1>Registered Courses:</h1> <br><hr></div>
+                            <div class="hh"><h1>Selected Courses:</h1> <br><hr></div>
                             <div class="list-container" id="selected-items">
                                 <!-- Selected items will appear here -->
                             </div>
                             <center>
                                 <button type="submit" id="courseRegBtn" onclick="btn();">Register</button>
                             </center>
+                    </div>
+                    <div class="section" id="RegSection">
+                        <h1>REGISTERED COURSES</h1> <br>
+                        <div id="myRegs">
+                            <ol id="courseList" class="course-list">
+
+                            </ol>
+                        </div>
                     </div>
                 </div>
         </div>

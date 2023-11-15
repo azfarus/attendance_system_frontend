@@ -196,14 +196,15 @@ $('#updateStudentForm').submit(function(event) {
 });
 
 
+
 // Call the function to fetch Student's data when the page loads
 $(document).ready(function () {
   fetchStudentData();
-
-sessiondata = localStorage.getItem("mysession");
-hashdata = localStorage.getItem("myhash");
-const apiUrl = "http://"+hostaddr+":8081/student/";
-
+  
+  sessiondata = localStorage.getItem("mysession");
+  hashdata = localStorage.getItem("myhash");
+  const apiUrl = "http://"+hostaddr+":8081/student/";
+  
 // Step 1: Fetch all course information
 $.ajax({
   url: apiUrl + "courses_info",
@@ -214,7 +215,7 @@ $.ajax({
   },
   dataType: "json",
   success: function (allCourses) {
-
+    
     studentId = getSessionStudentId(); // Replace with the actual student ID
     const enrolledCourses = [];
     const getAttendancePromises = [];
@@ -242,6 +243,7 @@ $.ajax({
               hid: course.hid,
               department: course.department,
               courseid: course.courseid,
+              courseName: course.courseName,
             });
           }
         }
@@ -285,8 +287,7 @@ $.ajax({
             },
           },
         });
-
-        console.log("Enrolled Courses:", enrolledCourses);
+        displayCourses(enrolledCourses);
       })
       .catch(error => {
         console.error("Error fetching attendance percentages:", error);
@@ -300,6 +301,33 @@ $.ajax({
 });
 
 });
+
+// Function to display courses in the list
+function displayCourses(courses) {
+  const courseList = document.getElementById('courseList');
+  courseList.innerHTML = '';
+  if (courses.length > 0) {
+    let counter = 1; // Initialize counter
+    courses.forEach(course => {
+      const listItem = document.createElement('li');
+      listItem.className = 'course-item';
+
+      const courseInfo = document.createElement('div');
+      courseInfo.className = 'course-info';
+      courseInfo.textContent = `${counter} .   ${course.department}  ${course.courseid}    -    ${course.courseName}`;
+      listItem.appendChild(courseInfo);
+      courseList.appendChild(listItem);
+      counter++;
+    });
+  } else {
+    const message = document.createElement('p');
+    message.textContent = 'No courses found for the student.';
+    courseList.appendChild(message);
+  }
+}
+
+
+
 
 
 function getAttendancePercentage(studentId, hid) {

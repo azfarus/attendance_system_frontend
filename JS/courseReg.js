@@ -65,35 +65,42 @@ deptdrop.addEventListener('click', function () {
     }
 
     // Fetch course data from the backend based on the selected department
-    $.ajax({
-        url: "http://"+hostaddr+":8081/course/get-course-by-dept",
-        method: "GET",
-        headers: {
-          'mysession': sessiondata,
-          'Authorization': 'Basic ' + hashdata
-        },
-        data: {
-            department: dept
-        },
-        success: function (data) {
-            console.log(data);
-            // Populate the "Offered Courses" dropdown with dynamic options
-            data.forEach(function (course) {
-                const option = document.createElement("a");
-                option.href = "#"; // Add the appropriate link or action
-                option.textContent = course;
-                option.onclick = function () {
-                    changeTitle(course, "dropbtn3"); // Call your changeTitle function
-                    // Reset the "Offered Courses" dropdown by clearing its selected option
-                    coursesDropdown.selectedIndex = -1;
-                };
-                coursesDropdown.appendChild(option);
-            });
-        },
-        error: function (error) {
-          console.error("Error fetching courses:", error);
-        }
-    });
+$.ajax({
+    url: "http://" + hostaddr + ":8081/course/get-course-by-dept",
+    method: "GET",
+    headers: {
+        'mysession': sessiondata,
+        'Authorization': 'Basic ' + hashdata
+    },
+    data: {
+        department: dept
+    },
+    success: function (data) {
+        console.log("hello this is what you want :  ", data);
+
+        // Populate the "Offered Courses" dropdown with dynamic options
+        data.forEach(function (course) {
+            const option = document.createElement("a");
+            option.href = "#"; // Add the appropriate link or action
+
+            // Extract course code from the course name
+            const [, courseCode] = /(\d+)/.exec(course.name) || [];
+            
+            option.textContent = courseCode; // Set course code as text content
+
+            option.onclick = function () {
+                changeTitle(courseCode, "dropbtn3"); // You might need to pass the full course name
+                coursesDropdown.selectedIndex = -1;
+            };
+
+            coursesDropdown.appendChild(option);
+        });
+    },
+    error: function (error) {
+        console.error("Error fetching courses:", error);
+    }
+});
+
 });
 
 function getSessionStudentId() {
@@ -214,6 +221,7 @@ function getSessionStudentId() {
                     for (const course of allCoursesList) {
                         if (course.department == department && course.courseid == offeredCourses) {
                             courseInfo = `${courseInfo}   :   ${course.courseName}`;
+                            console.log(courseInfo);
                             break; // Exit the loop once a match is found
                         }
                     }

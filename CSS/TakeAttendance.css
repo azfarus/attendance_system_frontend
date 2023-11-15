@@ -16,6 +16,7 @@
 }
 
 #sheetInfo {
+  text-align: center;
   background-color: #eef9ff;
   padding-top: 1.5rem;
   padding-bottom: 1rem;
@@ -39,15 +40,7 @@
   margin: 5px 0;
 }
 
-.student-image{
-  height: 10rem;
-  width: 10rem;
-  border-radius: 5%;
-  margin: 0.5rem;
-  border: .5rem solid #000000;
-  transition: border-width 0.3s ease-in-out;
-  object-fit: cover;
-}
+
 
 .toggle-icon {
   top: 1.2rem;
@@ -72,13 +65,25 @@
   background-color: #00076b;
 }
 
+#table-container {
+  text-align: center;
+  max-width: 99%; /* Set a maximum width for the table container */
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+  overflow-y: auto; /* Enable horizontal scrolling if needed */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
 #attendance-table {
-    width: auto;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow-x: auto; /* Enable horizontal scrolling */
-    overflow-y: auto; /* Enable horizontal scrolling */
+  padding: 2rem;
+  margin: 3.5rem auto;
+  width: 70%; /* Set the table width to 100% */
+  max-width: 100%; /* Ensure the table doesn't exceed the parent container */
+  border: #000000 0.2rem solid;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: auto; /* Enable horizontal scrolling */
 }
 
 
@@ -96,11 +101,14 @@
 }
 
 #attendance-table th{
-  border: 1px solid #ffffff;
+  min-width: 11rem;
+  font-size: large;
+  border-left: #000f7d 0.2rem solid;
+  border-right: #00158a 0.2rem solid;
 }
 
 #attendance-table th:first-child{
-    min-width: 22rem;
+    min-width: 18rem;
     position: sticky;
     left: 0;
     color: rgb(255, 253, 238);
@@ -109,7 +117,7 @@
 
 #attendance-table td:first-child {
     font-weight: bold;
-    min-width: 22rem;
+    min-width: 18rem;
     position: sticky;
     left: 0;
     background-color: #afe7ffd6;
@@ -138,7 +146,7 @@
 }
 
 #attendance-table th:nth-child(2) {
-    min-width: 38rem;
+    min-width: 32rem;
     left: 0;
     color: white;
     font-size: 2rem;
@@ -147,7 +155,7 @@
 
 #attendance-table td:nth-child(2) {
     font-weight:400;
-    min-width: 24rem;
+    min-width: 32rem;
     left: 0;
     color: rgb(0, 0, 0);
     font-size: 2rem;
@@ -165,7 +173,7 @@
 }
 
 #attendance-table tr:hover {
-    background-color: rgba(248, 255, 200, 0.359);
+    background-color: rgba(147, 172, 255, 0.359);
 }
 
 button {
@@ -289,9 +297,9 @@ a {
   background-color: #000144;
   border: #000000;
   color: #ffffff;
-  padding: 1.2rem 7.5rem;
+  padding: 1rem 6rem;
   text-decoration: double;
-  border-radius: 2.5rem;
+  border-radius: 1rem;
   cursor: pointer;
   font-size:large;
   font-weight: bold;
@@ -334,9 +342,68 @@ a {
   box-shadow: 2px 2px 3px rgba(217, 179, 255, 0.7);
 }
 
+/* Attendance Container Styles */
+#attendance-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+  margin: 8px 10px;
+}
+
+/* Student Card Styles */
+.student-card {
+  border: 1px solid #000013;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: .8rem;
+  text-align: center;
+}
+
+.student-card:hover {
+  background-color: aliceblue;
+  transform: scale(1.02);
+}
+
+
+.student-image{
+  height: 14rem;
+  width: 14rem;
+  border-radius: 5%;
+  margin: 1rem;
+  border: .5rem solid #000000;
+  transition: border-width 0.3s ease-in-out;
+  object-fit: cover;
+}
+
+/* Student ID Styles */
+.student-id {
+  font-weight: bold;
+  margin-top: 1px;
+  font-size: 18px;  
+}
+
+/* Attendance Button Styles */
+.attendance-button {
+  margin-top: 10px;
+  padding: 4px 6px !important;
+  width: 40%;
+}
+
+
+
 @media (max-width: 560px) {
   .nav-text {
     font-size: 26px;
+  }
+
+  #attendance-container {
+    padding: auto;
+    margin: auto;
+  }
+
+  #attendance-table {
+    width: 95%; /* Set the table width to 100% */
+    max-width: 100%; /* Ensure the table doesn't exceed the parent container */
   }
 }
 

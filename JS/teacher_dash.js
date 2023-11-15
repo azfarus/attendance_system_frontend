@@ -329,7 +329,7 @@ function populateCoursesDropdown(dept) {
       'Authorization': 'Basic ' + hashdata
     },
     success: function (data) {
-      console.log(data);
+      console.log("this is get course by dept data" + data[0].name);
       var selectElement = $("#courses_teacher");
 
       // Clear previous options

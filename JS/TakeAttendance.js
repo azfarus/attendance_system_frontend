@@ -54,18 +54,27 @@ $.ajax({
     },
     success: function (teacherCourses) {
 
-    const currentDate = new Date();
-
-    console.log(teacherCourses);
-    const hidToMatch = hid;
-    for (const course of teacherCourses) {
-        if (course.hid == hidToMatch) {
-            document.getElementById('courseCode').textContent = course.department +" "+ course.courseid +" "+course.section;
-            document.getElementById('courseName').textContent = course.coursename;
-            document.getElementById("attDate").value = currentDate.toISOString().slice(0, 10);
+        const currentDate = new Date();
+        const options = { timeZone: 'Asia/Dhaka', year: 'numeric', month: '2-digit', day: '2-digit' };
+        
+        console.log(teacherCourses);
+        const hidToMatch = hid;
+        for (const course of teacherCourses) {
+            if (course.hid == hidToMatch) {
+                document.getElementById('courseCode').textContent = course.department + " " + course.courseid + " " + course.section;
+                document.getElementById('courseName').textContent = course.coursename;
+        
+                // Format the date with the correct time zone
+                const formattedDateParts = currentDate.toLocaleDateString('en-US', options).split('/');
+                const formattedDate = `${formattedDateParts[2]}-${formattedDateParts[0].padStart(2, '0')}-${formattedDateParts[1].padStart(2, '0')}`;
+                document.getElementById("attDate").value = formattedDate;
                 break;
             }
         }
+        
+
+
+
     },
         error: function (error) {
       // Handle any errors here
@@ -82,11 +91,10 @@ refreshAttendanceList();
 document.getElementById("attDate").addEventListener("change" , refreshAttendanceList); 
 
 
-function refreshAttendanceList(){
-    
+function refreshAttendanceList() {
     const attendanceDate = document.getElementById("attDate").value;
     $.ajax({
-        url: 'http://'+hostaddr+':8081/attendance/get-students',
+        url: 'http://' + hostaddr + ':8081/attendance/get-students',
         method: 'GET',
         dataType: 'json',
         headers: {
@@ -95,20 +103,26 @@ function refreshAttendanceList(){
         },
         data: {
             hid: hid,
-            attendanceDate:attendanceDate
+            attendanceDate: attendanceDate
         },
         success: function (data) {
-          console.log(data);
-          dataFromBackend = data; // Populate dataFromBackend with the fetched data
-          console.log(data);
-          displayAttendanceData(); // Call a function to display data after it's fetched
+            console.log(data);
+            dataFromBackend = data; // Populate dataFromBackend with the fetched data
+            console.log(data);
+            displayAttendanceData(); // Call a function to display data after it's fetched
+
+            // After the first AJAX call is completed, simulate the clicks on toggleImagesButton
+            const toggleImagesButton = document.getElementById('toggleImages');
+            toggleImagesButton.dispatchEvent(new Event('click')); // Simulate a click on the toggleImagesButton
+            toggleImagesButton.dispatchEvent(new Event('click')); // Simulate a second click
         },
         error: function (error) {
-          // Handle any errors
-          console.error('Error fetching data:', error);
+            // Handle any errors
+            console.error('Error fetching data:', error);
         }
     });
 }
+
 
 function displayAttendanceData() {
     const table = document.getElementById("attendance-table");
@@ -121,9 +135,10 @@ function displayAttendanceData() {
     students = Object.keys(dataFromBackend);
 
      // Initialize an object to store attendance data
-
-    students.forEach((studentId) => {
-        const row = table.insertRow();
+     
+     students.forEach((studentId) => {
+         const row = table.insertRow();
+         row.setAttribute("data-student-id", studentId);
 
         // Display Student ID in the first column
         row.insertCell(0).textContent = studentId;
@@ -154,6 +169,50 @@ function displayAttendanceData() {
     });
 
 }
+
+// refreshes table after toggleImagesButton is clicked
+function refreshTable() {
+    const table = document.getElementById("attendance-table");
+
+    students.forEach((studentId) => {
+        // Check if the row for the student already exists
+        let row = table.querySelector(`tr[data-student-id="${studentId}"]`);
+
+        // If the row doesn't exist, create a new one
+        if (!row) {
+            row = table.insertRow();
+            row.setAttribute("data-student-id", studentId);
+        } else {
+            // Clear the existing content of the row
+            row.innerHTML = "";
+        }
+
+        // Display Student ID in the first column
+        row.insertCell(0).textContent = studentId;
+
+        const studentName = dataFromBackend[studentId].name;
+
+        // Display Student Name in the second column
+        row.insertCell(1).textContent = studentName;
+
+        const imgCell = row.insertCell(2);
+        const img = document.createElement("img");
+        img.src = "http://" + hostaddr + ":8081/student/get-photo/" + studentId;
+        img.classList.add("student-image");
+        imgCell.appendChild(img);
+
+        // Create the third column with a single button for P, A, L
+        const attendanceCell = row.insertCell(3);
+        const button = document.createElement("button");
+        button.textContent = attendanceData[studentId]; // Set the initial value to "P"
+        button.classList.add(attendanceData[studentId]);
+        button.value = studentId;
+        button.addEventListener("click", toggleAttendance);
+        attendanceCell.appendChild(button);
+    });
+}
+
+
 
 
 function toggleAttendance(event) {
@@ -196,24 +255,67 @@ function submitAttendanceData() {
 // Attach a click event handler to a submit button
 document.getElementById("sheetSubmitBtn").addEventListener("click", submitAttendanceData);
 
+// ... (your existing code)
+
 const toggleImagesButton = document.getElementById('toggleImages');
-let imagesVisible = false;
+let cardsVisible = false;
+let tableVisible = true; // Default to showing the table
 
 toggleImagesButton.addEventListener('click', function () {
     console.log('Toggle images button clicked');
-    const table = document.getElementById("attendance-table");
-    const columnIndex = 2;
 
-    for (let i = 0; i < table.rows.length; i++) {
-        const row = table.rows[i];
-        const cell = row.cells[columnIndex];
+    const container = document.getElementById("attendance-container");
+    const table = document.getElementById("table-container");
 
-        if (imagesVisible) {
-            cell.style.display = "none";
-        } else {
-            // Show the image cell in each row
-            cell.style.display = "table-cell";
-        }
+    if (tableVisible) {
+        // Hide the table and show the cards
+        table.style.display = "none";
+        container.innerHTML = ""; // Remove existing cards
+
+        students.forEach((studentId) => {
+            const card = document.createElement("div");
+            card.classList.add("student-card");
+
+            // Create an image element
+            const img = document.createElement("img");
+            img.src = "http://" + hostaddr + ":8081/student/get-photo/" + studentId;
+            img.classList.add("student-image");
+            card.appendChild(img);
+
+            // Create a div for student ID
+            const idDiv = document.createElement("div");
+            const fullName = dataFromBackend[studentId].name;
+            const nameParts = fullName.split(' ');
+            const firstName = nameParts[0];
+
+            idDiv.innerHTML = studentId + '<br>' + firstName;
+
+            idDiv.classList.add("student-id");
+            card.appendChild(idDiv);
+
+            // Create a button for attendance
+            const button = document.createElement("button");
+            button.textContent = attendanceData[studentId];
+            button.classList.add("attendance-button", attendanceData[studentId]);
+            button.value = studentId;
+            button.addEventListener("click", toggleAttendance);
+            card.appendChild(button);
+
+            // Append the card to the container
+            container.appendChild(card);
+        });
+
+        cardsVisible = true;
+        tableVisible = false;
+    } else {
+        // Hide the cards and show the table
+        table.style.display = "block";
+        refreshTable(); // Refresh the table content
+        container.innerHTML = ""; // Remove existing cards
+
+        cardsVisible = false;
+        tableVisible = true;
     }
-    imagesVisible = !imagesVisible; // Toggle the visibility state
 });
+
+// ... (your existing code)
