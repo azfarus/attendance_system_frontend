@@ -17,7 +17,6 @@ document.getElementById("resetpass").addEventListener("click" , ()=>{
                 data: {
                     password:newpass,
                     token:token
-
                 },
                 
                 success: function(data) {
