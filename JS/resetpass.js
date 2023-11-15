@@ -20,16 +20,13 @@ document.getElementById("resetpass").addEventListener("click" , ()=>{
 
                 },
                 
-        
-                
                 success: function(data) {
-                    alert('YES YES YES');
+                    alert('Password changed successfully. You can now log in.');
+                    window.location.replace('http://'+hostaddr+':8081/login.html');
                 },
                 error: function() {
-                    // Handle login error
                     alert('Login failed. Please check your credentials.');
                 }
             });
         }
-        alert("stop");    
     });
