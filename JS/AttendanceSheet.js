@@ -319,35 +319,27 @@ function reportBtnfunc(attPercentage) {
     link.click();
 }
 
-function registerStudents(studentId) {
+function registerStudents(studentId , failed) {
     $.ajax({
-        url: ''//samnun url
+        url: 'http://'+hostaddr+':8081/teacher/course-register'//samnun url
         ,
-        method: 'GET',
-        dataType: 'json',
+        method: 'POST',
+        //dataType: 'application/x-www-form-urlencoded',
         headers: {
             'mysession': sessiondata,
             'Authorization': 'Basic ' + hashdata
         },
         data: {
-            studentId: studentId,
+            stud_id: studentId,
             hid: hid,
         },
-        // success: function (data) {
-        //     console.log(data);
-        //     dataFromBackend = data; // Populate dataFromBackend with the fetched data
-        //     console.log(data);
-        //     displayAttendanceData(); // Call a function to display data after it's fetched
-
-        //     // After the first AJAX call is completed, simulate the clicks on toggleImagesButton
-        //     const toggleImagesButton = document.getElementById('toggleImages');
-        //     toggleImagesButton.dispatchEvent(new Event('click')); // Simulate a click on the toggleImagesButton
-        //     toggleImagesButton.dispatchEvent(new Event('click')); // Simulate a second click
-        // },
-        // error: function (error) {
-        //     // Handle any errors
-        //     console.error('Error fetching data:', error);
-        // }
+        success: function(data) {
+            
+        },
+        error: function(data) {
+            alert("Couldnt register "+ JSON.stringify(data));
+        }
+        
     });
 }
 
@@ -385,17 +377,17 @@ function handleFileSelect(event) {
 function processData(csvData) {
     // Split CSV data into rows
     const rows = csvData.split('\n');
-
+    var failed;
     // Loop through each entry in the CSV
-    for (let i = 1; i < rows.length; i++) { // Assuming the first row is header
+    for (let i = 0; i < rows.length; i++) { // Assuming the first row is header
         const columns = rows[i].split(',');
         console.log(columns[0]);
 
         // Assuming the CSV columns are in the order: studentId, attendanceDate
         const studentId = columns[0].trim();
-        const attendanceDate = columns[1].trim();
+        //const attendanceDate = columns[1].trim();
 
         // Make the API call for each entry
-        registerStudents(studentId, hid);
+        registerStudents(studentId , failed);
     }
 }
