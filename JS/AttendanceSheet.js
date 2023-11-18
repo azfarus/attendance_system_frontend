@@ -56,6 +56,8 @@ $.ajax({
             globalcourse = course.department + course.courseid + course.section;
             document.getElementById('courseCode').textContent = course.department +" "+ course.courseid +" "+course.section;
             document.getElementById('courseName').textContent = course.coursename;
+            document.getElementById('count').textContent = course.count;
+            document.getElementById('percentage').textContent = course.percentage;
             break;
         }
     }
