@@ -405,7 +405,8 @@ a {
 }
 
 .icon:hover{
-  background-color: #ffd0d0;
+  background-color: #ffe8e8;
+  scale: 1.2;
 }
 
 .course {
