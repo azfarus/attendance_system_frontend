@@ -399,7 +399,7 @@ a {
   margin-top: 0.5rem;
   border-radius: 5px;
   padding: 2px;
-  border: 2px solid #4d79ff;
+  border: 1px solid #ffc9c9;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
   object-fit: cover;
 }
@@ -421,13 +421,12 @@ a {
   text-align: center;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   cursor: pointer; /* Change mouse cursor to a pointer */
-
   transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
 .course:hover {
   background-color: rgb(0, 4, 37); /* Change background color on hover */
-  transform: scale(1.05); /* Scale the block on hover */
+  transform: scale(1.02); /* Scale the block on hover */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Enhance the box shadow on hover */
 }
 
