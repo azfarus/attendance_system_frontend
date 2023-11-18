@@ -127,37 +127,87 @@ sidebarItems.forEach((item) => {
   }
 
   // Function to create a course block
-  function createCourseBlock(course) {
-    const courseBlock = document.createElement("div");
-    courseBlock.className = "course";
+function createCourseBlock(course) {
+  const courseBlock = document.createElement("div");
+  courseBlock.className = "course";
+  courseBlock.style.position = "relative"; // Set the position to relative for absolute positioning of the icon
 
-    const courseCode = document.createElement("div");
-    courseCode.className = "course-code";
-    courseCode.textContent = `${course.department} ${course.courseid} - ${course.section}`;
+  const courseCode = document.createElement("div");
+  courseCode.className = "course-code";
+  courseCode.textContent = `${course.department} ${course.courseid} - ${course.section}`;
 
-    const courseName = document.createElement("div");
-    courseName.className = "course-name";
-    courseName.textContent = course.coursename;
-    courseName.style.color = "#fff398";
+  const courseName = document.createElement("div");
+  courseName.className = "course-name";
+  courseName.textContent = `${course.coursename}`;
+  const classCode = document.createElement("div");
+  classCode.className = "classCode";
+  classCode.textContent = `${course.code}`;
+  classCode.style.color = "#fff3cf";
+  classCode.style.fontSize = "small";
 
-    const viewSheetButton = createButton("View Sheet", course.hid, redirectToSheet);
-    const takeAttendanceButton = createButton("Take Attendance", course.hid, redirectToAttendance);
-    const autoplay = document.createElement("a");
-    autoplay.href = "autoAtt.html?hid=" + course.hid;
-    
-    const image = document.createElement("img");
-    image.src = "../images/play.webp";
-    image.className = "autoplay";
-    autoplay.appendChild(image);
+  const viewSheetButton = createButton("View Sheet", course.hid, redirectToSheet);
+  const takeAttendanceButton = createButton("Take Attendance", course.hid, redirectToAttendance);
+  const autoplay = document.createElement("a");
+  autoplay.href = "autoAtt.html?hid=" + course.hid;
 
-    courseBlock.appendChild(courseCode);
-    courseBlock.appendChild(courseName);
-    courseBlock.appendChild(viewSheetButton);
-    courseBlock.appendChild(takeAttendanceButton);
-    courseBlock.appendChild(autoplay);
+  const image = document.createElement("img");
+  image.src = "../images/play.webp";
+  image.className = "autoplay";
+  autoplay.appendChild(image);
 
-    return courseBlock;
-  }
+  // Create the delete icon
+  const deleteIcon = document.createElement("img");
+  deleteIcon.src = "../images/delicon.png";
+  deleteIcon.className = "icon";
+
+  deleteIcon.setAttribute("hid", course.hid);   //const customValue = deleteIcon.getAttribute("hid");
+  deleteIcon.style.position = "absolute";
+  deleteIcon.style.top = "7px";
+  deleteIcon.style.right = "7px";
+  deleteIcon.id = course.hid;
+
+  deleteIcon.addEventListener("click", function() {
+    const isConfirmed = window.confirm(`Unenroll from course ${course.department} ${course.courseid} - ${course.section} ?`);
+    if (isConfirmed) {
+      deleteCourse(course.hid);
+    }
+  });
+
+  courseBlock.appendChild(courseCode);
+  courseBlock.appendChild(courseName);
+  courseBlock.appendChild(classCode);
+  courseBlock.appendChild(viewSheetButton);
+  courseBlock.appendChild(takeAttendanceButton);
+  courseBlock.appendChild(autoplay);
+  courseBlock.appendChild(deleteIcon);
+
+  return courseBlock;
+}
+
+function deleteCourse(hid) {
+  console.log("Deleting course with hid:", hid);
+  console.log("teacher id:", getSessionTeacherId());
+  $.ajax({
+    url: "http://" + hostaddr + ":8081/attendance/unenroll",
+    method: "DELETE",
+    data: {
+      tid: getSessionTeacherId(),
+      hid: hid,
+    },
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    success: function (response) {
+      alert("Course unenrolled successfully");
+      console.log("Course unenrolled successfully ", response);
+    },
+    error: function (error) {
+      console.error("Error unenrolling course:", error.responseText);
+    },
+  });
+}
+
 
   // Function to create a button element
   function createButton(label, value, clickHandler) {

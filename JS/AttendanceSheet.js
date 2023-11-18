@@ -9,7 +9,6 @@ var url = new URL(window.location.href);
 // Get the value of the 'hid' query parameter
 var hid = url.searchParams.get('hid');
 var globalcourse;
-console.log(hid);
 
 function getSessionTeacherId() {
     var teacherid = null;
@@ -70,38 +69,45 @@ $.ajax({
 document.getElementById("att_percentage").addEventListener("change",()=>{
     document.getElementById("studentList").innerHTML="";
     percentage_input = document.getElementById("att_percentage").value;
-
+    
     if(percentage_input > 100 || percentage_input < 0) alert("Invalid Percentage");
     else fetchStudentIds(percentage_input);
-
+    
 });
 
 function loadPrevAttendance() {
     const table = document.getElementById("attendance-table");
     const students = Object.keys(dataFromBackend);
-
+    
     // Get the existing table row by its id
     const headerRow = document.getElementById("start-row");
     const headerCell = document.createElement("th");
     headerCell.textContent = "Student ID";
     headerRow.appendChild(headerCell);
-
+    
     const headers = dataFromBackend["start"];
-
+    
     // Populate the table header row with headers
     headers.forEach(headerText => {
         const headerCell = document.createElement("th");
         headerCell.textContent = headerText;
         headerRow.appendChild(headerCell);
     });
-
+    
+    const selectElement = document.getElementById("selectID");
     students.filter(student => student !== "start").forEach((student) => {
+        const option = document.createElement("option");
+        option.value = student;
+        option.textContent = student;
+        selectElement.appendChild(option);
+
+
         const row = table.insertRow();
         row.insertCell(0).textContent = student;
         
         const attendanceData = dataFromBackend[student];
-            for (let i = 0; i < attendanceData.length ; i++) {
-                const cell = row.insertCell(i + 1);
+        for (let i = 0; i < attendanceData.length ; i++) {
+            const cell = row.insertCell(i + 1);
                 cell.textContent = attendanceData[i];
                 cell.style.fontWeight = "600";
                 if(attendanceData[i]=="A"){
@@ -113,6 +119,8 @@ function loadPrevAttendance() {
             }
     });
 }
+
+
 
 var studentIDs = [];
 
@@ -391,3 +399,41 @@ function processData(csvData) {
         registerStudents(studentId , failed);
     }
 }
+
+
+
+$('#deleteBtn').on('click', function () {
+    const selectedStudentID = $('#selectID').val();
+    console.log(selectedStudentID);
+    console.log(hid);
+    var isConfirmed
+
+    if(selectedStudentID == 0){
+        isConfirmed = window.confirm(`Are you sure you want to delete All Students?` );
+    }
+    else
+        isConfirmed = window.confirm(`Are you sure you want to delete ${selectedStudentID} ?` );
+    
+    if (isConfirmed) {
+        $.ajax({
+            type: 'DELETE',
+            url: 'http://'+hostaddr+':8081/attendance/delete-student',
+            headers: {
+                'mysession': sessiondata,
+                'Authorization': 'Basic ' + hashdata
+            },
+            data: {
+                hid: hid,
+                stud_id: selectedStudentID
+            },
+            success: function (response) {
+                alert('Student(s) unenrolled successfully!');
+                window.location.reload();
+            },
+            error: function (error) {
+                console.error('Error:', error);
+                alert('Failed to unenroll student(s)');
+            }
+        });
+    }
+});

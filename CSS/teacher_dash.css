@@ -391,6 +391,23 @@ a {
   flex-wrap: wrap;
 }
 
+.icon{
+  background-color: #ffffff;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin-right: 0.8rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  padding: 2px;
+  border: 2px solid #4d79ff;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+}
+
+.icon:hover{
+  background-color: #ffd0d0;
+}
+
 .course {
   width: calc(33.33% - 20px); /* Each row holds 3 blocks with some spacing */
   padding: 2rem;

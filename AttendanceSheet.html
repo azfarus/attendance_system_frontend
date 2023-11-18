@@ -39,9 +39,21 @@
                             <p class="cInfo">Course Attendance : <span id="percentage">Percentage</span></p>
                         </div>
                         <div id="btnDiv">
-                            <button type="submit" id="sheetSubmitBtn" onclick="sheetSubmitBtn();">Generate Report</button>
-                            <button type="submit" id="csvSubmitBtn" onclick="csvSubmit();">Upload Students</button>
+                            <div class="row">
+                                <button type="submit" id="sheetSubmitBtn" onclick="sheetSubmitBtn();">Generate Report</button>
+                            </div>
+                            <div class="row">
+                                <button type="submit" id="csvSubmitBtn" onclick="csvSubmit();">Upload Students</button>
+                            </div>
+                            <div class="row">
+                                <select id="selectID">
+                                    <option value="0">All Students</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                                <button type="submit" id="deleteBtn"><img class="icon" src="./images/delicon.png" alt="icon"></button>
+                            </div>
                         </div>
+                        
                     </div>
                     <div class="belowInfo">
                         <div class="above-attendance">
