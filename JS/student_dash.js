@@ -356,3 +356,34 @@ function getAttendancePercentage(studentId, hid) {
     });
   });
 }
+
+// Function to handle code enrollment
+function codeEnroll(sheetCode, studentId) {
+  $.ajax({
+    url: `http://${hostaddr}:8081/student/code-enroll`,
+    method: "POST",
+    headers: {
+      'mysession': sessiondata,
+      'Authorization': 'Basic ' + hashdata
+    },
+    data: {
+      sheetcode: sheetCode,
+      stud_id: studentId
+    },
+    success: function (response) {
+      alert('Enrollment successful!');
+      window.location.reload();
+    },
+    error: function (error) {
+      console.error('Error:', error);
+      alert('Failed to enroll. Please try again.');
+    }
+  });
+}
+
+// Event listener for the enrollment form
+$('#enrollmentSubmit').on('click', function () {
+  const sheetCode = $('#enrollmentInput').val();
+  codeEnroll(sheetCode, studentId);
+});
+
