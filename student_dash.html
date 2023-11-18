@@ -37,7 +37,7 @@
                         <li class="active" data-target="#attendanceChartSection">ATTENDANCE CHART</li>
                         <li data-target="#myProfileSection">UPDATE PROFILE</li>
                         <li data-target="#courseRegSection">COURSE REGISTRATION</li>
-                        <li data-target="#RegSection">REGISTERED COURSES</li>
+                        <li data-target="#RegSection">ENROLLED COURSES</li>
                     </ul>
                 </div>
                 <div class="main">
@@ -123,13 +123,21 @@
                             </center>
                     </div>
                     <div class="section" id="RegSection">
-                        <h1>REGISTERED COURSES</h1> <br>
+                        <h1>ENROLLED COURSES</h1> <br>
+                    
+                        <!-- New div for input and submit button -->
+                        <div id="enrollmentControls" style="text-align: center;">
+                            <input type="text" id="enrollmentInput" placeholder="Enter Course Code">
+                            <button id="enrollmentSubmit">Enroll</button>
+                        </div>
+                    
                         <div id="myRegs">
                             <ol id="courseList" class="course-list">
-
+                                <!-- Your enrolled courses list goes here -->
                             </ol>
                         </div>
                     </div>
+                    
                 </div>
         </div>
         </div>
